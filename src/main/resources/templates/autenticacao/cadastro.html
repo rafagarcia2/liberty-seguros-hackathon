@@ -19,13 +19,18 @@
 						</div>
 						<div class="card-body p-5">
 							<h4 class="text-dark mb-5">Cadastrar-se</h4>
-							<form action="/index.html">
+
+							<form method="POST" th:action="@{/autenticacao/cadastro}" th:object="${user}">
+							
+								<div th:if="${success != null}" class="alert alert-success" role="alert"><span th:text="${success}">msg success</span></div>
+								<div th:if="${error != null}" class="alert alert-danger" role="alert"><span th:text="${error}">msg error</span></div>
+		
 								<div class="row">
 									<div class="form-group col-md-12 mb-4">
 										<input
 												type="text"
 												class="form-control input-lg"
-												id="name"
+												id="name" name="name"
 												aria-describedby="nameHelp"
 												placeholder="Nome"
 										/>
@@ -34,7 +39,7 @@
 										<input
 												type="email"
 												class="form-control input-lg"
-												id="email"
+												id="email"  name="email"
 												aria-describedby="emailHelp"
 												placeholder="E-mail"
 										/>
@@ -43,7 +48,7 @@
 										<input
 												type="password"
 												class="form-control input-lg"
-												id="password"
+												id="password"  name="password"
 												placeholder="Senha"
 										/>
 									</div>
