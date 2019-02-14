@@ -41,6 +41,16 @@ public class User implements Serializable{
     @Column(name = "password")
     private String password;
 
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name="cpf")
+    private String cpf;
+
+    @Column(name="admin")
+    private boolean admin;
+
+
     /**
      * Get the id
      * @return the id
@@ -112,6 +122,27 @@ public class User implements Serializable{
         this.password = password;
     }
 
+    public String getPhone() {
+        return phone;
+    }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
 }
