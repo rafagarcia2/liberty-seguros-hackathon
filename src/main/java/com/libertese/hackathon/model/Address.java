@@ -1,5 +1,10 @@
 package com.libertese.hackathon.model;
 
+/**
+ * The address class
+ * @author gabriel
+ *
+ */
 public class Address {
 	
 	/**
@@ -15,6 +20,31 @@ public class Address {
 	private String state;
 	private String country;
 	
+	public Address(String street, String CEP, String neighborhood, String number, String complement, String city,
+			String state, String country) {
+		super();
+		this.street = street;
+		this.CEP = CEP;
+		this.neighborhood = neighborhood;
+		this.number = number;
+		this.complement = complement;
+		this.city = city;
+		this.state = state;
+		this.country = country;
+	}
+	
+	public Address(String street, String cEP, String neighborhood, String number, String city, String state,
+			String country) {
+		super();
+		this.street = street;
+		CEP = cEP;
+		this.neighborhood = neighborhood;
+		this.number = number;
+		this.city = city;
+		this.state = state;
+		this.country = country;
+	}
+
 	/**
 	 * Getters and Setters 
 	 */
