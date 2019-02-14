@@ -11,6 +11,7 @@ public class Client {
 	 * Attributes
 	 */
 	
+	private int code;
 	private String name;
 	private String email;
 	private String phone;
@@ -72,6 +73,14 @@ public class Client {
 
 	public void setAdress(Address adress) {
 		this.adress = adress;
+	}
+
+	public int getCode() {
+		return code;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
 	}
 	
 	
