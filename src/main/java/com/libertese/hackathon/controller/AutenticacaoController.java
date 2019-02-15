@@ -15,18 +15,18 @@ import com.libertese.hackathon.model.User;
 import com.libertese.hackathon.service.UserService;
 
 @Controller
-@RequestMapping("/autenticacao")
+@RequestMapping("/")
 public class AutenticacaoController {
 
 	@Autowired
 	private UserService userService;
-	
-    @GetMapping("/login")
+
+    @GetMapping("login")
     public String login() {
         return "autenticacao/login";
     }
 
-    @GetMapping("/cadastro")
+    @GetMapping("cadastro")
     public String cadastro(){
         return "autenticacao/cadastro";
     }

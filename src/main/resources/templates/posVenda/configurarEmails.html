@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/sistema/layout::head(pageTitle='Liberty-se - Pós venda')">
+</head>
+
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+<div class="mobile-sticky-body-overlay"></div>
+<div class="wrapper">
+    <aside class="left-sidebar bg-sidebar"  th:replace="fragments/sistema/layout::menu"></aside>
+
+    <div class="page-wrapper">
+        <header class="main-header " id="header" th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
+        <!--CONTEUDO DA PÁGINA-->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-table-border-none" id="recent-orders">
+                    <div class="card-body pt-0 pb-5">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <br>
+                                    <h2>Configurações de pós venda</h2>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="card card-default">
+                                <div class="card-header card-header-border-bottom">
+                                </div>
+                                <div class="card-body">
+                                    <p class="text-dark mt-4 font-weight-medium mb-3">Disparo de e-mail</p>
+
+                                    <label class="control control-radio"><span style="text-transform: none !important;">Ao finalizar a aquisição do seguro</span>
+                                        <input type="radio" checked="checked">
+                                        <div class="control-indicator"></div>
+                                    </label>
+
+                                    <label class="control control-radio"><span style="text-transform: none !important;">5 Dias após a aquisição</span>
+                                        <input type="radio">
+                                        <div class="control-indicator"></div>
+                                    </label>
+
+                                    <label class="control control-radio"><span style="text-transform: none !important;">10 Dias após a aquisição</span>
+                                        <input type="radio">
+                                        <div class="control-indicator"></div>
+                                    </label>
+
+                                    <label class="control control-radio"><span style="text-transform: none !important;">15 Dias após a aquisição</span>
+                                        <input type="radio">
+                                        <div class="control-indicator"></div>
+                                    </label>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <button class="btn btn-block btn-primary">Salvar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--CONTEUDO DA PÁGINA-->
+        <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer"></footer>
+        <div th:replace="fragments/sistema/layout::scripts"></div>
+    </div>
+</div>
+</body>
+</html>
