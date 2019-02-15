@@ -4,6 +4,29 @@
 
 <head th:replace="fragments/sistema/layout::head(pageTitle='Liberty-se - Dashboard')">
 </head>
+<style>
+  input[type="range"]{
+    -webkit-appearance: none;
+    -moz-apperance: none;
+    border-radius: 6px;
+    height: 6px;
+    background-image: -webkit-gradient(
+            linear,
+            left top,
+            right top,
+            color-stop(0.15, #94A14E),
+            color-stop(0.15, #C5C5C5)
+    );
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background-color: #E9E9E9;
+    border: 1px solid #CECECE;
+    height: 15px;
+    width: 15px;
+  }
+</style>
 
 <body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
 <div class="mobile-sticky-body-overlay"></div>
@@ -50,8 +73,8 @@
 
              </div>
 
-							<div class="row">
-								<div class="col-12">
+              <div class="row">
+                    <div class="col-12">
                   <!-- Recent Order Table -->
                   <div class="card card-table-border-none" id="recent-orders">
                     <div class="card-header justify-content-between">
@@ -82,6 +105,7 @@
                               <a class="text-dark" href=""> Coach Swagger</a>
                             </td>
                             <td>Seguradora A</td>
+                            <td>AUTOMÓVEL</td>
                             <td class="d-none d-md-table-cell">Oct 20, 2018</td>
                             <td class="d-none d-md-table-cell">$230</td>
                             <td >
@@ -107,6 +131,7 @@
                               <a class="text-dark" href=""> Toddler Shoes, Gucci Watch</a>
                             </td>
                             <td>Seguradora B</td>
+                            <TD>PATRIMONIAL</TD>
                             <td class="d-none d-md-table-cell">Nov 15, 2018</td>
                             <td class="d-none d-md-table-cell">$550</td>
                             <td >
@@ -132,6 +157,7 @@
                               <a class="text-dark" href=""> Hat Black Suits</a>
                             </td>
                             <td>Seguradora C</td>
+                            <td>VIDA</td>
                             <td class="d-none d-md-table-cell">Nov 18, 2018</td>
                             <td class="d-none d-md-table-cell">$325</td>
                             <td >
@@ -209,12 +235,65 @@
                     </div>
                   </div>
 				</div>
-			</div>						
+                <div class="col-12">
+                  <button type="button" class="btn btn-primary btn-pill" data-toggle="modal" data-target="#exampleModal">
+                    Launch Demo Modal
+                  </button>
+                </div>
+			</div>
+
+              <!--modal-->
+              <div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="padding-right: 15px; display: block;">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Atualizar orçamento</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <label for="myRange">Comissão</label>
+                      <br/>
+                      <div class="form-group">
+                        <input type="range" id="myRange" value="15" max="100">
+                        <div id="rangeValue">15%</div>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Observaçao</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary btn-pill">Salvar</button>
+                      <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Cancelar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--modal-->
 		</div>
-		</div>
+          </div>
+        </div>
         <!--CONTEUDO DA PÁGINA-->
         <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer"></footer>
         <div th:replace="fragments/sistema/layout::scripts"></div>
+      <script>
+        $('#myRange').mousemove(function(){
+          $('#rangeValue').text($('#myRange').val()+"%");
+        });
+        $('#myRange').change(function () {
+          var val = ($('#myRange').val() - 1)/ 99.0;
+
+          $(this).css('background-image',
+                  '-webkit-gradient(linear, left top, right top, '
+                  + 'color-stop(' + val + ', #94A14E), '
+                  + 'color-stop(' + val + ', #C5C5C5)'
+                  + ')'
+          );
+        });
+      </script>
     </div>
 </div>
 </body>

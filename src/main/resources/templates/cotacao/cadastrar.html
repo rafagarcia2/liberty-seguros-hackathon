@@ -4,82 +4,134 @@
 
 <head th:replace="fragments/sistema/layout::head(pageTitle='Liberty-se - Dashboard')">
 </head>
-
+<link th:href=@{/assets/plugins/jquery.steps-1.1.0/jquery.steps.css} rel="stylesheet"/>
+<link th:href=@{/assets/plugins/select2/css/select2.css} rel="stylesheet"/>
+<style>
+  .wizard > .content > .body {
+    float: left;
+    position: relative;
+    width: 95%;
+    height: 95%;
+    padding: 2.5%;
+  }
+</style>
 <body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
 <div class="mobile-sticky-body-overlay"></div>
 <div class="wrapper">
-    <aside class="left-sidebar bg-sidebar"  th:replace="fragments/sistema/layout::menu"></aside>
+  <aside class="left-sidebar bg-sidebar" th:replace="fragments/sistema/layout::menu"></aside>
 
-    <div class="page-wrapper">
-        <header class="main-header " id="header" th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
-        <!--CONTEUDO DA PÁGINA-->
-               <div class="content-wrapper">
-          <div class="content">             
-            <div class="row">
-                <div class="col-lg-12">
-                  <div class="card card-default">
-                    <div class="card-header card-header-border-bottom">
-                      <h2>Cadastrar uma novo Lançamento</h2>
+  <div class="page-wrapper">
+    <header class="main-header " id="header"
+            th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
+
+    <!--CONTEUDO DA PÁGINA-->
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-table-border-none" id="recent-orders">
+          <div class="card-header justify-content-between">
+            <h1>Cotação</h1>
+          </div>
+          <div class="card-body pt-0 pb-5">
+            <div class="card-body">
+              <form id="wizard" action="#">
+                <div>
+                  <h3>Segurado</h3>
+                  <section>
+                    <label class="text-dark font-weight-medium" for="">Nome</label>
+                    <div class="form-group">
+                      <select name="client" id="client" class="form-control select2">
+                        <option th:value="1" >Cliente 1</option>
+                        <option th:value="2" selected>Cliente 2</option>
+                      </select>
                     </div>
-                    <div class="card-body">
-                      <form>
-                        <div class="form-group">
-                          <label for="exampleFormControlInput1">Receita ou Despesa</label>
-                          <select class="form-control" id="exampleFormControlSelect1">
-							<option>Receita</option>
-							<option>Despesa</option>
-						</select>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="exampleFormControlInput2">Fonte</label>
-                          <input type="nome" class="form-control" id="exampleFormControlInput2" placeholder="De onde veio o lançamento?">
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="exampleFormControlSelect3">Conta</label>
-                          <select class="form-control" id="exampleFormControlSelect3">
-                            <option value="1">Nenhum</option>
-                            <option value="2">Banco do Brasil</option>
-                            <option value="3">Caixa</option>
-                            <option value="3">Bradesco</option>
-						</select>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="exampleFormControlSelect3">Status</label>
-                          <select class="form-control" id="exampleFormControlSelect3">
-                            <option value="1">Nenhum</option>
-                            <option value="2">Aberto</option>
-                            <option value="3">Quitado</option>
-						</select>
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleFormControlSelect3">Valor</label>
-                          <div class="input-group mb-2">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">
-                              R$
-                            </span>
-                          </div>
-                          <input type="text" class="form-control" data-mask="99-9999999" placeholder="" aria-label="">
-                        </div>
-                      
-                        <div class="form-footer pt-4 pt-5 mt-4 border-top">
-                          <button type="submit" class="btn btn-primary btn-default">Cadastrar</button>
-                          <button type="submit" class="btn btn-secondary btn-default">Cancelar</button>
-                        </div>
-                      </form>
+                    <div class="form-group">
+                      <label for="ramo">Ramo</label>
+                      <select class="form-control" id="ramo">
+                        <option value="1"> Nenhum</option>
+                        <option value="automovel">AUTOMÓVEL</option>
+                        <option value="patrimonio">PATRIMONIAL - RESIDENCIAL</option>
+                        <option value="vida">VIDA INDIVIDUAL</option>
+                        <option value="saude">SAÚDE</option>
+                      </select>
                     </div>
-                  </div>            
+
+                    <h4>Corretor</h4>
+                    <div class="form-group">
+                      <label for="comissao">Comissao</label>
+                      <input th:type="number" name="comissao" class="form-control" id="comissao" data-mask="9%">
+                    </div>
+                  </section>
+                  <h3>Orçamento</h3>
+                  <section>
+                    <div th:replace="cotacao/seguros/automovel"></div>
+                    <div th:replace="cotacao/seguros/patrimonial"></div>
+                    <div th:replace="cotacao/seguros/vida"></div>
+                    <div th:replace="cotacao/seguros/saude"></div>
+
+                  </section>
                 </div>
-              </div>
-            </div>         
+              </form>
+
+            </div>
+          </div>
         </div>
-        <!--CONTEUDO DA PÁGINA-->
-        <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer"></footer>
-        <div th:replace="fragments/sistema/layout::scripts"></div>
+      </div>
     </div>
+    <!--CONTEUDO DA PÁGINA-->
+    <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer">
+    </footer>
+    <div th:replace="fragments/sistema/layout::scripts">
+    </div>
+    <script th:src=@{/assets/plugins/jquery.steps-1.1.0/jquery.steps.min.js}></script>
+    <script th:src=@{/assets/plugins/select2/js/select2.full.js}></script>
+    <script>
+      $(document).ready(function () {
+        var form = $("#wizard")
+        form.children("div").steps({
+          headerTag: "h3",
+          bodyTag: "section",
+          transitionEffect: "slideLeft",
+          onStepChanging: function (event, currentIndex, newIndex)
+          {
+            //form.validate().settings.ignore = ":disabled,:hidden";
+            return $('#ramo').val() != 1;
+
+          },
+          onFinishing: function (event, currentIndex)
+          {
+            //form.validate().settings.ignore = ":disabled";
+            return true;
+          },
+          onFinished: function (event, currentIndex)
+          {
+            alert("Submitted!");
+          },
+          labels: {
+            current: "current step:",
+            pagination: "Paginação",
+            finish: "Finalizar",
+            next: "Próximo",
+            previous: "Anterior",
+            loading: "Carregando ..."
+          }
+        });
+        var ramos = ['saude','vida','patrimonial', 'automovel'];
+        $('#ramo').on('change', function () {
+          var selected = $(this).val()
+          //exibe campos do ramo selecionado
+          if(selected !== 1){
+            ramos.forEach(function (value) {
+              if(value !== selected)
+                $('.'+value).hide();
+              else
+                $('.'+value).show();
+            })
+          }
+        })
+      })
+
+    </script>
+  </div>
 </div>
 </body>
 </html>
