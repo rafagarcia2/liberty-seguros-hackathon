@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/sistema/layout::head(pageTitle='Liberty-se - Dashboard')">
+</head>
+
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+<div class="mobile-sticky-body-overlay"></div>
+<div class="wrapper">
+    <aside class="left-sidebar bg-sidebar"  th:replace="fragments/sistema/layout::menu"></aside>
+
+    <div class="page-wrapper">
+        <header class="main-header " id="header" th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
+        <!--CONTEUDO DA PÁGINA-->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-table-border-none" id="recent-orders">
+                    <div class="card-body pt-0 pb-5">
+                        <div class="col-12 offset-lg-3 col-lg-6">
+                            <br>
+                            <div class="card card-default">
+                                <div class="card-header justify-content-center">
+                                    <h2 class="text-center">Resultado da pesquisa de satisfação</h2>
+                                </div>
+                                <div class="card-body" style="height: 400px;"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                                    <canvas id="deviceChart" width="594" height="340" class="chartjs-render-monitor" style="display: block; width: 594px; height: 340px;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--CONTEUDO DA PÁGINA-->
+        <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer"></footer>
+        <div th:replace="fragments/sistema/layout::scripts"></div>
+    </div>
+</div>
+</body>
+</html>
