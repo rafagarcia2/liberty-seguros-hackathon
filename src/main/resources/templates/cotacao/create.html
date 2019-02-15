@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/sistema/layout::head(pageTitle='Liberty-se - Dashboard')">
+</head>
+<link th:href=@{/assets/plugins/jquery.steps-1.1.0/jquery.steps.css} rel="stylesheet"/>
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+<div class="mobile-sticky-body-overlay"></div>
+<div class="wrapper">
+    <aside class="left-sidebar bg-sidebar" th:replace="fragments/sistema/layout::menu"></aside>
+
+    <div class="page-wrapper">
+        <header class="main-header " id="header"
+                th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
+
+        <!--CONTEUDO DA PÁGINA-->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-table-border-none" id="recent-orders">
+                    <div class="card-header justify-content-between">
+                        <h1>Cotação</h1>
+                    </div>
+                    <div class="card-body pt-0 pb-5">
+                        <div class="card-body">
+                            <form id="wizard" action="#">
+                                <div>
+                                <h3>Cliente</h3>
+                                <section>
+                                    <label class="text-dark font-weight-medium" for="">Date input</label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="mdi mdi-calendar-range"></i>
+                                                        </span>
+                                        </div>
+                                        <input type="text" class="form-control" data-mask="00/00/0000" placeholder=""
+                                               aria-label="">
+                                    </div>
+                                    <p style="font-size: 90%">ex. 99/99/9999</p>
+                                    <label class="text-dark mt-4 font-weight-medium" for="">Phone input</label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <i class="mdi mdi-phone"></i>
+                                                        </span>
+                                        </div>
+                                        <input type="text" class="form-control" data-mask="(999) 999-9999"
+                                               placeholder="" aria-label="">
+                                    </div>
+                                    <p style="font-size: 90%">ex. (999) 999-9999</p>
+                                </section>
+                                <h3>Orçamento</h3>
+                                <section>
+                                    <label class="text-dark mt-4 font-weight-medium" for="">Taxpayer Identification
+                                        Numbers</label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+													<span class="input-group-text">
+														<i class="mdi mdi-currency-usd"></i>
+													</span>
+                                        </div>
+                                        <input type="text" class="form-control" data-mask="99-9999999" placeholder=""
+                                               aria-label="">
+                                    </div>
+                                    <p style="font-size: 90%">ex. 99-9999999</p>
+                                    <label class="text-dark mt-4 font-weight-medium" for="">Social Security
+                                        Number</label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+													<span class="input-group-text">
+														<i class="mdi mdi-security-account-outline"></i>
+													</span>
+                                        </div>
+                                        <input type="text" class="form-control" data-mask="999-99-9999" placeholder=""
+                                               aria-label="">
+                                    </div>
+                                    <p style="font-size: 90%">ex. 999-99-9999</p>
+                                    <label class="text-dark mt-4 font-weight-medium" for="">Eye Script</label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+													<span class="input-group-text">
+														<i class="mdi mdi-eye"></i>
+													</span>
+                                        </div>
+                                        <input type="text" class="form-control" data-mask="~9.99 ~9.99 999"
+                                               placeholder="" aria-label="">
+                                    </div>
+                                    <p style="font-size: 90%">ex. ~9.99 ~9.99 999</p>
+                                    <label class="text-dark mt-4 font-weight-medium" for="">Credit Card Number</label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+													<span class="input-group-text">
+														<i class="mdi mdi-credit-card"></i>
+													</span>
+                                        </div>
+                                        <input type="text" class="form-control" data-mask="9999 9999 9999 9999"
+                                               placeholder="" aria-label="">
+                                    </div>
+                                    <p style="font-size: 90%">ex. 9999 9999 9999 9999</p>
+                                </section>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--CONTEUDO DA PÁGINA-->
+        <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer">
+        </footer>
+        <div th:replace="fragments/sistema/layout::scripts">
+        </div>
+        <script th:src=@{/assets/plugins/jquery.steps-1.1.0/jquery.steps.min.js}></script>
+        <script>
+            $(document).ready(function () {
+                var form = $("#wizard")
+                form.children("div").steps({
+                    headerTag: "h3",
+                    bodyTag: "section",
+                    transitionEffect: "slideLeft",
+                    onStepChanging: function (event, currentIndex, newIndex)
+                    {
+                        //form.validate().settings.ignore = ":disabled,:hidden";
+                        return true;
+                    },
+                    onFinishing: function (event, currentIndex)
+                    {
+                        //form.validate().settings.ignore = ":disabled";
+                        return true;
+                    },
+                    onFinished: function (event, currentIndex)
+                    {
+                        alert("Submitted!");
+                    }
+                });
+            })
+
+        </script>
+    </div>
+</div>
+</body>
+</html>
