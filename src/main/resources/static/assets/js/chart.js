@@ -849,7 +849,7 @@ $(document).ready(function() {
         labels: ["completed", "unpaid", "pending", "canceled"],
         datasets: [
           {
-            label: ["completed", "unpaid", "pending", "canceled"],
+            label: ["c1", "21", "afs", "qaa"],
             data: [4100, 2500, 1800, 2300],
             backgroundColor: ["#4c84ff", "#29cc97", "#8061ef", "#fec402"],
             borderWidth: 1
@@ -1572,15 +1572,15 @@ $(document).ready(function() {
     var mydeviceChart = new Chart(deviceChart, {
       type: "doughnut",
       data: {
-        labels: ["Desktop", "Tablet", "Mobile"],
+        labels: ["Residencial", "mobilístico", "Life", "Empresa"],
         datasets: [
           {
-            label: ["Desktop", "Tablet", "Mobile"],
-            data: [60000, 15000, 25000],
+            data: [60, 150, 20, 6],
             backgroundColor: [
-              "rgba(76, 132, 255, 1)",
-              "rgba(76, 132, 255, 0.85)",
-              "rgba(76, 132, 255, 0.70)",
+              "rgba(30, 144, 255, 1)",
+              "rgba(255, 0, 0, 1)",
+              "rgba(255, 255, 0, 1)",
+              "rgba(50, 205, 50, 1)",
             ],
             borderWidth: 1
           }
@@ -1600,7 +1600,7 @@ $(document).ready(function() {
             },
             label: function(tooltipItem, data) {
               return (
-                data["datasets"][0]["data"][tooltipItem["index"]] + " Sessions"
+                data["datasets"][0]["data"][tooltipItem["index"]] + " Pólices"
               );
             }
           },
@@ -2095,10 +2095,10 @@ if (acquisition3 !== null) {
 
     // The data for our dataset
     data: {
-      labels: ["4 Jan", "5 Jan", "6 Jan", "7 Jan", "8 Jan", "9 Jan", "10 Jan"],
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
       datasets: [
         {
-          label: "Referral",
+          label: "Débito",
           backgroundColor: "rgb(76, 132, 255)",
           borderColor: "rgba(76, 132, 255,0)",
           data: [78, 90, 70, 75, 45, 52, 22],
@@ -2108,7 +2108,7 @@ if (acquisition3 !== null) {
           pointHitRadius: 30
         },
         {
-          label: "Direct",
+          label: "Crédito",
           backgroundColor: "rgb(254, 196, 0)",
           borderColor: "rgba(254, 196, 0,0)",
           data: [88, 115, 80, 96, 65, 77, 38],
@@ -2118,7 +2118,7 @@ if (acquisition3 !== null) {
           pointHitRadius: 30
         },
         {
-          label: "Social",
+          label: "Dinheiro",
           backgroundColor: "rgb(41, 204, 151)",
           borderColor: "rgba(41, 204, 151,0)",
           data: [103, 135, 102, 116, 83, 97, 55],

@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/sistema/layout::head(pageTitle='Liberty-se - Dashboard')">
+</head>
+
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+<div class="mobile-sticky-body-overlay"></div>
+<div class="wrapper">
+    <aside class="left-sidebar bg-sidebar"  th:replace="fragments/sistema/layout::menu"></aside>
+
+    <div class="page-wrapper">
+        <header class="main-header " id="header" th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
+        <!--CONTEUDO DA PÁGINA-->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-table-border-none" id="recent-orders">
+                    <br>
+                    <div class="row">
+                        <div class="offset-lg-1 col-lg-10 offset-lg-1">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6 col-xl-3" id="form-click">
+                                    <div class="media widget-media p-4 bg-white border">
+                                        <img src="https://wwws.alfaseguradora.com.br/Portal/images/Alfa/Conglomerado/AlfaSeguradora.jpg" class="img-fluid"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-xl-3">
+                                    <center>
+                                        <div class="media widget-media p-4 bg-white border" id="seguradora1">
+                                            <img width="80px" src="http://www.onseguroscorretora.com.br/wp-content/uploads/2018/10/Aliro-300x300.jpg" class="img-fluid"/>
+                                        </div>
+                                    </center>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-xl-3">
+                                    <center>
+                                        <div class="media widget-media p-4 bg-white border">
+                                            <img width="120px" src="https://ntscseguros.com.br/wp-content/uploads/2016/01/allianz-seguros-telefones-395x256.png" class="img-fluid"/>
+                                        </div>
+                                    </center>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-xl-3">
+                                    <center>
+                                        <div class="media widget-media p-4 bg-white border">
+                                            <img src="https://cm-belmonte.pt/wp-content/uploads/2018/01/Liberty-Seguros.jpg" class="img-fluid"/>
+                                        </div>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="form-alpha">
+                        <div class="offset-lg-1 col-lg-10 offset-lg-1">
+                            <form>
+                                <div class="form-group">
+                                    <label>Nome</label>
+                                    <input type="email" class="form-control" placeholder="E-mail do usuário">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Senha</label>
+                                    <input type="password" class="form-control" placeholder="********">
+                                </div>
+                                <button class="btn-success btn btn-block">Salvar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <!--CONTEUDO DA PÁGINA-->
+        <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer"></footer>
+        <div th:replace="fragments/sistema/layout::scripts"></div>
+        <script>
+            $( document ).ready(function() {
+                let flagOcultar = false
+                $('#form-alpha').hide();
+                $('#form-click').click(function () {
+                    if(!flagOcultar){
+                        $('#form-alpha').show();
+                        flagOcultar = !flagOcultar;
+                    }else{
+                        $('#form-alpha').hide();
+                        flagOcultar = !flagOcultar;
+                    }
+
+                });
+            });
+        </script>
+    </div>
+</div>
+</body>
+</html>
