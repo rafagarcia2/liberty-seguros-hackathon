@@ -1,22 +1,59 @@
 package com.libertese.hackathon.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+
 /**
  * The Client class
  * @author gabriel
  *
  */
+@Entity
+@Table(name = "client")
 public class Client {
 
 	/**
 	 * Attributes
 	 */
 	
-	private int code;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer code;
+	
+	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "phone")
 	private String phone;
+	
+	@Column(name = "cpf")
 	private String cpf;
+	
+	@OneToOne(mappedBy="client",cascade = CascadeType.ALL)
 	private Address adress;
+	
+	@OneToMany (mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Indication> indication;
+
+	@OneToMany (mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Sale> sale;
 	
 	/**
 	 * Construct 
@@ -75,11 +112,11 @@ public class Client {
 		this.adress = adress;
 	}
 
-	public int getCode() {
+	public Integer getCode() {
 		return code;
 	}
 
-	public void setCode(int code) {
+	public void setCode(Integer code) {
 		this.code = code;
 	}
 

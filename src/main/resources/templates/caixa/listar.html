@@ -27,7 +27,7 @@
                         </a>
                       </li>
                       <li class="breadcrumb-item">
-                        orçamento
+                        Fluxo de caixa
                       </li>
                       <li class="breadcrumb-item" aria-current="page">listar</li>
                     </ol>
@@ -55,9 +55,9 @@
                   <!-- Recent Order Table -->
                   <div class="card card-table-border-none" id="recent-orders">
                     <div class="card-header justify-content-between">
-                      <h2>Orçamento</h2>
+                      <h2>Fluxo de Caixa</h2>
                       <div>
-                      	  <a th:href="@{/vendas/cadastrar}" type="button" class="mb-1 btn btn-success"><span><i class="mdi mdi-plus"></i></span></a>
+                      	  <a th:href="@{/caixa/cadastrar}" type="button" class="mb-1 btn btn-success"><span><i class="mdi mdi-plus"></i></span></a>
                       </div>
                     </div>
                     <div class="card-body pt-0 pb-5">
@@ -65,11 +65,10 @@
                       <table class="table card-table table-responsive table-responsive-large" style="width:100%">
                         <thead>
                           <tr>
-                            <th>ID Venda</th>
-                            <th>Cliente</th>
-                            <th>Seguradora</th>
-                            <th>Ramo</th>
-                            <th class="d-none d-md-table-cell">Data</th>
+                            <th>ID Lançamento</th>
+                            <th>Fonte</th>
+                            <th>Conta</th>
+                            <th>Tipo</th>
                             <th class="d-none d-md-table-cell">Valor</th>
                             <th>Status</th>
                             <th></th>
@@ -79,14 +78,14 @@
                           <tr>
                             <td >24541</td>
                             <td >
-                              <a class="text-dark" href=""> Coach Swagger</a>
+                              <a class="text-dark" href=""> Pagamento Leandro</a>
                             </td>
-                            <td>Seguradora A</td>
-                            <td class="d-none d-md-table-cell">Oct 20, 2018</td>
-                            <td class="d-none d-md-table-cell">$230</td>
+                            <td>Banco do Brasil</td>
                             <td >
-                              <span class="badge badge-success">Completed</span>
+                              <span class="badge badge-success">Receita</span>
                             </td>
+                            <td class="d-none d-md-table-cell">R$ 230,00</td>
+                            <td class="d-none d-md-table-cell">Quitada</td>
                             <td class="text-right">
                               <div class="dropdown show d-inline-block widget-dropdown">
                                 <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
@@ -104,14 +103,14 @@
                           <tr>
                             <td >24541</td>
                             <td >
-                              <a class="text-dark" href=""> Toddler Shoes, Gucci Watch</a>
+                              <a class="text-dark" href=""> Contrato José Pedro</a>
                             </td>
-                            <td>Seguradora B</td>
-                            <td class="d-none d-md-table-cell">Nov 15, 2018</td>
-                            <td class="d-none d-md-table-cell">$550</td>
+                            <td>Caixa</td>
                             <td >
-                              <span class="badge badge-warning">Delayed</span>
+                              <span class="badge badge-success">Receita</span>
                             </td>
+                            <td class="d-none d-md-table-cell">R$ 550,00</td>
+                            <td class="d-none d-md-table-cell">Aberta</td>
                             <td class="text-right">
                               <div class="dropdown show d-inline-block widget-dropdown">
                                 <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
@@ -129,14 +128,14 @@
                           <tr>
                             <td >24541</td>
                             <td >
-                              <a class="text-dark" href=""> Hat Black Suits</a>
+                              <a class="text-dark" href=""> Reforma escritório</a>
                             </td>
-                            <td>Seguradora C</td>
-                            <td class="d-none d-md-table-cell">Nov 18, 2018</td>
-                            <td class="d-none d-md-table-cell">$325</td>
+                            <td>Caixa</td>
                             <td >
-                              <span class="badge badge-warning">On Hold</span>
+                              <span class="badge badge-danger">Despesa</span>
                             </td>
+                            <td class="d-none d-md-table-cell">R$ 325,00</td>
+                            <td class="d-none d-md-table-cell">Quitada</td>
                             <td class="text-right">
                               <div class="dropdown show d-inline-block widget-dropdown">
                                 <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order3" data-toggle="dropdown" aria-haspopup="true"
@@ -155,14 +154,14 @@
                           <tr>
                             <td >24541</td>
                             <td >
-                              <a class="text-dark" href=""> Backpack Gents, Swimming Cap Slin</a>
+                              <a class="text-dark" href="">Compra de material</a>
                             </td>
-                            <td>Seguradora D</td>
-                            <td class="d-none d-md-table-cell">Dec 13, 2018</td>
-                            <td class="d-none d-md-table-cell">$200</td>
+                            <td>Santander</td>
                             <td >
-                                <span class="badge badge-danger">Cancelled</span>
+                                <span class="badge badge-danger">Despesa</span>
                             </td>
+                            <td class="d-none d-md-table-cell">R$ 200,00</td>
+                            <td class="d-none d-md-table-cell">Aberta</td>
                             <td class="text-right">
                               <div class="dropdown show d-inline-block widget-dropdown">
                                 <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
@@ -180,14 +179,14 @@
                           <tr>
                             <td >24541</td>
                             <td >
-                              <a class="text-dark" href=""> Speed 500 Ignite</a>
+                              <a class="text-dark" href=""> Pagamento Sandro</a>
                             </td>
-                            <td>Seguradora E</td>
-                            <td class="d-none d-md-table-cell">Dec 23, 2018</td>
-                            <td class="d-none d-md-table-cell">$150</td>
+                            <td>Banco do Brasil</td>
                             <td >
-                              <span class="badge badge-danger">Cancelled</span>
+                              <span class="badge badge-success">Receita</span>
                             </td>
+                            <td class="d-none d-md-table-cell">R$ 150,00</td>
+                            <td class="d-none d-md-table-cell">Quitada</td>
                             <td class="text-right">
                               <div class="dropdown show d-inline-block widget-dropdown">
                                 <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order5" data-toggle="dropdown" aria-haspopup="true"
@@ -208,6 +207,16 @@
                       </div>
                     </div>
                   </div>
+				</div>
+                  <div class="col-12 col-lg-12">
+					<div class="card card-default">
+						<div class="card-header justify-content-center">
+							<h2 class="text-center">Multiple Statistics</h2>
+						</div>
+						<div class="card-body" style="height: 380px;">
+							<canvas id="mstat"></canvas>
+						</div>
+					</div>
 				</div>
 			</div>						
 		</div>

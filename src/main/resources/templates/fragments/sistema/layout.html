@@ -50,10 +50,8 @@
     <aside th:fragment="menu" class="left-sidebar bg-sidebar">
         <div id="sidebar" class="sidebar sidebar-with-footer">
             <!-- Aplication Brand -->
-            <div class="app-brand-2">
-                <center>
-                    <img style="margin-left: 7px" th:src=@{/assets/img/logo3.png} width="206px" />
-                </center>
+            <div class="app-brand-2 center">
+                   <a th:href="@{/sistema/dashboard}" > <img style="margin-left: 7px" th:src=@{/assets/img/logo3.png} width="206px" /> </a>
             </div>
             <!-- begin sidebar scrollbar -->
             <div class="sidebar-scrollbar">
@@ -68,6 +66,17 @@
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
+                    
+                     <li class="has-sub expand">
+                        <a
+                                href="/cliente/index"
+                                class="sidenav-item-link"
+                        >
+                            <i class="mdi mdi-account-group"></i>
+                            <span class="nav-text">Segurados</span>
+                        </a>
+                    </li>
+                    
                     <li class="has-sub expand">
                         <a
                                 href="/sistema/simulacao-de-seguro"
@@ -77,33 +86,37 @@
                             <span class="nav-text">Simulação de seguro</span>
                         </a>
                     </li>
+                    
                     <li class="has-sub expand">
                         <a
-                                href="/sistema/clientes"
+                                href="/vendas/listar"
                                 class="sidenav-item-link"
                         >
-                            <i class="mdi mdi-account-group"></i>
-                            <span class="nav-text">Segurados</span>
+                            <i class="mdi mdi-arrow-split-vertical"></i>
+                            <span class="nav-text">Orçamentos</span>
                         </a>
                     </li>
-                    <li class="has-sub expand">
-                        <a
-                                href="/sistema/caixa"
-                                class="sidenav-item-link"
-                        >
-                            <i class="mdi   mdi-cash-100"></i>
-                            <span class="nav-text">Meu Caixa</span>
-                        </a>
-                    </li>
+                    
                     <li class="has-sub expand">
                         <a
                                 href="/sistema/caixa"
                                 class="sidenav-item-link"
                         >
                             <i class="mdi mdi-arrow-split-vertical"></i>
-                            <span class="nav-text">Taxas e impostos</span>
+                            <span class="nav-text">Cotação e taxas</span>
                         </a>
                     </li>
+                   
+                    <li class="has-sub expand">
+                        <a
+                                href="/caixa/listar"
+                                class="sidenav-item-link"
+                        >
+                            <i class="mdi   mdi-cash-100"></i>
+                            <span class="nav-text">Meu Caixa</span>
+                        </a>
+                    </li>
+                    
                     <li class="has-sub">
                         <a
                                 class="sidenav-item-link"
@@ -114,12 +127,50 @@
                                 aria-controls="charts"
                         >
                             <i class="mdi mdi-chart-pie"></i>
-                            <span class="nav-text">Pós Venda</span> <b class="caret"></b>
+                            <span class="nav-text">Relatórios</span> <b class="caret"></b>
                         </a>
                         <ul class="collapse" id="charts" data-parent="#sidebar-menu">
                             <div class="sub-menu">
                                 <li>
-                                    <a class="sidenav-item-link" href="chartjs.html">
+                                    <a class="sidenav-item-link" href="/relatorio/segurado">
+                                        <span class="nav-text">Segurados</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="sidenav-item-link" href="/relatorio/vendas">
+                                        <span class="nav-text">Vendas</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="sidenav-item-link" href="/relatorio/financeiro">
+                                        <span class="nav-text">Financeiro</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="sidenav-item-link" href="/relatorio/seguros">
+                                        <span class="nav-text">Seguradoras</span>
+                                    </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                    
+                    <li class="has-sub">
+                        <a
+                                class="sidenav-item-link"
+                                href="javascript:void(0)"
+                                data-toggle="collapse"
+                                data-target="#posVenda"
+                                aria-expanded="false"
+                                aria-controls="charts"
+                        >
+                            <i class="mdi mdi-account-search"></i>
+                            <span class="nav-text">Pós Venda</span> <b class="caret"></b>
+                        </a>
+                        <ul class="collapse" id="posVenda" data-parent="#sidebar-menu">
+                            <div class="sub-menu">
+                                <li>
+                                    <a class="sidenav-item-link" href="/pos-venda/configuracoes">
                                         <span class="nav-text">Disparar e-mails</span>
                                     </a>
                                 </li>

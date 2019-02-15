@@ -22,12 +22,12 @@ public class LiberteseUserDetails implements UserDetails {
     //
 
     public String getUsername() {
-        return "";
+        return user.getEmail();
     }
 
 
     public String getPassword() {
-        return "";
+        return user.getPassword();
     }
 
 

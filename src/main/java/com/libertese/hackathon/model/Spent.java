@@ -2,20 +2,44 @@ package com.libertese.hackathon.model;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * 
  * @author gabriel
  *
  */
+
+@Entity
+@Table (name = "spent")
 public class Spent {
 
 	/**
 	 * Attributes
 	 */
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	
+	@Column (name = "value")
 	private float value;
+	
+	@Column (name = "description")
 	private String description;
+	
+	@Column (name = "date")
 	private Date date;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "type")
 	private SpentType type;
 	
 	/**
