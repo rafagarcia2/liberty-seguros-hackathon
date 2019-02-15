@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/sistema/layout::head(pageTitle='Liberty-se - Dashboard')">
+</head>
+
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+<div class="mobile-sticky-body-overlay"></div>
+<div class="wrapper">
+    <aside class="left-sidebar bg-sidebar"  th:replace="fragments/sistema/layout::menu"></aside>
+
+    <div class="page-wrapper">
+        <header class="main-header " id="header" th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
+        <!--CONTEUDO DA PÁGINA-->
+                <div class="content-wrapper">
+          <div class="content">             
+            <div class="row">
+                <div class="col-lg-12">
+                  <div class="card card-default">
+                    <div class="card-header card-header-border-bottom">
+                      <h2>Cadastro de Segurado</h2>
+                    </div>
+                    <div class="card-body">
+                      <form>
+                        <div class="form-row">
+                           <div class="col-md-8 mb-2">
+                              <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Nome</label>
+                              <input type="nome" class="form-control" id="exampleFormControlInput1" placeholder="José da Silva">
+                          </div>
+                          <div class="col-md-4 mb-2">
+                              <label for="exampleFormControlInput1" class="text-dark font-weight-medium">CPF</label>
+                              <input type="cpf" class="form-control" id="exampleFormControlInput1" placeholder="xxx.xxx.xxx-xx">
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                          <div class="col-md-8 mb-2">
+                              <label for="exampleFormControlInput1" class="text-dark font-weight-medium">E-mail</label>
+                              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="libertyse@libertyse.com">
+                          </div>
+                          <div class="col-md-4 mb-2">
+                              <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Contato</label>
+                              <input type="contato" class="form-control" id="exampleFormControlInput1" placeholder="(xx) xxxxx-xxxx">
+                          </div>
+                        </div>
+                        
+                        <div class="form-row">
+                          <div class="col-md-6 mb-3">
+                             <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Cidade</label>
+                            <input class="form-control" id="validationServer03" placeholder="Natal" required="" type="text">
+                            <div class="invalid-feedback">
+                              Please provide a valid city.
+                            </div>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                             <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Estado</label>
+                            <input class="form-control" id="validationServer04" placeholder="Rio Grande do Norte" required="" type="text">
+                            <div class="invalid-feedback">
+                              Please provide a valid state.
+                            </div>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                             <label for="exampleFormControlInput1" class="text-dark font-weight-medium">CEP</label>
+                            <input class="form-control" id="validationServer05" placeholder="xx.xxx-xxx" required="" type="text">
+                            <div class="invalid-feedback">
+                              Please provide a valid zip.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                          <div class="col-md-3 mb-3">                        
+                             <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Bairro</label>
+                             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Centro">
+                          </div>
+                          <div class="col-md-8 mb-3"> 
+                              <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Logradouro</label>
+                             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Rua das Flores">
+                          </div>
+                           <div class="col-md-1 mb-3"> 
+                              <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Número</label>
+                             <input type="text " class="form-control" id="exampleFormControlInput1" placeholder="103">
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                          <div class="col-md-3 mb-3">                        
+                             <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Complemento</label>
+                             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Casa, Apto.">
+                          </div>
+                        </div>
+                        <div class="form-footer pt-4 pt-5 mt-4 border-top">
+                          <button type="submit" class="btn btn-primary btn-default">Submit</button>
+                          <button type="submit" class="btn btn-secondary btn-default">Cancel</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>            
+                </div>
+              </div>
+            </div>         
+        </div>
+        <!--CONTEUDO DA PÁGINA-->
+        <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer"></footer>
+        <div th:replace="fragments/sistema/layout::scripts"></div>
+    </div>
+</div>
+</body>
+</html>

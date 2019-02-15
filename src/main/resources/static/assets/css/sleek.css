@@ -8874,6 +8874,35 @@ div.copied {
 .sidebar .nav > li.active > a:before {
   opacity: 1; }
 
+.app-brand-2 {
+  position: relative;
+  display: block;
+  background-color: #212a39; }
+.app-brand a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 75px;
+  line-height: 75px;
+  width: 250px;
+  transition: width 0.3s ease-in-out;
+  padding-left: 1.56rem; }
+@media screen and (prefers-reduced-motion: reduce) {
+  .app-brand a {
+    transition: none; } }
+@media (min-width: 768px) {
+  .app-brand a {
+    overflow: hidden; } }
+.app-brand a img {
+  max-width: 80px;
+  vertical-align: middle; }
+.app-brand .brand-name {
+  color: #ffffff;
+  font-size: 1.12rem;
+  margin-left: 0.94rem; }
+
+
+
 /* App brand */
 .app-brand {
   position: relative;
