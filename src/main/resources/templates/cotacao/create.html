@@ -5,6 +5,16 @@
 <head th:replace="fragments/sistema/layout::head(pageTitle='Liberty-se - Dashboard')">
 </head>
 <link th:href=@{/assets/plugins/jquery.steps-1.1.0/jquery.steps.css} rel="stylesheet"/>
+<link th:href=@{/assets/plugins/select2/css/select2.css} rel="stylesheet"/>
+<style>
+   .wizard > .content > .body {
+       float: left;
+       position: relative;
+       width: 95%;
+       height: 95%;
+       padding: 2.5%;
+   }
+</style>
 <body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
 <div class="mobile-sticky-body-overlay"></div>
 <div class="wrapper">
@@ -25,79 +35,33 @@
                         <div class="card-body">
                             <form id="wizard" action="#">
                                 <div>
-                                <h3>Cliente</h3>
+                                <h3>Segurado</h3>
                                 <section>
-                                    <label class="text-dark font-weight-medium" for="">Date input</label>
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="mdi mdi-calendar-range"></i>
-                                                        </span>
-                                        </div>
-                                        <input type="text" class="form-control" data-mask="00/00/0000" placeholder=""
-                                               aria-label="">
+                                    <label class="text-dark font-weight-medium" for="">Nome</label>
+                                    <div class="form-group">
+                                        <select name="client" id="client" class="form-control select2">
+                                            <option th:value="1" >Cliente 1</option>
+                                            <option th:value="2" selected>Cliente 2</option>
+                                        </select>
                                     </div>
-                                    <p style="font-size: 90%">ex. 99/99/9999</p>
-                                    <label class="text-dark mt-4 font-weight-medium" for="">Phone input</label>
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="mdi mdi-phone"></i>
-                                                        </span>
-                                        </div>
-                                        <input type="text" class="form-control" data-mask="(999) 999-9999"
-                                               placeholder="" aria-label="">
+                                    <div class="form-group">
+                                    <label for="ramo">Ramo</label>
+                                    <select class="form-control" id="ramo">
+                                        <option value="1"> Nenhum</option>
+                                        <option value="automovel">AUTOMÓVEL</option>
+                                        <option value="patrimonio">PATRIMONIAL - RESIDENCIAL</option>
+                                        <option value="vida">VIDA INDIVIDUAL</option>
+                                        <option value="saude">SAÚDE</option>
+                                    </select>
                                     </div>
-                                    <p style="font-size: 90%">ex. (999) 999-9999</p>
                                 </section>
                                 <h3>Orçamento</h3>
                                 <section>
-                                    <label class="text-dark mt-4 font-weight-medium" for="">Taxpayer Identification
-                                        Numbers</label>
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend">
-													<span class="input-group-text">
-														<i class="mdi mdi-currency-usd"></i>
-													</span>
-                                        </div>
-                                        <input type="text" class="form-control" data-mask="99-9999999" placeholder=""
-                                               aria-label="">
-                                    </div>
-                                    <p style="font-size: 90%">ex. 99-9999999</p>
-                                    <label class="text-dark mt-4 font-weight-medium" for="">Social Security
-                                        Number</label>
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend">
-													<span class="input-group-text">
-														<i class="mdi mdi-security-account-outline"></i>
-													</span>
-                                        </div>
-                                        <input type="text" class="form-control" data-mask="999-99-9999" placeholder=""
-                                               aria-label="">
-                                    </div>
-                                    <p style="font-size: 90%">ex. 999-99-9999</p>
-                                    <label class="text-dark mt-4 font-weight-medium" for="">Eye Script</label>
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend">
-													<span class="input-group-text">
-														<i class="mdi mdi-eye"></i>
-													</span>
-                                        </div>
-                                        <input type="text" class="form-control" data-mask="~9.99 ~9.99 999"
-                                               placeholder="" aria-label="">
-                                    </div>
-                                    <p style="font-size: 90%">ex. ~9.99 ~9.99 999</p>
-                                    <label class="text-dark mt-4 font-weight-medium" for="">Credit Card Number</label>
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend">
-													<span class="input-group-text">
-														<i class="mdi mdi-credit-card"></i>
-													</span>
-                                        </div>
-                                        <input type="text" class="form-control" data-mask="9999 9999 9999 9999"
-                                               placeholder="" aria-label="">
-                                    </div>
-                                    <p style="font-size: 90%">ex. 9999 9999 9999 9999</p>
+                                    <div th:replace="cotacao/seguros/automovel"></div>
+                                    <div th:replace="cotacao/seguros/patrimonial"></div>
+                                    <div th:replace="cotacao/seguros/vida"></div>
+                                    <div th:replace="cotacao/seguros/saude"></div>
+
                                 </section>
                                 </div>
                             </form>
@@ -113,6 +77,7 @@
         <div th:replace="fragments/sistema/layout::scripts">
         </div>
         <script th:src=@{/assets/plugins/jquery.steps-1.1.0/jquery.steps.min.js}></script>
+        <script th:src=@{/assets/plugins/select2/js/select2.full.js}></script>
         <script>
             $(document).ready(function () {
                 var form = $("#wizard")
@@ -135,6 +100,19 @@
                         alert("Submitted!");
                     }
                 });
+                var ramos = ['saude','vida','patrimonio',  'automovel'];
+                $('#ramo').on('change', function () {
+                    var selected = $(this).val()
+                    //exibe campos do ramo selecionado
+                    if(selected !== 1){
+                        ramos.forEach(function (value) {
+                            if(value !== selected)
+                                $('.'+value).hide();
+                            else
+                                $('.'+value).show();
+                        })
+                    }
+                })
             })
 
         </script>
