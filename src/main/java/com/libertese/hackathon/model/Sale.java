@@ -39,7 +39,7 @@ public class Sale {
 	
 	@OneToOne 
 	@JoinColumn(name = "id")
-	private Insurer insurer;
+	private Insurer insurer;	
 	
 	@Column (name = "value")
 	private float value;
