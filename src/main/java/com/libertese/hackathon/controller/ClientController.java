@@ -33,6 +33,6 @@ public class ClientController {
 		}  catch (Exception e) {
 			redirectAtrributes.addFlashAttribute("erro", e.getMessage());
 		}
-		return "redirect:/cliente/index";
+		return "redirect:/cliente/create";
 	}
 }

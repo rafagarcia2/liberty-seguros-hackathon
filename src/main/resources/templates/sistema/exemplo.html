@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/sistema/layout::head(pageTitle='Liberty-se - Dashboard')">
+</head>
+
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+<div class="mobile-sticky-body-overlay"></div>
+<div class="wrapper">
+    <aside class="left-sidebar bg-sidebar"  th:replace="fragments/sistema/layout::menu"></aside>
+
+    <div class="page-wrapper">
+        <header class="main-header " id="header" th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
+        <!--CONTEUDO DA PÁGINA-->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-table-border-none" id="recent-orders">
+                    <div class="card-header justify-content-between">
+                        <h1>asdasdas</h1>
+                    </div>
+                    <div class="card-body pt-0 pb-5">
+                        <p>asdasdas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--CONTEUDO DA PÁGINA-->
+        <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer"></footer>
+        <div th:replace="fragments/sistema/layout::scripts"></div>
+    </div>
+</div>
+</body>
+</html>
