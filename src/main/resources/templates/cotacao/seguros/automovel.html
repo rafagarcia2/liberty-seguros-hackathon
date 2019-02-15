@@ -1,14 +1,57 @@
 <div class="automovel">
 
-<label class="text-dark mt-4 font-weight-medium" for="">CNH</label>
-<div class="input-group mb-2">
-    <div class="input-group-prepend">
-        <span class="input-group-text">
-            <i class="mdi mdi-credit-card"></i>
-        </span>
+<h4>Veículo</h4>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="placa">Placa</label>
+                <input type="text" name="placa" class="form-control" id="placa">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="chassi">Chassi</label>
+                <input type="text" name="chassi" class="form-control" id="chassi">
+            </div>
+        </div>
     </div>
-    <input type="text" class="form-control" data-mask="9999 9999 9999 9999"
-           placeholder="" aria-label="">
-</div>
-<p style="font-size: 90%">ex. 9999 9999 9999 9999</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="marca">Marca</label>
+                <input type="text" name="marca" class="form-control" id="marca">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="ano_modelo">Ano do modelo</label>
+                <input type="number" name="ano_modelo" class="form-control" id="ano_modelo">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="tipo_combustivel">Tipo do combustível</label>
+                <select name="tipo_combustivel" id="tipo_combustivel" class="form-control">
+                    <option value="1">Álcool</option>
+                    <option value="2">Diesel</option>
+                    <option value="3">Flex</option>
+                    <option value="4">Gasolina</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="tipo_veiculo">Tipo do veículo</label>
+                    <select name="tipo_veiculo" id="tipo_veiculo" class="form-control">
+                    <option value="1">Privado</option>
+                    <option value="2">Escolar</option>
+                    <option value="3">Auto escola</option>
+                    <option value="4">Locadoras</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
 </div>
