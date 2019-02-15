@@ -6,6 +6,7 @@
 </head>
 <link th:href=@{/assets/plugins/jquery.steps-1.1.0/jquery.steps.css} rel="stylesheet"/>
 <link th:href=@{/assets/plugins/select2/css/select2.css} rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" th:href=@{https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css} />
 <style>
   .wizard > .content > .body {
     float: left;
@@ -35,6 +36,10 @@
             <div class="card-body">
               <form id="wizard" action="#">
                 <div>
+                  <h3>Seguradoras</h3>
+                  <section>
+                    <div th:replace="sistema/seguradoras"></div>
+                  </section>
                   <h3>Segurado</h3>
                   <section>
                     <label class="text-dark font-weight-medium" for="">Nome</label>
@@ -54,14 +59,22 @@
                         <option value="saude">SAÚDE</option>
                       </select>
                     </div>
-
-                    <h4>Corretor</h4>
-                    <div class="form-group">
-                      <label for="comissao">Comissao</label>
-                      <input th:type="number" name="comissao" class="form-control" id="comissao" data-mask="9%">
-                    </div>
+                    <div class="row">
+	                    <div class="col-md-6">
+				            <div class="form-group">
+				                <label for="ano_modelo">Vigência - início</label>
+				                <input type="date" name="dates" class="form-control" id="vigencia">
+				            </div>
+				        </div>
+				        <div class="col-md-6">
+				            <div class="form-group">
+				                <label for="ano_modelo">Vigência - fim</label>
+				                <input type="date" name="dates" class="form-control" id="vigencia">
+				            </div>
+				        </div>
+			        </div>
                   </section>
-                  <h3>Orçamento</h3>
+                  <h3>Informações</h3>
                   <section>
                     <div th:replace="cotacao/seguros/automovel"></div>
                     <div th:replace="cotacao/seguros/patrimonial"></div>
@@ -84,7 +97,13 @@
     </div>
     <script th:src=@{/assets/plugins/jquery.steps-1.1.0/jquery.steps.min.js}></script>
     <script th:src=@{/assets/plugins/select2/js/select2.full.js}></script>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    
     <script>
+	    $('input[name="dates"]').daterangepicker();
+    
       $(document).ready(function () {
         var form = $("#wizard")
         form.children("div").steps({
