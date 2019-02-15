@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+	<head th:replace="fragments/autenticacao/layout::head(pageTitle='Liberty-se - Realize seu cadastro agora<')">
+	</head>
+
+	<body class="bg-light-gray" id="body">
+		<div>
+			<div class="row justify-content-center mt-5">
+				<div class="col-xl-5 col-lg-6 col-md-10">
+					<div class="card">
+						<div class="card-header bg-primary">
+							<div class="app-brand">
+								<center>
+									<img th:src=@{/assets/img/logo3.png} width="200px" />
+								</center>
+							</div>
+						</div>
+						<div class="card-body p-5">
+							<h4 class="text-dark mb-5">Cadastrar-se</h4>
+
+							<form method="POST" th:action="@{/autenticacao/cadastro}" th:object="${user}">
+							
+								<div th:if="${success != null}" class="alert alert-success" role="alert"><span th:text="${success}">msg success</span></div>
+								<div th:if="${error != null}" class="alert alert-danger" role="alert"><span th:text="${error}">msg error</span></div>
+		
+								<div class="row">
+									<div class="form-group col-md-12 mb-4">
+										<input
+												type="text"
+												class="form-control input-lg"
+												id="name" name="name"
+												aria-describedby="nameHelp"
+												placeholder="Nome"
+										/>
+									</div>
+									<div class="form-group col-md-12 mb-4">
+										<input
+												type="email"
+												class="form-control input-lg"
+												id="email"  name="email"
+												aria-describedby="emailHelp"
+												placeholder="E-mail"
+										/>
+									</div>
+									<div class="form-group col-md-12 ">
+										<input
+												type="password"
+												class="form-control input-lg"
+												id="password"  name="password"
+												placeholder="Senha"
+										/>
+									</div>
+									<div class="form-group col-md-12 ">
+										<input
+												type="password"
+												class="form-control input-lg"
+												id="cpassword"
+												placeholder="Confirme a sua senha"
+										/>
+									</div>
+									<div class="col-md-12">
+										<div class="d-inline-block mr-3">
+											<label class="control control-checkbox">
+												<input type="checkbox" />
+												<div class="control-indicator"></div>
+												Eu aceito os termos e condições
+											</label>
+										</div>
+										<button
+												type="submit"
+												class="btn btn-lg btn-liberty btn-block mb-4"
+										>
+											Cadastrar-se
+										</button>
+										<p>
+											Já tem uma conta?
+											<a class="text-blue" href="/autenticacao/login">Fazer login</a>
+										</p>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="copyright pl-0">
+				<p class="text-center">
+					&copy; 2018 - O Liberty-se. I <span style="color:brown">❤</span>
+					<a href="https://github.com/">Open Source.</a>
+				</p>
+			</div>
+		</div>
+	</body>
+</html>
+
