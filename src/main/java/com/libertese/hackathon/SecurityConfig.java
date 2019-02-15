@@ -34,7 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
+                .antMatchers("/login/cadastro").permitAll()
+                .antMatchers("/assets/**").permitAll()
                 .antMatchers("/static/**").permitAll()
                 .antMatchers("/view/plugins**").permitAll()
                 .antMatchers("/view/**").permitAll()
@@ -42,8 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/autenticacao/login")
-                .defaultSuccessUrl("/")
+                .loginPage("/login")
+                .defaultSuccessUrl("/sistema/dashboard")
                 .permitAll()
                 .and()
                 .logout()
