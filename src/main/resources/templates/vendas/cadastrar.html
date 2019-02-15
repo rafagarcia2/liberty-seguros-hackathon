@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/sistema/layout::head(pageTitle='Liberty-se - Dashboard')">
+</head>
+
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+<div class="mobile-sticky-body-overlay"></div>
+<div class="wrapper">
+    <aside class="left-sidebar bg-sidebar"  th:replace="fragments/sistema/layout::menu"></aside>
+
+    <div class="page-wrapper">
+        <header class="main-header " id="header" th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
+        <!--CONTEUDO DA PÁGINA-->
+               <div class="content-wrapper">
+          <div class="content">             
+            <div class="row">
+                <div class="col-lg-12">
+                  <div class="card card-default">
+                    <div class="card-header card-header-border-bottom">
+                      <h2>Cadastrar uma nova Venda</h2>
+                    </div>
+                    <div class="card-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="exampleFormControlInput1">Cliente</label>
+                          <input type="nome" class="form-control" id="exampleFormControlInput1" placeholder="Nome">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleFormControlInput1">Seguradora</label>
+                          <select class="form-control" id="exampleFormControlSelect12">
+							<option>Liberty Seguros</option>
+							<option>Porto Seguro</option>
+							<option>Allianz Seguros</option>
+							<option>Itaú Seguros</option>
+							<option>Sompo Seguros</option>
+						</select>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect12">Ramo</label>
+                          <select class="form-control" id="exampleFormControlSelect12">
+                            <option value="1"> Nenhum</option>
+                            <option value="50">AUTOMÓVEL</option>
+                            <option value="16">PATRIMONIAL - RESIDENCIAL</option>
+                            <option value="53">VIDA INDIVIDUAL</option>
+                            <option value="47">SAÚDE</option>
+						</select>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect3">Valor</label>
+                          <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              R$
+                            </span>
+                          </div>
+                          <input type="text" class="form-control" data-mask="99-9999999" placeholder="" aria-label="">
+                        </div>
+						<div class="form-group">
+                          <label for="exampleFormControlSelect4">Status</label>
+							
+							<ul class="list-unstyled list-inline">
+							<div class="row">
+ 	                         	<div class="col-md-4">
+									<li class="d-inline-block mr-4">
+										<label class="control control-radio">Em andamento
+											<input type="radio" name="option" checked="checked" />
+											<div class="control-indicator"></div>
+										</label>
+									</li>
+								</div>
+								<div class="col-md-4">
+								<li class="d-inline-block mr-4">
+									<label class="control control-radio radio-primary">Aguardando resposta
+										<input type="radio" name="option" />
+										<div class="control-indicator"></div>
+									</label>
+								</li>
+								</div>
+								<div class="col-md-4">
+								<li class="d-inline-block">
+									<label class="control control-radio radio-success">Aceito
+										<input type="radio" name="option" />
+										<div class="control-indicator"></div>
+									</label>
+								</li>
+								</div>
+							</ul>
+                        </div>
+                      
+                        <div class="form-footer pt-4 pt-5 mt-4 border-top">
+                          <button type="submit" class="btn btn-primary btn-default">Submit</button>
+                          <button type="submit" class="btn btn-secondary btn-default">Cancel</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>            
+                </div>
+              </div>
+            </div>         
+        </div>
+        <!--CONTEUDO DA PÁGINA-->
+        <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer"></footer>
+        <div th:replace="fragments/sistema/layout::scripts"></div>
+    </div>
+</div>
+</body>
+</html>
