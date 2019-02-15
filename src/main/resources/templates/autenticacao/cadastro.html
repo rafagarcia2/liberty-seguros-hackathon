@@ -20,7 +20,7 @@
 						<div class="card-body p-5">
 							<h4 class="text-dark mb-5">Cadastrar-se</h4>
 
-							<form method="POST" th:action="@{/cadastro}" th:object="${user}">
+							<form method="POST" th:action="@{/login/cadastro}" th:object="${user}">
 							
 								<div th:if="${success != null}" class="alert alert-success" role="alert"><span th:text="${success}">msg success</span></div>
 								<div th:if="${error != null}" class="alert alert-danger" role="alert"><span th:text="${error}">msg error</span></div>
