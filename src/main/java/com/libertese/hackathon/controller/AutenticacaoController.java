@@ -28,13 +28,11 @@ public class AutenticacaoController {
 
     @GetMapping("/cadastro")
     public String cadastro(){
-        return "sistema/cadastro";
+        return "autenticacao/cadastro";
     }
     
     @PostMapping("/cadastro")
 	public String registerAction( @Valid @ModelAttribute User entityUser, BindingResult result, RedirectAttributes redirectAttributes) {
-		
-		String a = "aea";
 		try {
 			User user = userService.save(entityUser);
 			redirectAttributes.addFlashAttribute("success", "Usuario cadastrado com sucesso.");
@@ -44,7 +42,7 @@ public class AutenticacaoController {
 		}
 
 		
-        return "deu_certo";
+        return "/sistema/dashboard";
     }
 
 }
