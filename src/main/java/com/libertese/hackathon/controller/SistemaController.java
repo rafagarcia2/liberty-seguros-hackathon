@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/sistema")
 public class SistemaController {
+
     @GetMapping("/dashboard")
     public String cadastro(){
         return "sistema/dashboard";
     }
+
+    @GetMapping("/simulacao-de-seguro")
+    public String simulacao(){ return "sistema/simulacao";}
 }
