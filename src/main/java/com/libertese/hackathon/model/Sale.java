@@ -2,21 +2,53 @@ package com.libertese.hackathon.model;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 /**
  * The Sale class
  * @author gabriel
  *
  */
+@Entity
+@Table (name = "sale")
 public class Sale {
 
 	/**
 	 * Attributes
 	 */
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "fk_client")
 	private Client client;
+	
+	@OneToOne 
+	@JoinColumn(name = "id")
 	private Insurer insurer;
+	
+	@Column (name = "value")
 	private float value;
+	
+	@Column (name = "date")
 	private Date date;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status")
 	private Status status;
 	
 	/**
