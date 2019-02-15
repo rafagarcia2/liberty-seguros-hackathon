@@ -38,11 +38,11 @@ public class AutenticacaoController {
 			redirectAttributes.addFlashAttribute("success", "Usuario cadastrado com sucesso.");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("error", e.getMessage());
-			return "redirect:/cadastro";
+			return "redirect:/login/cadastro";
 		}
 
 		
-        return "/sistema/dashboard";
+        return "redirect:/sistema/dashboard";
     }
 
 }
