@@ -12,5 +12,10 @@ public class VendasController {
     public String listar(){
         return "vendas/listar";
     }
+	
+	@GetMapping("cadastrar")
+    public String cadastrar(){
+        return "vendas/cadastrar";
+    }
 
 }
