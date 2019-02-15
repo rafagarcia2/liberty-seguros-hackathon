@@ -15,13 +15,13 @@ import com.libertese.hackathon.model.User;
 import com.libertese.hackathon.service.UserService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/login")
 public class AutenticacaoController {
 
 	@Autowired
 	private UserService userService;
 
-    @GetMapping("login")
+    @GetMapping
     public String login() {
         return "autenticacao/login";
     }
@@ -31,7 +31,7 @@ public class AutenticacaoController {
         return "autenticacao/cadastro";
     }
     
-    @PostMapping("/cadastro")
+    @PostMapping("cadastro")
 	public String registerAction( @Valid @ModelAttribute User entityUser, BindingResult result, RedirectAttributes redirectAttributes) {
 		try {
 			User user = userService.save(entityUser);
