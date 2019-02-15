@@ -13,12 +13,12 @@ import com.libertese.hackathon.model.Client;
 
 
 @Controller
-
+@RequestMapping("/cliente")
 public class ClientController {
 
 	private static final String INSERT_SUCCESS = "Cliente inserido com sucesso!";
 	
-	@GetMapping("/cliente/create")
+	@GetMapping("/create")
     public String cadastro(Model m) {
 		//Address ad = new Address(null, null, null, null, null, null, null);
 		//m.addAttribute("client", new Client(null, null, null, null, ad));
@@ -28,7 +28,7 @@ public class ClientController {
     @GetMapping("index")
     public String index () { return "cliente/index";}
 	
-	@PostMapping("/cliente/create")
+	@PostMapping("/create")
 	public String create (@ModelAttribute("client") Client client, 
 			RedirectAttributes redirectAtrributes)
 	{
