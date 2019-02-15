@@ -8,8 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/cotacao")
 public class CotacaoController {
 
-    @GetMapping("/create")
-    public String create(){
-        return "cotacao/create";
+	@GetMapping("listar")
+    public String listar(){
+        return "cotacao/listar";
     }
+
+	@GetMapping("cadastrar")
+    public String cadastrar(){
+        return "cotacao/cadastrar";
+    }
+
 }

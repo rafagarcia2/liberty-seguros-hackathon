@@ -1,0 +1,334 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/sistema/layout::head(pageTitle='Liberty-se - Dashboard')">
+</head>
+
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+<div class="mobile-sticky-body-overlay"></div>
+<div class="wrapper">
+    <aside class="left-sidebar bg-sidebar"  th:replace="fragments/sistema/layout::menu"></aside>
+
+    <div class="page-wrapper">
+        <header class="main-header " id="header" th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
+        <!--CONTEUDO DA PÁGINA-->
+        <div class="content-wrapper">
+          <div class="content">							
+            <div class="breadcrumb-wrapper">
+                
+              <div class="row">
+                <div class="col-md-8">
+                  <nav class="pull-left" aria-label="breadcrumb">
+                    <ol class="breadcrumb p-0">
+                      <li class="breadcrumb-item">
+                        <a href="index.html">
+                          <span class="mdi mdi-home"></span>                
+                        </a>
+                      </li>
+                      <li class="breadcrumb-item">
+                        Cotação
+                      </li>
+                      <li class="breadcrumb-item" aria-current="page">listar</li>
+                    </ol>
+                  </nav>
+                </div>
+             </div>
+
+							<div class="row">
+								<div class="col-12">
+                  <!-- Recent Order Table -->
+                  <div class="card card-table-border-none" id="recent-orders">
+                    <div class="card-header justify-content-between">
+                      <h2>Cotação</h2>
+                    </div>
+                    <div class="card-body pt-0 pb-5">
+                      <div class="table-responsive">
+                      <table class="table card-table table-responsive table-responsive-large" style="width:100%">
+                        <thead>
+                          <tr>
+                            <th class="text-dark">Seguradora</th>
+                            <th class="text-dark">Comissão</th>
+                            <th class="text-dark d-none d-md-table-cell">Valor</th>
+                            <th class="text-dark">Status</th>
+                            <th>Coberturas</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td >Liberty Seguros</td>
+                            <td>
+                            <div class="col-sm-6 my-1">
+		                            	<input value="15%" type="text" class="form-control form-control-sm" aria-label="Porcentagem da comissão">
+							</div>
+                            <td class="text-dark">R$ 25.000,00</td>
+                            <td >
+                              <span class="badge badge-success">Mais popular</span>
+                            </td>
+                            <td><p>
+                            DC: R$ 21.000,00<br/>
+                            DM: R$ 31.000,00
+                            </p>
+                            </td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          
+                          <tr>
+                            <td >Azul Seguros</td>
+                            <td>
+                            <div class="col-sm-6 my-1">
+		                            	<input value="20%" type="text" class="form-control form-control-sm" aria-label="Porcentagem da comissão">
+							</div>
+                            <td class="text-dark">R$ 44.000,00</td>
+                            <td >
+                              <span class="badge badge-warning">Alto</span>
+                            </td>
+                            <td><p>
+                            DC: R$ 35.000,00<br/>
+                            DM: R$ 47.000,00
+                            </p>
+                            </td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          
+                          <tr>
+                            <td >Caixa</td>
+                            <td>
+                            <div class="col-sm-6 my-1">
+		                            	<input value="17%" type="text" class="form-control form-control-sm" aria-label="Porcentagem da comissão">
+							</div>
+                            <td class="text-dark">R$ 32.000,00</td>
+                            <td >
+                              <span class="badge badge-secondary">Regular</span>
+                            </td>
+                            <td><p>
+                            DC: R$ 27.000,00<br/>
+                            DM: R$ 33.000,00
+                            </p>
+                            </td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          
+                          <tr>
+                            <td >Itaú Seguros</td>
+                            <td>
+                            <div class="col-sm-6 my-1">
+		                            	<input value="21%" type="text" class="form-control form-control-sm" aria-label="Porcentagem da comissão">
+							</div>
+                            <td class="text-dark">R$ 50.000,00</td>
+                            <td >
+                              <span class="badge badge-danger">Muito Alto</span>
+                            </td>
+                            <td><p>
+                            DC: R$ 48.000,00<br/>
+                            DM: R$ 56.000,00
+                            </p>
+                            </td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+
+                           <tr>
+                            <td >Liberty Seguros</td>
+                            <td >
+                              <span class="text-dark" id="cotacao" contenteditable>15%</span>
+                            </td>
+                            <td class="text-dark">R$ 21.000,00</td>
+                            <td >
+                              <span class="badge badge-secondary">Regular</span>
+                            </td>
+                            <td><p>
+                            DC: R$ 21.000,00<br/>
+                            DM: R$ 31.000,00
+                            </p>
+                            </td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td >24541</td>
+                            <td >
+                              <a class="text-dark" href=""> Contrato José Pedro</a>
+                            </td>
+                            <td>Caixa</td>
+                            <td >
+                              <span class="badge badge-success">Receita</span>
+                            </td>
+                            <td class="d-none d-md-table-cell">R$ 550,00</td>
+                            <td class="d-none d-md-table-cell">Aberta</td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order2">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td >24541</td>
+                            <td >
+                              <a class="text-dark" href=""> Reforma escritório</a>
+                            </td>
+                            <td>Caixa</td>
+                            <td >
+                              <span class="badge badge-danger">Despesa</span>
+                            </td>
+                            <td class="d-none d-md-table-cell">R$ 325,00</td>
+                            <td class="d-none d-md-table-cell">Quitada</td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order3" data-toggle="dropdown" aria-haspopup="true"
+                                  aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order3">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td >24541</td>
+                            <td >
+                              <a class="text-dark" href="">Compra de material</a>
+                            </td>
+                            <td>Santander</td>
+                            <td >
+                                <span class="badge badge-danger">Despesa</span>
+                            </td>
+                            <td class="d-none d-md-table-cell">R$ 200,00</td>
+                            <td class="d-none d-md-table-cell">Aberta</td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order4">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td >24541</td>
+                            <td >
+                              <a class="text-dark" href=""> Pagamento Sandro</a>
+                            </td>
+                            <td>Banco do Brasil</td>
+                            <td >
+                              <span class="badge badge-success">Receita</span>
+                            </td>
+                            <td class="d-none d-md-table-cell">R$ 150,00</td>
+                            <td class="d-none d-md-table-cell">Quitada</td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order5" data-toggle="dropdown" aria-haspopup="true"
+                                  aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order5">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+				</div>
+                  <div class="col-12 col-lg-12">
+					<div class="card card-default">
+						<div class="card-header justify-content-center">
+							<h2 class="text-center">Multiple Statistics</h2>
+						</div>
+						<div class="card-body" style="height: 380px;">
+							<canvas id="mstat"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>						
+		</div>
+		</div>
+        <!--CONTEUDO DA PÁGINA-->
+        <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer"></footer>
+        <div th:replace="fragments/sistema/layout::scripts"></div>
+    </div>
+</div>
+</body>
+</html>
