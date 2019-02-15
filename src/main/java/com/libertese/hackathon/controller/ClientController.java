@@ -20,6 +20,9 @@ public class ClientController {
     public String cadastro() {
         return "cliente/create";
     }
+
+    @GetMapping("index")
+    public String index () { return "cliente/index";}
 	
 	@PostMapping("create")
 	public String create (@ModelAttribute("client") Client client, 
