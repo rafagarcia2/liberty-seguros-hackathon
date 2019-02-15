@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/autenticacao/layout::head(pageTitle='Liberty-se - Cadastro de Indicação<')">
+</head>
+
+<body class="bg-light-gray" id="body">
+<div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-xl-10 col-lg-6 col-md-10">
+            <div class="card">
+                <div class="card-header bg-primary">
+                    <div class="app-brand">
+                        <center>
+                            <img th:src=@{/assets/img/logo3.png} width="200px" />
+                        </center>
+                    </div>
+                </div>
+                <div class="card-body p-5">
+                    <h4 class="text-dark mb-5">Bem Vindo</h4>
+
+                    <form method="POST" th:action="@{/posVenda/indicacao}" th:object="${user}">
+
+                        <div th:if="${success != null}" class="alert alert-success" role="alert"><span th:text="${success}">msg success</span></div>
+                        <div th:if="${error != null}" class="alert alert-danger" role="alert"><span th:text="${error}">msg error</span></div>
+
+                        <div class="card-header">
+                        <center>
+                            <h2>Identificação</h2>
+                        </center>
+                        </div>
+
+                        <br/>
+
+                        <div class="form-row">
+                            <div class="col-md-6 mb-2">
+                                <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Nome</label>
+                                <input type="name" class="form-control" id="exampleFormControlInput1" required="" placeholder="José da Silva">
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label for="exampleFormControlInput1" class="text-dark font-weight-medium">E-mail</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput2" required="" placeholder="libertyse@libertyse.com">
+                            </div>
+                        </div>
+
+                        <div class="card-header">
+                            <center>
+                                <h2>Indicação</h2>
+                            </center>
+                        </div>
+
+                        <br/>
+
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Nome</label>
+                                <input type="name" class="form-control" id="exampleFormControlInput3" required="" placeholder="José da Silva">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="exampleFormControlInput1" class="text-dark font-weight-medium">E-mail</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput4" required="" placeholder="libertyse@libertyse.com">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Contato</label>
+                                <input type="phone" class="form-control" id="exampleFormControlInput5"  placeholder="(xx) xxxxx-xxxx">
+                            </div>
+
+                            <label class="control control-checkbox">
+                                <input type="checkbox" />
+                                <div class="control-indicator"></div>
+                                  Eu aceito os termos e condições
+                            </label>
+                        </div>
+                        <center>
+                            <div class="col-md-4">
+                                <button
+                                        type="submit"
+                                        class="btn btn-lg btn-liberty btn-block mb-4"
+
+                                >
+                                    Cadastrar Indicação
+                                </button>
+
+                            </div>
+                        </center>
+                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright pl-0">
+        <p class="text-center">
+            &copy; 2018 - O Liberty-se. I <span style="color:brown">❤</span>
+            <a href="https://github.com/">Open Source.</a>
+        </p>
+    </div>
+</div>
+</body>
+</html>

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/pos-venda")
+@RequestMapping("/posVenda")
 public class PosVendaController {
 
     @GetMapping("configuracoes")
@@ -17,4 +17,10 @@ public class PosVendaController {
     public String nps(){
         return "posVenda/resultadoNps";
     }
+
+    @GetMapping("indicacao")
+    public String indicacao(){
+        return "posVenda/indicacao";
+    }
+
 }
