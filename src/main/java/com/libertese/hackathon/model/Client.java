@@ -1,10 +1,13 @@
 package com.libertese.hackathon.model;
 
+import javax.persistence.Entity;
+
 /**
  * The Client class
  * @author gabriel
  *
  */
+
 public class Client {
 
 	/**
