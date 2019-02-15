@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/sistema/layout::head(pageTitle='Liberty-se - Dashboard')">
+</head>
+
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+<div class="mobile-sticky-body-overlay"></div>
+<div class="wrapper">
+    <aside class="left-sidebar bg-sidebar"  th:replace="fragments/sistema/layout::menu"></aside>
+
+    <div class="page-wrapper">
+        <header class="main-header " id="header" th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
+        <!--CONTEUDO DA PÁGINA-->
+               <div class="content-wrapper">
+          <div class="content">             
+            <div class="row">
+                <div class="col-lg-12">
+                  <div class="card card-default">
+                    <div class="card-header card-header-border-bottom">
+                      <h2>Cadastrar uma novo Lançamento</h2>
+                    </div>
+                    <div class="card-body">
+                      <form>
+                        <div class="form-group">
+                          <label for="exampleFormControlInput1">Receita ou Despesa</label>
+                          <select class="form-control" id="exampleFormControlSelect1">
+							<option>Receita</option>
+							<option>Despesa</option>
+						</select>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="exampleFormControlInput2">Fonte</label>
+                          <input type="nome" class="form-control" id="exampleFormControlInput2" placeholder="De onde veio o lançamento?">
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect3">Conta</label>
+                          <select class="form-control" id="exampleFormControlSelect3">
+                            <option value="1">Nenhum</option>
+                            <option value="2">Banco do Brasil</option>
+                            <option value="3">Caixa</option>
+                            <option value="3">Bradesco</option>
+						</select>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect3">Status</label>
+                          <select class="form-control" id="exampleFormControlSelect3">
+                            <option value="1">Nenhum</option>
+                            <option value="2">Aberto</option>
+                            <option value="3">Quitado</option>
+						</select>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleFormControlSelect3">Valor</label>
+                          <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              R$
+                            </span>
+                          </div>
+                          <input type="text" class="form-control" data-mask="99-9999999" placeholder="" aria-label="">
+                        </div>
+                      
+                        <div class="form-footer pt-4 pt-5 mt-4 border-top">
+                          <button type="submit" class="btn btn-primary btn-default">Cadastrar</button>
+                          <button type="submit" class="btn btn-secondary btn-default">Cancelar</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>            
+                </div>
+              </div>
+            </div>         
+        </div>
+        <!--CONTEUDO DA PÁGINA-->
+        <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer"></footer>
+        <div th:replace="fragments/sistema/layout::scripts"></div>
+    </div>
+</div>
+</body>
+</html>

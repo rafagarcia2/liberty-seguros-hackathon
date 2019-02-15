@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/sistema/layout::head(pageTitle='Liberty-se - Dashboard')">
+</head>
+
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+<div class="mobile-sticky-body-overlay"></div>
+<div class="wrapper">
+    <aside class="left-sidebar bg-sidebar"  th:replace="fragments/sistema/layout::menu"></aside>
+
+    <div class="page-wrapper">
+        <header class="main-header " id="header" th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
+        <!--CONTEUDO DA PÁGINA-->
+        <div class="content-wrapper">
+          <div class="content">							
+            <div class="breadcrumb-wrapper">
+                
+              <div class="row">
+                <div class="col-md-8">
+                  <nav class="pull-left" aria-label="breadcrumb">
+                    <ol class="breadcrumb p-0">
+                      <li class="breadcrumb-item">
+                        <a href="index.html">
+                          <span class="mdi mdi-home"></span>                
+                        </a>
+                      </li>
+                      <li class="breadcrumb-item">
+                        Fluxo de caixa
+                      </li>
+                      <li class="breadcrumb-item" aria-current="page">listar</li>
+                    </ol>
+                  </nav>
+                </div>
+                <div class="col-md-4">
+                    <div>
+                      <h6 class="text-uppercase">
+                        Meta de Faturamento <span class="float-right">40%</span>
+                      </h6>
+                      <div class="progress progress-xs">
+                        <div
+                          class="progress-bar active"
+                          style="width: 40%;"
+                          role="progressbar"
+                        ></div>
+                      </div>
+                    </div>
+                </div>
+
+             </div>
+
+							<div class="row">
+								<div class="col-12">
+                  <!-- Recent Order Table -->
+                  <div class="card card-table-border-none" id="recent-orders">
+                    <div class="card-header justify-content-between">
+                      <h2>Fluxo de Caixa</h2>
+                      <div>
+                      	  <a th:href="@{/caixa/cadastrar}" type="button" class="mb-1 btn btn-success"><span><i class="mdi mdi-plus"></i></span></a>
+                      </div>
+                    </div>
+                    <div class="card-body pt-0 pb-5">
+                      <div class="table-responsive">
+                      <table class="table card-table table-responsive table-responsive-large" style="width:100%">
+                        <thead>
+                          <tr>
+                            <th>ID Lançamento</th>
+                            <th>Fonte</th>
+                            <th>Conta</th>
+                            <th>Tipo</th>
+                            <th class="d-none d-md-table-cell">Valor</th>
+                            <th>Status</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td >24541</td>
+                            <td >
+                              <a class="text-dark" href=""> Pagamento Leandro</a>
+                            </td>
+                            <td>Banco do Brasil</td>
+                            <td >
+                              <span class="badge badge-success">Receita</span>
+                            </td>
+                            <td class="d-none d-md-table-cell">R$ 230,00</td>
+                            <td class="d-none d-md-table-cell">Quitada</td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td >24541</td>
+                            <td >
+                              <a class="text-dark" href=""> Contrato José Pedro</a>
+                            </td>
+                            <td>Caixa</td>
+                            <td >
+                              <span class="badge badge-success">Receita</span>
+                            </td>
+                            <td class="d-none d-md-table-cell">R$ 550,00</td>
+                            <td class="d-none d-md-table-cell">Aberta</td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order2">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td >24541</td>
+                            <td >
+                              <a class="text-dark" href=""> Reforma escritório</a>
+                            </td>
+                            <td>Caixa</td>
+                            <td >
+                              <span class="badge badge-danger">Despesa</span>
+                            </td>
+                            <td class="d-none d-md-table-cell">R$ 325,00</td>
+                            <td class="d-none d-md-table-cell">Quitada</td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order3" data-toggle="dropdown" aria-haspopup="true"
+                                  aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order3">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td >24541</td>
+                            <td >
+                              <a class="text-dark" href="">Compra de material</a>
+                            </td>
+                            <td>Santander</td>
+                            <td >
+                                <span class="badge badge-danger">Despesa</span>
+                            </td>
+                            <td class="d-none d-md-table-cell">R$ 200,00</td>
+                            <td class="d-none d-md-table-cell">Aberta</td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order4">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td >24541</td>
+                            <td >
+                              <a class="text-dark" href=""> Pagamento Sandro</a>
+                            </td>
+                            <td>Banco do Brasil</td>
+                            <td >
+                              <span class="badge badge-success">Receita</span>
+                            </td>
+                            <td class="d-none d-md-table-cell">R$ 150,00</td>
+                            <td class="d-none d-md-table-cell">Quitada</td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order5" data-toggle="dropdown" aria-haspopup="true"
+                                  aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order5">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+				</div>
+                  <div class="col-12 col-lg-12">
+					<div class="card card-default">
+						<div class="card-header justify-content-center">
+							<h2 class="text-center">Multiple Statistics</h2>
+						</div>
+						<div class="card-body" style="height: 380px;">
+							<canvas id="mstat"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>						
+		</div>
+		</div>
+        <!--CONTEUDO DA PÁGINA-->
+        <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer"></footer>
+        <div th:replace="fragments/sistema/layout::scripts"></div>
+    </div>
+</div>
+</body>
+</html>
