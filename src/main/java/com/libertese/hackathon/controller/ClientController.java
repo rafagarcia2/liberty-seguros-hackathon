@@ -1,5 +1,7 @@
 package com.libertese.hackathon.controller;
 
+import com.libertese.hackathon.repository.ClientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,10 @@ import com.libertese.hackathon.model.Client;
 public class ClientController {
 
 	private static final String INSERT_SUCCESS = "Cliente inserido com sucesso!";
-	
+
+	@Autowired
+	private ClientRepository clientRepository;
+
 	@GetMapping("/create")
     public String cadastro(Model m) {
 		//Address ad = new Address(null, null, null, null, null, null, null);
@@ -32,9 +37,7 @@ public class ClientController {
 			RedirectAttributes redirectAtrributes)
 	{
 		try {
-			//TODO tenta inserir cliente
-
-			// mensagem de sucesso
+			clientRepository.save(client);
 			redirectAtrributes.addFlashAttribute("sucesso", INSERT_SUCCESS);
 		}  catch (Exception e) {
 			redirectAtrributes.addFlashAttribute("erro", e.getMessage());
