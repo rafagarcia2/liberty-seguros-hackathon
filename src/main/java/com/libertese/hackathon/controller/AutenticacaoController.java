@@ -28,7 +28,7 @@ public class AutenticacaoController {
 
     @GetMapping("/cadastro")
     public String cadastro(){
-        return "sistema/cadastro";
+        return "autenticacao/cadastro";
     }
     
     @PostMapping("/cadastro")
