@@ -22,9 +22,7 @@
                       <h2>Cadastro de Segurado</h2>
                     </div>
                     <div class="card-body">
-                      <form
-                            th:action="@{/client/create}"
-                            th:object="${client}">
+                      <form th:action="@{/cliente/create}" th:object="${cliente}" method="post">
                         <div class="form-row">
                            <div class="col-md-8 mb-2">
                               <label for="input1" class="text-dark font-weight-medium">Nome</label>
