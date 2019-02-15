@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/sistema/layout::head(pageTitle='Liberty-se - Dashboard')">
+</head>
+
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+<div class="mobile-sticky-body-overlay"></div>
+<div class="wrapper">
+    <aside class="left-sidebar bg-sidebar"  th:replace="fragments/sistema/layout::menu"></aside>
+
+    <div class="page-wrapper">
+        <header class="main-header " id="header" th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
+        <!--CONTEUDO DA PÁGINA-->
+        <div class="content-wrapper">
+          <div class="content">							
+            <div class="breadcrumb-wrapper">
+                
+              <div class="row">
+                <div class="col-md-8">
+                  <nav class="pull-left" aria-label="breadcrumb">
+                    <ol class="breadcrumb p-0">
+                      <li class="breadcrumb-item">
+                        <a href="index.html">
+                          <span class="mdi mdi-home"></span>                
+                        </a>
+                      </li>
+                      <li class="breadcrumb-item">
+                        Relatórios
+                      </li>
+                      <li class="breadcrumb-item" aria-current="page">vendas</li>
+                    </ol>
+                  </nav>
+                </div>
+             </div>
+         </div>
+
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="card card-default">
+					<div class="card-header justify-content-center">
+						<h2 class="text-center">Renda e Quantidade de Vendas</h2>
+					</div>
+					<div class="card-body" style="height: 400px;">
+						<canvas id="polar"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="card card-default pb-5">
+					<div class="card-header justify-content-center">
+						<h2 class="text-center">Tipos de Pagamento</h2>
+					</div>
+					<div class="card-body" style="height: 300px;">
+						<canvas id="bar3"></canvas>
+						<div id='customLegend' class='customLegend'></div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-12">
+				<div class="card card-default">
+					<div class="card-header justify-content-center">
+						<h2 class="text-center">Faturamento por mês</h2>
+					</div>
+					<div class="card-body" style="height: 450px;">
+						<canvas id="linechart" class="chartjs"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-12">
+				<div class="card card-default">
+					<div class="card-header justify-content-center">
+						<h2 class="text-center">Dual Line Chart</h2>
+					</div>
+					<div class="card-body" style="height: 300px;">
+						<canvas id="dual-line"></canvas>
+					</div>
+				</div>
+			</div>
+						<div class="col-6">
+				<div class="card card-default">
+					<div class="card-header justify-content-center">
+						<h2 class="text-center">Vendas por Ramo</h2>
+					</div>
+					<div class="card-body" style="height: 300px;">
+						<canvas id="area-chart"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-6">
+				<div class="card card-default">
+					<div class="card-header justify-content-center">
+						<h2 class="text-center">Product Line Chart</h2>
+					</div>
+					<div class="card-body">
+						<canvas id="activity"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-6">
+				<div class="card card-default">
+					<div class="card-header justify-content-center">
+						<h2 class="text-center">Multiple Statistics</h2>
+					</div>
+					<div class="card-body" style="height: 380px;">
+						<canvas id="mstat"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-6">
+				<div class="card card-default">
+					<div class="card-header justify-content-center">
+						<h2 class="text-center">Donut Chart</h2>
+					</div>
+					<div class="card-body" style="height: 400px;">
+						<canvas id="deviceChart"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-6">
+				<div class="card card-default">
+					<div class="card-header justify-content-center">
+						<h2 class="text-center">Radar Chart</h2>
+					</div>
+					<div class="card-body" style="height: 400px;">
+						<canvas id="radar"></canvas>
+					</div>
+				</div>			
+		</div>
+		</div>
+        <!--CONTEUDO DA PÁGINA-->
+        <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer"></footer>
+        <div th:replace="fragments/sistema/layout::scripts"></div>
+    </div>
+</div>
+</body>
+</html>
