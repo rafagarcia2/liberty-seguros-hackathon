@@ -45,10 +45,28 @@ public class Client {
 	
 	@Column(name = "cpf")
 	private String cpf;
-	
-	@OneToOne(mappedBy="client",cascade = CascadeType.ALL)
-	private Address adress;
-	
+
+	@Column(name = "street")
+	private String street;
+
+	@Column(name = "CEP")
+	private String CEP;
+
+	@Column(name = "neighborhood")
+	private String neighborhood;
+
+	@Column(name = "number")
+	private String number;
+
+	@Column(name = "complement")
+	private String complement;
+
+	@Column(name = "city")
+	private String city;
+
+	@Column(name = "state")
+	private String state;
+
 	@OneToMany (mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Indication> indication;
 
@@ -59,13 +77,35 @@ public class Client {
 	 * Construct 
 	 */
 	
-	public Client(String name, String email, String phone, String cpf, Address adress) {
-		super();
+	public Client(String name, String email, String phone, String cpf,
+				  String street, String CEP, String neighborhood, String number,
+				  String complement, String city, String state) {
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.cpf = cpf;
-		this.adress = adress;
+		this.street = street;
+		this.CEP = CEP;
+		this.neighborhood = neighborhood;
+		this.number = number;
+		this.complement = complement;
+		this.city = city;
+		this.state = state;
+	}
+
+	public Client(String name, String email, String phone, String cpf,
+				  String street, String CEP, String neighborhood,
+				  String number, String city, String state) {
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.cpf = cpf;
+		this.street = street;
+		this.CEP = CEP;
+		this.neighborhood = neighborhood;
+		this.number = number;
+		this.city = city;
+		this.state = state;
 	}
 
 	/**
@@ -104,12 +144,60 @@ public class Client {
 		this.cpf = cpf;
 	}
 
-	public Address getAdress() {
-		return adress;
+	public String getStreet() {
+		return street;
 	}
 
-	public void setAdress(Address adress) {
-		this.adress = adress;
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getCEP() {
+		return CEP;
+	}
+
+	public void setCEP(String CEP) {
+		this.CEP = CEP;
+	}
+
+	public String getNeighborhood() {
+		return neighborhood;
+	}
+
+	public void setNeighborhood(String neighborhood) {
+		this.neighborhood = neighborhood;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public String getComplement() {
+		return complement;
+	}
+
+	public void setComplement(String complement) {
+		this.complement = complement;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public Integer getCode() {
