@@ -23,23 +23,73 @@
                     </div>
                     <div class="card-body">
                       <form>
-                        <div class="form-group">
-                          <label for="exampleFormControlInput1">Nome</label>
-                          <input type="nome" class="form-control" id="exampleFormControlInput1" placeholder="Nome">
+                        <div class="form-row">
+                           <div class="col-md-8 mb-2">
+                              <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Nome</label>
+                              <input type="nome" class="form-control" id="exampleFormControlInput1" placeholder="José da Silva">
+                          </div>
+                          <div class="col-md-4 mb-2">
+                              <label for="exampleFormControlInput1" class="text-dark font-weight-medium">CPF</label>
+                              <input type="cpf" class="form-control" id="exampleFormControlInput1" placeholder="xxx.xxx.xxx-xx">
+                          </div>
                         </div>
-                        <div class="form-group">
-                          <label for="exampleFormControlInput1">E-mail</label>
-                          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email">
+
+                        <div class="form-row">
+                          <div class="col-md-8 mb-2">
+                              <label for="exampleFormControlInput1" class="text-dark font-weight-medium">E-mail</label>
+                              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="libertyse@libertyse.com">
+                          </div>
+                          <div class="col-md-4 mb-2">
+                              <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Contato</label>
+                              <input type="contato" class="form-control" id="exampleFormControlInput1" placeholder="(xx) xxxxx-xxxx">
+                          </div>
                         </div>
-                        <div class="form-group">
-                          <label for="exampleFormControlInput1">Contato</label>
-                          <input type="contato" class="form-control" id="exampleFormControlInput1" placeholder="Contato">
+                        
+                        <div class="form-row">
+                          <div class="col-md-6 mb-3">
+                             <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Cidade</label>
+                            <input class="form-control" id="validationServer03" placeholder="Natal" required="" type="text">
+                            <div class="invalid-feedback">
+                              Please provide a valid city.
+                            </div>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                             <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Estado</label>
+                            <input class="form-control" id="validationServer04" placeholder="Rio Grande do Norte" required="" type="text">
+                            <div class="invalid-feedback">
+                              Please provide a valid state.
+                            </div>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                             <label for="exampleFormControlInput1" class="text-dark font-weight-medium">CEP</label>
+                            <input class="form-control" id="validationServer05" placeholder="xx.xxx-xxx" required="" type="text">
+                            <div class="invalid-feedback">
+                              Please provide a valid zip.
+                            </div>
+                          </div>
                         </div>
-                        <div class="form-group">
-                          <label for="exampleFormControlInput1">CPF</label>
-                          <input type="cpf" class="form-control" id="exampleFormControlInput1" placeholder="CPF">
+
+                        <div class="form-row">
+                          <div class="col-md-3 mb-3">                        
+                             <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Bairro</label>
+                             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Centro">
+                          </div>
+                          <div class="col-md-8 mb-3"> 
+                              <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Logradouro</label>
+                             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Rua das Flores">
+                          </div>
+                           <div class="col-md-1 mb-3"> 
+                              <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Número</label>
+                             <input type="text " class="form-control" id="exampleFormControlInput1" placeholder="103">
+                          </div>
                         </div>
-                      
+
+                        <div class="form-row">
+                          <div class="col-md-3 mb-3">                        
+                             <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Complemento</label>
+                             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Casa, Apto.">
+                          </div>
+                        </div>
                         <div class="form-footer pt-4 pt-5 mt-4 border-top">
                           <button type="submit" class="btn btn-primary btn-default">Submit</button>
                           <button type="submit" class="btn btn-secondary btn-default">Cancel</button>
