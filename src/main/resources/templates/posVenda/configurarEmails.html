@@ -31,31 +31,33 @@
                                 <div class="card-body">
                                     <p class="text-dark mt-4 font-weight-medium mb-3">Disparo de e-mail</p>
 
-                                    <label class="control control-radio"><span style="text-transform: none !important;">Ao finalizar a aquisição do seguro</span>
-                                        <input type="radio" checked="checked">
-                                        <div class="control-indicator"></div>
-                                    </label>
+                                    <form id="myForm">
+                                        <label class="control control-radio"><span style="text-transform: none !important;">Ao finalizar a aquisição do seguro</span>
+                                            <input name="config" value="1" type="radio">
+                                            <div class="control-indicator"></div>
+                                        </label>
 
-                                    <label class="control control-radio"><span style="text-transform: none !important;">5 Dias após a aquisição</span>
-                                        <input type="radio">
-                                        <div class="control-indicator"></div>
-                                    </label>
+                                        <label class="control control-radio"><span style="text-transform: none !important;">5 Dias após a aquisição</span>
+                                            <input name="config" value="2" type="radio">
+                                            <div class="control-indicator"></div>
+                                        </label>
 
-                                    <label class="control control-radio"><span style="text-transform: none !important;">10 Dias após a aquisição</span>
-                                        <input type="radio">
-                                        <div class="control-indicator"></div>
-                                    </label>
+                                        <label class="control control-radio"><span style="text-transform: none !important;">10 Dias após a aquisição</span>
+                                            <input name="config" value="3" type="radio">
+                                            <div class="control-indicator"></div>
+                                        </label>
 
-                                    <label class="control control-radio"><span style="text-transform: none !important;">15 Dias após a aquisição</span>
-                                        <input type="radio">
-                                        <div class="control-indicator"></div>
-                                    </label>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <button class="btn btn-block btn-primary">Salvar</button>
+                                        <label class="control control-radio"><span style="text-transform: none !important;">15 Dias após a aquisição</span>
+                                            <input name="config" value="4" type="radio">
+                                            <div class="control-indicator"></div>
+                                        </label>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <button type="button" id="btn-submit" class="btn btn-block btn-primary">Salvar</button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -66,6 +68,38 @@
         <!--CONTEUDO DA PÁGINA-->
         <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer"></footer>
         <div th:replace="fragments/sistema/layout::scripts"></div>
+        <script>
+            $( document ).ready(function() {
+                $.ajax({
+                    url: '/posVenda/obter-configuracoes',
+                    type: 'get',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (data) {
+                        valorRadio = data[data.length-1].tipoDisparo;
+                        $('input:radio[name="config"]').filter('[value='+valorRadio+']').attr('checked', true);
+                    }
+                });
+
+                $('#btn-submit').click(function () {
+                    var valorRadio = $('input[name=config]:checked', '#myForm').val();
+                    var data = {
+                        tipoDisparo: valorRadio
+                    };
+                    $.ajax({
+                        url: '/posVenda/nova-configuracao',
+                        type: 'post',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        data: JSON.stringify(data)
+                    });
+                });
+
+            });
+        </script>
     </div>
 </div>
 </body>

@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 
 <head th:replace="fragments/sistema/layout::head(pageTitle='Liberty-se - Dashboard')">
 </head>
@@ -20,31 +20,13 @@
                     <div class="row">
                         <div class="offset-lg-1 col-lg-10 offset-lg-1">
                             <div class="row">
-                                <div class="col-md-6 col-lg-6 col-xl-3" id="form-click">
-                                    <div class="media widget-media p-4 bg-white border">
-                                        <img src="https://wwws.alfaseguradora.com.br/Portal/images/Alfa/Conglomerado/AlfaSeguradora.jpg" class="img-fluid"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-xl-3">
-                                    <center>
-                                        <div class="media widget-media p-4 bg-white border" id="seguradora1">
-                                            <img width="80px" src="http://www.onseguroscorretora.com.br/wp-content/uploads/2018/10/Aliro-300x300.jpg" class="img-fluid"/>
-                                        </div>
-                                    </center>
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-xl-3">
-                                    <center>
+
+                                <div th:each="seguradora : ${seguradoras}" class="col-md-6 col-lg-6 col-xl-3">
+                                    <button type="button" th:value=${seguradora.id} class="btn btn-default form">
                                         <div class="media widget-media p-4 bg-white border">
-                                            <img width="120px" src="https://ntscseguros.com.br/wp-content/uploads/2016/01/allianz-seguros-telefones-395x256.png" class="img-fluid"/>
+                                            <img th:src=${seguradora.urlFoto} class="img-fluid"/>
                                         </div>
-                                    </center>
-                                </div>
-                                <div class="col-md-6 col-lg-6 col-xl-3">
-                                    <center>
-                                        <div class="media widget-media p-4 bg-white border">
-                                            <img src="https://cm-belmonte.pt/wp-content/uploads/2018/01/Liberty-Seguros.jpg" class="img-fluid"/>
-                                        </div>
-                                    </center>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -54,14 +36,14 @@
                             <form>
                                 <div class="form-group">
                                     <label>Nome</label>
-                                    <input type="email" class="form-control" placeholder="E-mail do usuário">
+                                    <input type="email" class="form-control" placeholder="E-mail do usuário" id="email">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Senha</label>
-                                    <input type="password" class="form-control" placeholder="********">
+                                    <input type="password" class="form-control" placeholder="********" id="senha">
                                 </div>
-                                <button class="btn-success btn btn-block">Salvar</button>
+                                <button type="submit" class="btn-success btn btn-block">Salvar</button>
                             </form>
                         </div>
                     </div>
@@ -75,18 +57,46 @@
         <div th:replace="fragments/sistema/layout::scripts"></div>
         <script>
             $( document ).ready(function() {
-                let flagOcultar = false
+                var flagOcultar = false
+                var idSeguradora;
                 $('#form-alpha').hide();
-                $('#form-click').click(function () {
+                $('.form').click(function (e) {
                     if(!flagOcultar){
                         $('#form-alpha').show();
                         flagOcultar = !flagOcultar;
+                        idSeguradora = $(this).attr("value")
+                        console.log()
                     }else{
                         $('#form-alpha').hide();
                         flagOcultar = !flagOcultar;
                     }
-
                 });
+                $('#form-alpha').submit(function (e) {
+                   e.preventDefault();
+                   let email = $('#email').val();
+                   let senha = $('#senha').val();
+                   let data = {
+                       idSeguradora: idSeguradora,
+                       email: email,
+                       senha: senha
+                   }
+                    $.ajax({
+                        url: '/sistema/cadastrar-seguradora',
+                        type: 'post',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        success: function (data) {
+                            Swal.fire(
+                                'Sucesso!',
+                                'Seu login foi cadastrado com sucesso!',
+                                'success'
+                            ).then(function (value) {
+                                window.location.reload()
+                            })
+                        },
+                        data: JSON.stringify(data)
+                    });
+                })
             });
         </script>
     </div>
