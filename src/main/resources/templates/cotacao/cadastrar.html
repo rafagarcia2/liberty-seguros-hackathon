@@ -6,151 +6,203 @@
 </head>
 <link th:href=@{/assets/plugins/jquery.steps-1.1.0/jquery.steps.css} rel="stylesheet"/>
 <link th:href=@{/assets/plugins/select2/css/select2.css} rel="stylesheet"/>
-<link rel="stylesheet" type="text/css" th:href=@{https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css} />
+<link rel="stylesheet" type="text/css" th:href=@{https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css}/>
 <style>
-  .wizard > .content > .body {
-    float: left;
-    position: relative;
-    width: 95%;
-    height: 95%;
-    padding: 2.5%;
-  }
+    .wizard > .content > .body {
+        float: left;
+        position: relative;
+        width: 95%;
+        height: 95%;
+        padding: 2.5%;
+    }
+
+     input[type="range"]{
+         -webkit-appearance: none;
+         -moz-apperance: none;
+         border-radius: 6px;
+         height: 6px;
+         background-image: -webkit-gradient(
+                 linear,
+                 left top,
+                 right top,
+                 color-stop(0.15, #94A14E),
+                 color-stop(0.15, #C5C5C5)
+         );
+     }
+
+    input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none !important;
+        background-color: #E9E9E9;
+        border: 1px solid #CECECE;
+        height: 15px;
+        width: 15px;
+    }
+
 </style>
 <body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
 <div class="mobile-sticky-body-overlay"></div>
 <div class="wrapper">
-  <aside class="left-sidebar bg-sidebar" th:replace="fragments/sistema/layout::menu"></aside>
+    <aside class="left-sidebar bg-sidebar" th:replace="fragments/sistema/layout::menu"></aside>
 
-  <div class="page-wrapper">
-    <header class="main-header " id="header"
-            th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
+    <div class="page-wrapper">
+        <header class="main-header " id="header"
+                th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
 
-    <!--CONTEUDO DA PÁGINA-->
-    <div class="row">
-      <div class="col-12">
-        <div class="card card-table-border-none" id="recent-orders">
-          <div class="card-header justify-content-between">
-            <h1>Cotação</h1>
-          </div>
-          <div class="card-body pt-0 pb-5">
-            <div class="card-body">
-              <form id="wizard" action="#">
-                <div>
-                  <h3>Seguradoras</h3>
-                  <section>
-                    <div th:replace="sistema/seguradoras"></div>
-                  </section>
-                  <h3>Segurado</h3>
-                  <section>
-                    <label class="text-dark font-weight-medium" for="">Nome</label>
-                    <div class="form-group">
-                      <select name="client" id="client" class="form-control select2">
-                        <option th:value="1" >Cliente 1</option>
-                        <option th:value="2" selected>Cliente 2</option>
-                      </select>
+        <!--CONTEUDO DA PÁGINA-->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-table-border-none" id="recent-orders">
+                    <div class="card-header justify-content-between">
+                        <h1>Cotação</h1>
                     </div>
-                    <div class="form-group">
-                      <label for="ramo">Ramo</label>
-                      <select class="form-control" id="ramo">
-                        <option value="1"> Nenhum</option>
-                        <option value="automovel">AUTOMÓVEL</option>
-                        <option value="patrimonio">PATRIMONIAL - RESIDENCIAL</option>
-                        <option value="vida">VIDA INDIVIDUAL</option>
-                        <option value="saude">SAÚDE</option>
-                      </select>
-                    </div>
-                    <div class="row">
-	                    <div class="col-md-6">
-				            <div class="form-group">
-				                <label for="ano_modelo">Vigência - início</label>
-				                <input type="date" name="dates" class="form-control" id="vigencia">
-				            </div>
-				        </div>
-				        <div class="col-md-6">
-				            <div class="form-group">
-				                <label for="ano_modelo">Vigência - fim</label>
-				                <input type="date" name="dates" class="form-control" id="vigencia">
-				            </div>
-				        </div>
-			        </div>
-                  </section>
-                  <h3>Informações</h3>
-                  <section>
-                    <div th:replace="cotacao/seguros/automovel"></div>
-                    <div th:replace="cotacao/seguros/patrimonial"></div>
-                    <div th:replace="cotacao/seguros/vida"></div>
-                    <div th:replace="cotacao/seguros/saude"></div>
+                    <div class="card-body pt-0 pb-5">
+                        <div class="card-body">
+                            <form id="wizard" action="#">
+                                <div>
+                                    <h3>Seguradoras</h3>
+                                    <section>
+                                        <div th:replace="sistema/seguradoras"></div>
+                                    </section>
+                                    <h3>Segurado</h3>
+                                    <section>
+                                        <label class="text-dark font-weight-medium" for="">Nome</label>
+                                        <div class="form-group">
+                                            <select name="client" id="client" class="form-control">
+                                                <option value="1">Cliente 1</option>
+                                                <option value="2" selected>Cliente 2</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ramo">Ramo</label>
+                                            <select class="form-control" id="ramo">
+                                                <option value="1"> Nenhum</option>
+                                                <option value="automovel">AUTOMÓVEL</option>
+                                                <option value="patrimonio">PATRIMONIAL - RESIDENCIAL</option>
+                                                <option value="vida">VIDA INDIVIDUAL</option>
+                                                <option value="saude">SAÚDE</option>
+                                            </select>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="vigencia_inicio">Vigência - início</label>
+                                                    <input type="date" name="vigencia_inicio" class="form-control"
+                                                           id="vigencia_inicio">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="vigencia_fim">Vigência - fim</label>
+                                                    <input type="date" name="vigencia_fim" class="form-control" id="vigencia_fim">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <h3>Informações</h3>
+                                    <section>
+                                        <div th:replace="cotacao/seguros/automovel"></div>
+                                        <div th:replace="cotacao/seguros/patrimonial"></div>
+                                        <div th:replace="cotacao/seguros/vida"></div>
+                                        <div th:replace="cotacao/seguros/saude"></div>
 
-                  </section>
+                                    </section>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
                 </div>
-              </form>
-
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-    <!--CONTEUDO DA PÁGINA-->
-    <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer">
-    </footer>
-    <div th:replace="fragments/sistema/layout::scripts">
-    </div>
-    <script th:src=@{/assets/plugins/jquery.steps-1.1.0/jquery.steps.min.js}></script>
-    <script th:src=@{/assets/plugins/select2/js/select2.full.js}></script>
-    
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    
-    <script>
-	    $('input[name="dates"]').daterangepicker();
-    
-      $(document).ready(function () {
-        var form = $("#wizard")
-        form.children("div").steps({
-          headerTag: "h3",
-          bodyTag: "section",
-          transitionEffect: "slideLeft",
-          onStepChanging: function (event, currentIndex, newIndex)
-          {
-            //form.validate().settings.ignore = ":disabled,:hidden";
-            return $('#ramo').val() != 1;
+        <!--CONTEUDO DA PÁGINA-->
+        <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer">
+        </footer>
+        <div th:replace="fragments/sistema/layout::scripts">
+        </div>
+        <script th:src=@{/assets/plugins/jquery.steps-1.1.0/jquery.steps.min.js}></script>
+        <script th:src=@{/assets/plugins/select2/js/select2.full.js}></script>
 
-          },
-          onFinishing: function (event, currentIndex)
-          {
-            //form.validate().settings.ignore = ":disabled";
-            return true;
-          },
-          onFinished: function (event, currentIndex)
-          {
-            alert("Submitted!");
-          },
-          labels: {
-            current: "current step:",
-            pagination: "Paginação",
-            finish: "Finalizar",
-            next: "Próximo",
-            previous: "Anterior",
-            loading: "Carregando ..."
-          }
-        });
-        var ramos = ['saude','vida','patrimonial', 'automovel'];
-        $('#ramo').on('change', function () {
-          var selected = $(this).val()
-          //exibe campos do ramo selecionado
-          if(selected !== 1){
-            ramos.forEach(function (value) {
-              if(value !== selected)
-                $('.'+value).hide();
-              else
-                $('.'+value).show();
-            })
-          }
-        })
-      })
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript"
+                src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-    </script>
-  </div>
+        <script>
+            $('input[type="date"]').daterangepicker({
+                locale: {
+                    format: 'DD/MM/YYYY'
+                }
+            });
+
+            $(document).ready(function () {
+                var form = $("#wizard")
+                form.children("div").steps({
+                    headerTag: "h3",
+                    bodyTag: "section",
+                    transitionEffect: "slideLeft",
+                    onStepChanging: function (event, currentIndex, newIndex) {
+                        //form.validate().settings.ignore = ":disabled,:hidden"
+
+                        if (currentIndex === 1 )
+                            return $("#ramo").val() != 1;
+                        return true;
+
+                    },
+                    onFinishing: function (event, currentIndex) {
+                        //form.validate().settings.ignore = ":disabled";
+                        return true;
+                    },
+                    onFinished: function (event, currentIndex) {
+                        alert("Submitted!");
+                    },
+                    labels: {
+                        current: "current step:",
+                        pagination: "Paginação",
+                        finish: "Finalizar",
+                        next: "Próximo",
+                        previous: "Anterior",
+                        loading: "Carregando ..."
+                    }
+                });
+                var ramos = ['saude', 'vida', 'patrimonial', 'automovel'];
+                $('#ramo').on('change', function () {
+                    var selected = $(this).val()
+                    //exibe campos do ramo selecionado
+                    if (selected !== 1) {
+                        ramos.forEach(function (value) {
+                            if (value !== selected)
+                                $('.' + value).hide();
+                            else
+                                $('.' + value).show();
+                        })
+                    }
+                })
+
+
+                $('input[name^=comissoes]').change(function () {
+                    $('input[name^=comissoes]').map(function(idx, elem) {
+                        var text = $(elem).val() + "%";
+                        $(elem).closest('div').find('div').text(text);
+                    });
+
+
+                    $('input[name^=comissoes]').map(function(idx, elem) {
+
+                        var val = ($(elem).val() - 1)/ 99.0;
+                        $(elem).css('background-image',
+                            '-webkit-gradient(linear, left top, right top, '
+                            + 'color-stop(' + val + ', #94A14E), '
+                            + 'color-stop(' + val + ', #C5C5C5)'
+                            + ')'
+                        );
+                    });
+
+
+                });
+            });
+
+
+        </script>
+    </div>
 </div>
 </body>
 </html>
