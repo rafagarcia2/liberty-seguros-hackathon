@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/sistema/layout::head(pageTitle='Liberty-se - Dashboard')">
+</head>
+
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+<div class="mobile-sticky-body-overlay"></div>
+<div class="wrapper">
+    <aside class="left-sidebar bg-sidebar"  th:replace="fragments/sistema/layout::menu"></aside>
+
+    <div class="page-wrapper">
+        <header class="main-header " id="header" th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
+        <!--CONTEUDO DA PÁGINA-->
+        <div class="bg-white border rounded">
+            <div class="row no-gutters">
+                <div class="col-lg-6 col-xl-3">
+                    <div class="profile-content-left pt-5 pb-3 px-3 px-xl-5">
+                        <div class="card text-center widget-profile px-0 border-0">
+                            <div class="card-body">
+                                <h5 class="text-dark mb-1">Indicado</h5>
+                                <p class="text-dark font-weight-medium pt-4 mb-2">Email</p>
+                                <p th:text="${indicacao.email}"></p>
+                                <p class="text-dark font-weight-medium pt-4 mb-2">Telefone</p>
+                                <p th:text="${indicacao.phone}"></p>
+                                <p class="text-dark font-weight-medium pt-4 mb-2">Status</p>
+                                <span th:if="${indicacao.status.toString() == 'NOVO'}" class="badge badge-primary">NOVO</span>
+                                <span th:if="${indicacao.status.toString() == 'AGUARDANDO RESPOSTA'}" class="badge badge-warning">
+                                        AGUARDANDO RESPOSTA</span>
+                                <span th:if="${indicacao.status.toString() == 'ACEITO'}" class="badge badge-success">FINALIZADO</span>
+                                <span th:if="${indicacao.status.toString() == 'NEGADO'}" class="badge badge-danger">NEGADO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-9">
+                    <div class="profile-content-right py-5">
+                        <div class="tab-content px-3 px-xl-5">
+                            <h4 class="text-dark">Histórico</h4>
+                        </div>
+                        <div class="tab-content px-3 px-xl-5" id="myTabContent">
+                            <div class="tab-pane fade show active" id="timeline" role="tabpanel" th:each="log : ${indicacao.historico}" aria-labelledby="timeline-tab">
+
+                                <div class="media mt-5 profile-timeline-media" >
+
+                                    <div class="media-body">
+                                        <span class="float-right" th:text="${#dates.format(log.data_criacao, 'dd-MM-yyyy H:m:s')}"></span>
+                                        <p th:text="${log.log}" class="text-dark"></p>
+                                    </div>
+
+
+                                </div>
+                                <hr class="w-100">
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--CONTEUDO DA PÁGINA-->
+        <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer"></footer>
+        <div th:replace="fragments/sistema/layout::scripts"></div>
+    </div>
+</div>
+</body>
+</html>
