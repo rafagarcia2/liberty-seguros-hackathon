@@ -15,6 +15,8 @@ public class CotacaoForm {
     private List<String> comissoes;
     private Cotacao cotacao;
     private VeiculoInformacoes veiculoInformacoes;
+    private String fimVigencia;
+    private String inicioVigencia;
 
     public CotacaoForm(List<String> seguradoras, List<String> comissoes, Cotacao cotacao, VeiculoInformacoes veiculoInformacoes) {
         this.seguradoras = seguradoras;
@@ -53,5 +55,21 @@ public class CotacaoForm {
 
     public void setVeiculoInformacoes(VeiculoInformacoes veiculoInformacoes) {
         this.veiculoInformacoes = veiculoInformacoes;
+    }
+
+    public String getFimVigencia() {
+        return fimVigencia;
+    }
+
+    public void setFimVigencia(String fimVigencia) {
+        this.fimVigencia = fimVigencia;
+    }
+
+    public String getInicioVigencia() {
+        return inicioVigencia;
+    }
+
+    public void setInicioVigencia(String inicioVigencia) {
+        this.inicioVigencia = inicioVigencia;
     }
 }
