@@ -74,15 +74,19 @@ public class FluxoCaixaController {
         }
         return "redirect:/caixa/listar";
     }
-    
+
     @PostMapping("atualizar/{id}")
-	public String atualizar(Caixa caixa, @PathVariable Integer id){
-		
-		caixa.setId(id);
-		
-		caixaRepository.save(caixa);
-		return "redirect:caixa/listar";
-	}
+    public String atualizar(@PathVariable Integer id, Caixa caixa) {
+        caixa.setId(id);
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findByEmail(auth.getName());
+
+        caixa.setUsuario(user);
+        caixaRepository.save(caixa);
+        return "redirect:/caixa/listar";
+    }
+
 
     @GetMapping("deletar/{id}")
     public String deletar(@PathVariable Integer id, Model model) {
