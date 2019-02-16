@@ -2,15 +2,7 @@ package com.libertese.hackathon.model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,10 +16,12 @@ public class Cotacao {
 	@Column(name="id_cotacao")
 	private int id;
 
-	@Column(name="id_cliente")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cliente_id")
 	private Client cliente;
 
-	@Column(name="id_segurado")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "seguradora_id")
 	private Seguradora seguradora;
 
 	@Column

@@ -1,12 +1,6 @@
 package com.libertese.hackathon.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="veiculo_informacoes")
@@ -17,8 +11,9 @@ public class VeiculoInformacoes {
 	@SequenceGenerator(name="SEQ_VEICULO", sequenceName="id_seq_veiculo", allocationSize=1)
 	@Column(name="id_veiculo")
 	private int id;
-	
-	@Column(name="id_cotacao")
+
+	@OneToOne
+	@JoinColumn(name = "cotacao_id")
 	private Cotacao cotacao;
 	
 	@Column
