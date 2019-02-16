@@ -10,10 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -63,6 +60,13 @@ public class FluxoCaixaController {
             redirectAtrributes.addFlashAttribute("erro", e.getMessage());
             return "redirect:/caixa/listar";
         }
+        return "redirect:/caixa/listar";
+    }
+
+    @GetMapping("deletar/{id}")
+    public String deletar(@PathVariable Integer id, Model model) {
+        Caixa caixa = caixaRepository.findCaixaById(id);
+        caixaRepository.delete(caixa);
         return "redirect:/caixa/listar";
     }
 
