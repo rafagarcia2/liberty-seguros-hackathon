@@ -43,6 +43,7 @@ public class Caixa {
 		this.statusLancamento = statusLancamento;
 	}
 
+	public Caixa (){}
 	public int getId() {
 		return id;
 	}
