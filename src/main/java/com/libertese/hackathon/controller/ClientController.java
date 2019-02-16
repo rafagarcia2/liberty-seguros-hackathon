@@ -85,8 +85,6 @@ public class ClientController {
 		return "redirect:/cliente/listar";
 	}
 
-
-
 	@PostMapping("atualizar/{id}")
 	public String atualizar(@PathVariable Integer id, Client client) {
 		client.setCode(id);

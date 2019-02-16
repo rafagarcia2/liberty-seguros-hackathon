@@ -22,10 +22,13 @@
                       <h2>Cadastrar uma novo Lançamento</h2>
                     </div>
                     <div class="card-body">
-                      <form th:action="@{/caixa/cadastrar}" th:object="${caixa}" method="post">
+                      <form th:action="${'/caixa/atualizar/' + caixa.id}" th:object="${caixa}" method="post">
                         <div class="form-group">
                           <label for="exampleFormControlInput1">Receita ou Despesa</label>
-                          <select class="form-control" id="exampleFormControlSelect1" name="tipoLancamento">
+                          <select class="form-control"
+                                  id="exampleFormControlSelect1"
+                                  name="tipoLancamento"
+                                  th:field="${caixa.tipoLancamento}">
 							<option value="Receita">Receita</option>
 							<option value="Despesa">Despesa</option>
 						</select>
@@ -33,12 +36,17 @@
                         
                         <div class="form-group">
                           <label for="exampleFormControlInput2">Fonte</label>
-                          <input type="nome" class="form-control" id="exampleFormControlInput2" name="fonte" placeholder="De onde veio o lançamento?">
+                          <input class="form-control" name="fonte"
+                                 id="exampleFormControlInput2"
+                                 placeholder="De onde veio o lançamento?"
+                                 th:field="${caixa.fonte}">
                         </div>
                         
                         <div class="form-group">
                           <label for="exampleFormControlSelect3">Conta</label>
-                          <select class="form-control" id="exampleFormControlSelect3" name="conta">
+                          <select class="form-control"
+                                  id="exampleFormControlSelect3"
+                                  th:field="${caixa.conta}">
                             <option value="Nenhum">Nenhum</option>
                             <option value="Banco do Brasil">Banco do Brasil</option>
                             <option value="Caixa">Caixa</option>
@@ -48,7 +56,10 @@
                         
                         <div class="form-group">
                           <label for="exampleFormControlSelect3">Status</label>
-                          <select class="form-control" id="exampleFormControlSelect3" name="statusLancamento">
+                          <select class="form-control"
+                                  id="exampleFormControlSelect3"
+                                  th:field="${caixa.statusLancamento}"
+                          >
                             <option value="Nenhum">Nenhum</option>
                             <option value="Aberto">Aberto</option>
                             <option value="Quitado">Quitado</option>
@@ -62,11 +73,14 @@
                               R$
                             </span>
                           </div>
-                          <input type="number" min="1" step="any" class="form-control" name="valor" placeholder="1500,00" aria-label="">
+                          <input type="number" min="1" step="any"
+                                 class="form-control"
+                                 aria-label=""
+                                 th:field="${caixa.valor}">
                         </div>
                       
                         <div class="form-footer pt-4 pt-5 mt-4 border-top">
-                          <button type="submit" class="btn btn-primary btn-default">Cadastrar</button>
+                          <button type="submit" class="btn btn-primary btn-default">Atualizar</button>
                           <button type="submit" class="btn btn-secondary btn-default">Cancelar</button>
                         </div>
                       </form>
