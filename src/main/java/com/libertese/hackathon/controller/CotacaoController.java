@@ -49,6 +49,8 @@ public class CotacaoController {
         return "cotacao/cadastrar";
     }
 
+
+
     @PostMapping("cadastrar")
     public String salvar(CotacaoForm entity, BindingResult result, RedirectAttributes redirectAttributes) {
 
