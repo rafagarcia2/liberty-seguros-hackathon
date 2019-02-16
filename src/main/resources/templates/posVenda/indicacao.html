@@ -85,6 +85,7 @@
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json',
+                data: JSON.stringify(data),
                 success: function (data) {
                     Swal.fire(
                         'Sucesso!',
@@ -94,7 +95,13 @@
                         window.location.reload()
                     })
                 },
-                data: JSON.stringify(data)
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Problema na realização da indicação',
+                    })
+                }
             });
         })
 
