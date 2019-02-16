@@ -37,6 +37,9 @@ public class Cotacao {
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date fimVigencia;
 
+	@OneToOne(mappedBy = "cotacao")
+	private VeiculoInformacoes veiculoInformacoes;
+
 	public Cotacao(){
 		super();
 	}
