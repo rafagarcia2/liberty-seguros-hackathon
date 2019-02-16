@@ -49,7 +49,7 @@ public class VendasController {
 		String dateString = format.format( new Date()   );
 		orcamento.setData_criacao(dateString);
 		orcamentoRepository.save(orcamento);
-		return "redirect:/vendas/cadastrar";
+		return "redirect:/vendas/listar";
 	}
 	
 	@PostMapping("atualizar/{id}")

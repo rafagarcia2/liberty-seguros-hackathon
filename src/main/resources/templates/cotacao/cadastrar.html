@@ -203,7 +203,7 @@
                             <td >Azul Seguros</td>
                             <td>
                             <div class="col-sm-6 my-1">
-		                            	<input value="20%" type="text" class="form-control form-control-sm" aria-label="Porcentagem da comissão">
+		                            	<input value="15%" type="text" class="form-control form-control-sm" aria-label="Porcentagem da comissão">
 							</div>
                             <td class="text-dark">R$ 44.000,00</td>
                             <td >
@@ -233,7 +233,7 @@
                             <td >Caixa</td>
                             <td>
                             <div class="col-sm-6 my-1">
-		                            	<input value="17%" type="text" class="form-control form-control-sm" aria-label="Porcentagem da comissão">
+		                            	<input value="15%" type="text" class="form-control form-control-sm" aria-label="Porcentagem da comissão">
 							</div>
                             <td class="text-dark">R$ 32.000,00</td>
                             <td >
@@ -263,7 +263,7 @@
                             <td >Itaú Seguros</td>
                             <td>
                             <div class="col-sm-6 my-1">
-		                            	<input value="21%" type="text" class="form-control form-control-sm" aria-label="Porcentagem da comissão">
+		                            	<input value="15%" type="text" class="form-control form-control-sm" aria-label="Porcentagem da comissão">
 							</div>
                             <td class="text-dark">R$ 50.000,00</td>
                             <td >
@@ -491,6 +491,10 @@
                     }
                 });
                 var ramos = ['saude', 'vida', 'patrimonial', 'automovel'];
+                ramos.forEach(function (value) {
+                    $('.' + value).hide();
+                    
+                })
                 $('#ramo').on('change', function () {
                     var selected = $(this).val()
                     //exibe campos do ramo selecionado
