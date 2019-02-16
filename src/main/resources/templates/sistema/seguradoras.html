@@ -1,4 +1,4 @@
-<div class="seguradoras">
+<div class="seguradoras" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:h="http://www.w3.org/1999/xhtml">
 	<div class="table-responsive">
       <table class="table card-table table-responsive table-responsive-large"
              style="width:100%">
@@ -10,27 +10,17 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-              <td><input type="checkbox" value="1" name="seguradora[0]"></td>
+          <tr th:each="seguradora,iter : ${seguradoras}">
+              <td align="center"><input type="checkbox" th:value="${iter.index}" th:name="${'seguradora['+iter.index+']'}"></td>
               <td>
-                  <a class="text-dark" href="">Liberty Seguros</a>
+                  <img style="max-width: 70px" th:src="${seguradora.urlFoto}">
+                  <a class="text-dark" href="" th:text="${seguradora.nome}">Liberty Seguros</a>
               </td>
               <td class="d-none d-md-table-cell">
                   <div class="form-group">
-                      <input type="range" id="myRange1" name="comissoes[0]" value="15" max="100">
-                      <div id="rangeValue1">15%</div>
-                  </div>
-              </td>
-          </tr>
-          <tr>
-              <td><input type="checkbox" name="seguradora[1]" value="2"></td>
-              <td>
-                  <a class="text-dark" href="">HDI Seguros</a>
-              </td>
-              <td class="d-none d-md-table-cell">
-                  <div class="form-group">
-                      <input type="range" id="myRange" value="15" name="comissoes[1]" max="100">
-                      <div id="rangeValue">15%</div>
+                      <input type="range" th:id="${'myRange'+iter.index}" th:name="${'comissoes['+iter.index
+                      +']'}" value="15" max="100">
+                      <div th:id="${'rangeValue'+iter.index}">15%</div>
                   </div>
               </td>
           </tr>
