@@ -22,12 +22,12 @@
                       <h2>Cadastrar uma novo Lançamento</h2>
                     </div>
                     <div class="card-body">
-                      <form>
+                      <form th:action="@{/caixa/cadastrar}" th:object="${caixa}" method="post">
                         <div class="form-group">
                           <label for="exampleFormControlInput1">Receita ou Despesa</label>
-                          <select class="form-control" id="exampleFormControlSelect1">
-							<option>Receita</option>
-							<option>Despesa</option>
+                          <select class="form-control" id="exampleFormControlSelect1" name="tipo_lancamento">
+							<option value="Receita">Receita</option>
+							<option value="Despesa">Despesa</option>
 						</select>
                         </div>
                         

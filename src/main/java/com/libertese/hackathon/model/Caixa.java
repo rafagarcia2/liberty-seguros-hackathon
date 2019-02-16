@@ -1,14 +1,6 @@
 package com.libertese.hackathon.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="caixa")
@@ -36,6 +28,10 @@ public class Caixa {
 	@Enumerated(EnumType.STRING)
 	@Column(name="status_lancamento")
 	private StatusLancamento statusLancamento;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private User usuario;
 
 	public Caixa(TipoLancamento tipoLancamento, String fonte, String conta, double valor,
 			StatusLancamento statusLancamento) {
@@ -93,5 +89,13 @@ public class Caixa {
 
 	public void setStatusLancamento(StatusLancamento statusLancamento) {
 		this.statusLancamento = statusLancamento;
+	}
+
+	public User getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(User idUsuario) {
+		this.usuario = idUsuario;
 	}
 }
