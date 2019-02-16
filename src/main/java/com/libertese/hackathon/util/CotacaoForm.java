@@ -1,42 +1,31 @@
 package com.libertese.hackathon.util;
 
-import com.libertese.hackathon.model.Client;
+import com.libertese.hackathon.model.Cotacao;
+import com.libertese.hackathon.model.Seguradora;
 
 import java.util.List;
 
 /**
- * Classe que trata o formulario de cotacao
+ * Classe que trata o formulario de cotacoes
  */
 public class CotacaoForm {
 
-    private Client cliente;
-    private List<Object> informacoes;
+    private List<Seguradora> seguradoras;
+    private List<Cotacao> cotacoes;
 
-    /**
-     *
-     * @return
-     */
-    public Client getCliente() {
-        return cliente;
+    public List<Cotacao> getCotacoes() {
+        return cotacoes;
     }
 
-    /**
-     *
-     * @param cliente
-     */
-    public void setCliente(Client cliente) {
-        this.cliente = cliente;
+    public void setCotacoes(List<Cotacao> cotacoes) {
+        this.cotacoes = cotacoes;
     }
 
-    /**
-     *
-     * @return
-     */
-    public List<Object> getInformacoes() {
-        return informacoes;
+    public List<Seguradora> getSeguradoras() {
+        return seguradoras;
     }
 
-    public void setInformacoes(List<Object> informacoes) {
-        this.informacoes = informacoes;
+    public void setSeguradoras(List<Seguradora> seguradoras) {
+        this.seguradoras = seguradoras;
     }
 }
