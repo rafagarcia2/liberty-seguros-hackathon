@@ -36,7 +36,7 @@
                         
                         <div class="form-group">
                           <label for="exampleFormControlInput2">Fonte</label>
-                          <input type="nome" class="form-control"
+                          <input class="form-control" name="fonte"
                                  id="exampleFormControlInput2"
                                  placeholder="De onde veio o lançamento?"
                                  th:field="${caixa.fonte}">
@@ -73,10 +73,8 @@
                               R$
                             </span>
                           </div>
-                          <input type="text"
+                          <input type="number" min="1" step="any"
                                  class="form-control"
-                                 data-mask="99-9999999"
-                                 placeholder=""
                                  aria-label=""
                                  th:field="${caixa.valor}">
                         </div>

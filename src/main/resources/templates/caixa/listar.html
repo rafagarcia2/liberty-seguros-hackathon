@@ -68,7 +68,7 @@
                                                style="width:100%">
                                             <thead>
                                             <tr>
-                                                <th>ID Lançamento</th>
+                                                <th>ID</th>
                                                 <th>Fonte</th>
                                                 <th>Conta</th>
                                                 <th>Tipo</th>
@@ -80,15 +80,15 @@
                                             <tbody>
                                             <tr th:each="caixa : ${caixas}">
                                                 <td th:text="${caixa.id}">24541</td>
-                                                <td th:text="${caixa.fonte}">
-                                                    <a class="text-dark" href=""> Pagamento Leandro</a>
+                                                <td class="text-dark" th:text="${caixa.fonte}">
+                                                    <a href=""> Pagamento Leandro</a>
                                                 </td>
                                                 <td th:text="${caixa.conta}">Banco do Brasil</td>
-
-                                                <td th:text="${caixa.tipoLancamento}">
-                                                    <span class="badge badge-success">Receita</span>
-                                                </td>
-                                                <td class="d-none d-md-table-cell" th:text="${caixa.valor}">R$ 230,00</td>
+                                                <td >
+					                              <span th:if="${caixa.tipoLancamento.name() == 'Receita'}" class="badge badge-success">Receita</span>
+					                              <span th:if="${caixa.tipoLancamento.name() == 'Despesa'}" class="badge badge-danger">Despesa</span>
+					                            </td>
+                                                <td class="text-dark" th:text="${caixa.valor}">R$ 230,00</td>
                                                 <td class="d-none d-md-table-cell" th:text="${caixa.statusLancamento}">Quitada</td>
                                                 <td class="text-right">
                                                     <div class="dropdown show d-inline-block widget-dropdown">
@@ -99,10 +99,10 @@
                                                         <ul class="dropdown-menu dropdown-menu-right"
                                                             aria-labelledby="dropdown-recent-order1">
                                                             <li class="dropdown-item">
-                                                                <a th:href="${'/caixa/editar/' + caixa.id }">View</a>
+                                                                <a th:href="${'/caixa/editar/' + caixa.id }">Editar</a>
                                                             </li>
                                                             <li class="dropdown-item">
-                                                                <a th:href="${'/caixa/deletar/' + caixa.id }">Remove</a>
+                                                                <a th:href="${'/caixa/deletar/' + caixa.id }">Remover</a>
                                                             </li>
                                                         </ul>
                                                     </div>
