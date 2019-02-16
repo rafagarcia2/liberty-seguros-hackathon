@@ -43,6 +43,9 @@ public class VeiculoInformacoes {
 	@Column
 	private boolean brindado;
 
+	public VeiculoInformacoes(){
+
+	}
 	
 	public VeiculoInformacoes(Cotacao cotacao, String placa, String chassi, String marca, int ano_modelo,
 			String tipo_combustivel, String tipo_veiculo, boolean zero_km, boolean acidente, boolean brindado) {
