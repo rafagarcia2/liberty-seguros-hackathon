@@ -7,6 +7,7 @@ import com.libertese.hackathon.repository.UserRepository;
 import com.libertese.hackathon.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.util.Pair;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -68,6 +69,7 @@ public class ClientController {
 		List<Client> all = clientRepository.findAllByUser(user.getId());
 
 		model.addAttribute("clients", all);
+
 		return "cliente/index";
 	}
 

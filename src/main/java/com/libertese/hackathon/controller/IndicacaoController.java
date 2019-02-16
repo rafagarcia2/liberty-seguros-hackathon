@@ -41,9 +41,16 @@ public class IndicacaoController {
     @PostMapping("usuario/{id}")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     public ResponseEntity<Indication> cadastrarIndicacao(@RequestBody Indication indication, @PathVariable Integer id){
-        Optional<Client> client = clientRepository.findById(id);
-        indication.setClient(client.get());
+
+        Optional<Client> clients = clientRepository.findById(id);
+
+        Client client = clients.get();
+        client.setIndicacoes(clientRepository.countIndication(id));
+
+        indication.setClient(client);
         indicationRepository.save(indication);
+        clientRepository.save(client);
+
         return new ResponseEntity<Indication>(indication, HttpStatus.OK);
     }
 }
