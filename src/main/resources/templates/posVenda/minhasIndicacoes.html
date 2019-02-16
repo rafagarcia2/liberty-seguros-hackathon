@@ -40,7 +40,9 @@
                                 <td th:text="${indacacao.name}"></td>
                                 <td th:text="${indacacao.email}"></td>
                                 <td th:text="${indacacao.phone}"></td>
-                                <td th:text="${indacacao.client.name}"></td>
+                                
+                                <td th:if="${indacacao.client}" th:text="${indacacao.client.name}"></td>
+                                <td th:if="${indacacao.client} == null">Eu</td>
                             </tr>
 
                             </tbody>

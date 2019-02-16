@@ -53,7 +53,8 @@ public class PosVendaController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findByEmailAddress(auth.getName());
 
-        List<Indication> indications = indicationRepository.findAllByUser(user);
+        List<Indication> indications = indicationRepository.findAllByClient(user);
+        indications.addAll(indicationRepository.findAllByUser(user));
 
         model.addAttribute("indicacoes", indications);
         return "posVenda/minhasIndicacoes";
