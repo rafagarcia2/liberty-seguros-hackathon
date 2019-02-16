@@ -94,13 +94,6 @@
                     ).then(function (value) {
                         window.location.reload()
                     })
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Problema na realização da indicação',
-                    })
                 }
             });
         })
