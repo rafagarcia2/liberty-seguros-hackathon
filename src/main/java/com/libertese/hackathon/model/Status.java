@@ -2,8 +2,11 @@ package com.libertese.hackathon.model;
 
 public enum Status {
 
-	Pedido,
+	EmCotacao,
 	EmAndamento,
-	Finalizado
+	EmAceitacao,
+	Emitido,
+	Finalizado,
+	Negado
 	
 }

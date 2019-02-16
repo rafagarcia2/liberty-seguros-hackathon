@@ -45,75 +45,228 @@
     <aside class="left-sidebar bg-sidebar" th:replace="fragments/sistema/layout::menu"></aside>
 
     <div class="page-wrapper">
-        <header class="main-header " id="header"
-                th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
+       <header class="main-header " id="header"
+               th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
 
-        <!--CONTEUDO DA PÁGINA-->
-        <div class="row">
-            <div class="col-12">
-                <div class="card card-table-border-none" id="recent-orders">
+      	<!--CONTEUDO DA PÁGINA-->
+		<div class="content-wrapper">
+        	<div class="content">	
+		        <div class="row">
+		            <div class="col-12">
+		                <div class="card card-table-border-none" id="recent-orders">
+		                    <div class="card-header justify-content-between">
+		                        <h1>Cotação</h1>
+		                    </div>
+		                    <div class="card-body pt-0 pb-5">
+		                        <div class="card-body">
+		                            <form id="wizard" th:action="@{/cotacao/cadastrar}" method="POST">
+		                                <div>
+		                                    <h3>Seguradoras</h3>
+		                                    <section>
+		                                        <div th:replace="sistema/seguradoras"></div>
+		                                    </section>
+		                                    <h3>Segurado</h3>
+		                                    <section>
+		                                        <label class="text-dark font-weight-medium" for="">Nome</label>
+		                                        <div class="form-group" >
+		                                            <select name="client_id" id="client" class="form-control" th:field="${cotacao.cotacao.cliente}">
+		                                                <option th:each="client: ${clientes}" th:value="${client.code}" th:text="${client.name}"></option>
+		                                            </select>
+		                                        </div>
+		                                        <div class="form-group">
+		                                            <label for="ramo">Ramo</label>
+		                                            <select th:field="${cotacao.cotacao.ramo}" class="form-control" name="cotacao.ramo" id="ramo">
+		                                                <option value="1"> Nenhum</option>
+		                                                <option value="automovel">AUTOMÓVEL</option>
+		                                                <option value="patrimonio">PATRIMONIAL - RESIDENCIAL</option>
+		                                                <option value="vida">VIDA INDIVIDUAL</option>
+		                                                <option value="saude">SAÚDE</option>
+		                                            </select>
+		                                        </div>
+		                                        <div class="row">
+		                                            <div class="col-md-6">
+		                                                <div class="form-group">
+		                                                    <label for="inicioVigencia">Vigência - início</label>
+		                                                    <input type="date" name="inicioVigencia" class="form-control"
+		                                                           id="inicioVigencia">
+		                                                </div>
+		                                            </div>
+		                                            <div class="col-md-6">
+		                                                <div class="form-group">
+		                                                    <label for="fimVigencia">Vigência - fim</label>
+		                                                    <input type="date" name="fimVigencia" class="form-control"
+		                                                           id="fimVigencia">
+		                                                </div>
+		                                            </div>
+		                                        </div>
+		                                    </section>
+		                                    <h3>Informações</h3>
+		                                    <section>
+		                                        <div th:replace="cotacao/seguros/automovel"></div>
+		                                        <div th:replace="cotacao/seguros/patrimonial"></div>
+		                                        <div th:replace="cotacao/seguros/vida"></div>
+		                                        <div th:replace="cotacao/seguros/saude"></div>
+		
+		                                    </section>
+		                                </div>
+		                            </form>
+		
+		                        </div>
+		                    </div>
+		                </div>
+		                
+		               </div>
+		       </div>
+		    </div>
+		</div>
+       
+    	<div class="content-wrapper" style="display:none" id="resultado-cotacoes">
+          <div class="content">	
+                <div class="card card-table-border-none">
                     <div class="card-header justify-content-between">
-                        <h1>Cotação</h1>
+                      <h3>Resultado da Consulta de Cotação</h3>
                     </div>
                     <div class="card-body pt-0 pb-5">
-                        <div class="card-body">
-                            <form id="wizard" th:action="@{/cotacao/cadastrar}" method="POST">
-                                <div>
-                                    <h3>Seguradoras</h3>
-                                    <section>
-                                        <div th:replace="sistema/seguradoras"></div>
-                                    </section>
-                                    <h3>Segurado</h3>
-                                    <section>
-                                        <label class="text-dark font-weight-medium" for="">Nome</label>
-                                        <div class="form-group" >
-                                            <select name="client_id" id="client" class="form-control" th:field="${cotacao.cotacao.cliente}">
-                                                <option th:each="client: ${clientes}" th:value="${client.code}" th:text="${client.name}"></option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="ramo">Ramo</label>
-                                            <select th:field="${cotacao.cotacao.ramo}" class="form-control" name="cotacao.ramo" id="ramo">
-                                                <option value="1"> Nenhum</option>
-                                                <option value="automovel">AUTOMÓVEL</option>
-                                                <option value="patrimonio">PATRIMONIAL - RESIDENCIAL</option>
-                                                <option value="vida">VIDA INDIVIDUAL</option>
-                                                <option value="saude">SAÚDE</option>
-                                            </select>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="inicioVigencia">Vigência - início</label>
-                                                    <input type="date" name="inicioVigencia" class="form-control"
-                                                           id="inicioVigencia">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="fimVigencia">Vigência - fim</label>
-                                                    <input type="date" name="fimVigencia" class="form-control"
-                                                           id="fimVigencia">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-                                    <h3>Informações</h3>
-                                    <section>
-                                        <div th:replace="cotacao/seguros/automovel"></div>
-                                        <div th:replace="cotacao/seguros/patrimonial"></div>
-                                        <div th:replace="cotacao/seguros/vida"></div>
-                                        <div th:replace="cotacao/seguros/saude"></div>
-
-                                    </section>
-                                </div>
-                            </form>
-
-                        </div>
+                      <div class="table-responsive">
+                      <table class="table card-table table-responsive table-responsive-large" style="width:100%">
+                        <thead>
+                          <tr>
+                            <th class="text-dark">Seguradora</th>
+                            <th class="text-dark">Comissão</th>
+                            <th class="text-dark d-none d-md-table-cell">Valor</th>
+                            <th class="text-dark">Status</th>
+                            <th>Coberturas</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td >Liberty Seguros</td>
+                            <td>
+                            <div class="col-sm-6 my-1">
+		                            	<input value="15%" type="text" class="form-control form-control-sm" aria-label="Porcentagem da comissão">
+							</div>
+                            <td class="text-dark">R$ 25.000,00</td>
+                            <td >
+                              <span class="badge badge-success">Mais popular</span>
+                            </td>
+                            <td><p>
+                            DC: R$ 21.000,00<br/>
+                            DM: R$ 31.000,00
+                            </p>
+                            </td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          
+                          <tr>
+                            <td >Azul Seguros</td>
+                            <td>
+                            <div class="col-sm-6 my-1">
+		                            	<input value="20%" type="text" class="form-control form-control-sm" aria-label="Porcentagem da comissão">
+							</div>
+                            <td class="text-dark">R$ 44.000,00</td>
+                            <td >
+                              <span class="badge badge-warning">Alto</span>
+                            </td>
+                            <td><p>
+                            DC: R$ 35.000,00<br/>
+                            DM: R$ 47.000,00
+                            </p>
+                            </td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          
+                          <tr>
+                            <td >Caixa</td>
+                            <td>
+                            <div class="col-sm-6 my-1">
+		                            	<input value="17%" type="text" class="form-control form-control-sm" aria-label="Porcentagem da comissão">
+							</div>
+                            <td class="text-dark">R$ 32.000,00</td>
+                            <td >
+                              <span class="badge badge-secondary">Regular</span>
+                            </td>
+                            <td><p>
+                            DC: R$ 27.000,00<br/>
+                            DM: R$ 33.000,00
+                            </p>
+                            </td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          
+                          <tr>
+                            <td >Itaú Seguros</td>
+                            <td>
+                            <div class="col-sm-6 my-1">
+		                            	<input value="21%" type="text" class="form-control form-control-sm" aria-label="Porcentagem da comissão">
+							</div>
+                            <td class="text-dark">R$ 50.000,00</td>
+                            <td >
+                              <span class="badge badge-danger">Muito Alto</span>
+                            </td>
+                            <td><p>
+                            DC: R$ 48.000,00<br/>
+                            DM: R$ 56.000,00
+                            </p>
+                            </td>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                  <li class="dropdown-item">
+                                    <a href="#">View</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="#">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                  </div>
+              </div>
+         </div>
+                
         <!--CONTEUDO DA PÁGINA-->
         <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer">
         </footer>
@@ -151,12 +304,16 @@
                         return true;
                     },
                     onFinished: function (event, currentIndex) {
-                        $('#wizard').submit()
+                    	$('#resultado-cotacoes').css('display', 'flex');
+                    	$([document.documentElement, document.body]).animate({
+                            scrollTop: $("#resultado-cotacoes").offset().top
+                        }, 1000);
+                        //$('#wizard').submit()
                     },
                     labels: {
                         current: "current step:",
                         pagination: "Paginação",
-                        finish: "Finalizar",
+                        finish: "Cálcular",
                         next: "Próximo",
                         previous: "Anterior",
                         loading: "Carregando ..."
