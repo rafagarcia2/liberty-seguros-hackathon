@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Optional;
 
@@ -61,7 +62,7 @@ public class IndicacaoController {
             IndicacaoLog log = new IndicacaoLog();
             log.setIndicacao(indication1);
             log.setLog(indication.getObservacao());
-            log.setData_criacao(new Date());
+            log.setData_criacao(new Timestamp(System.currentTimeMillis()));
             indicationRepository.save(indication1);
             indicationLogRepository.save(log);
 
@@ -72,5 +73,14 @@ public class IndicacaoController {
         }
 
         return "redirect:/posVenda/minhas-indicacoes";
+    }
+
+    @GetMapping("{id}")
+    public String exibir(Model model, @PathVariable Integer id){
+
+        Indication indication = indicationRepository.getOne(id);
+        model.addAttribute("indicacao", indication);
+
+        return "posVenda/exibirIndicacao";
     }
 }
