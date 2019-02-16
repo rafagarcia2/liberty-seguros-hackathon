@@ -22,29 +22,29 @@
                       <h2>Cadastrar novo orçamento</h2>
                     </div>
                     <div class="card-body">
-                      <form th:action="@{/vendas/cadastrar}" th:object="${orcamento}" method="post">
+                      <form th:action="${'/vendas/atualizar/' + orcamento.id}" th:object="${orcamento}" method="post">
                         <div class="form-group">
                           <label for="exampleFormControlInput1">Cliente</label>
-                          <input name="cliente" class="form-control" id="exampleFormControlInput1" placeholder="Nome">
+                          <input name="cliente" th:field="${orcamento.cliente}" class="form-control" id="exampleFormControlInput1" placeholder="Nome">
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlInput1">Seguradora</label>
                           <select class="form-control" id="exampleFormControlSelect12" name="seguradora">
-							<option>Liberty Seguros</option>
-							<option>Porto Seguro</option>
-							<option>Allianz Seguros</option>
-							<option>Itaú Seguros</option>
-							<option>Sompo Seguros</option>
+							<option value="liberty"  th:selected="${orcamento.seguradora} == 'Liberty Seguros'">Liberty Seguros</option>
+							<option th:selected="${orcamento.seguradora} == 'Porto Seguro'">Porto Seguro</option>
+							<option th:selected="${orcamento.seguradora} == 'Allianz Seguros'">Allianz Seguros</option>
+							<option th:selected="${orcamento.seguradora} == 'Itaú Seguros'">Itaú Seguros</option>
+							<option th:selected="${orcamento.seguradora} == 'Sompo Seguros'">Sompo Seguros</option>
 						</select>
                         </div>
                         <div class="form-group">
-                          <label for="exampleFormControlSelect12">Ramo</label>
-                          <select class="form-control" id="exampleFormControlSelect12"  name="ramo">
-                            <option value="1"> Nenhum</option>
-                            <option value="50">AUTOMÓVEL</option>
-                            <option value="16">PATRIMONIAL - RESIDENCIAL</option>
-                            <option value="53">VIDA INDIVIDUAL</option>
-                            <option value="47">SAÚDE</option>
+                          <label for="exampleFormControlSelect14">Ramo</label>
+                          <select class="form-control" id="exampleFormControlSelect14"  name="ramo">
+                            <option th:selected="${orcamento.ramo} == '1'" value="1"> Nenhum</option>
+                            <option th:selected="${orcamento.ramo} == '50'" value="50">AUTOMÓVEL</option>
+                            <option th:selected="${orcamento.ramo} == '16'" value="16">PATRIMONIAL - RESIDENCIAL</option>
+                            <option th:selected="${orcamento.ramo} == '53'" value="53">VIDA INDIVIDUAL</option>
+                            <option th:selected="${orcamento.ramo} == '47'" value="47">SAÚDE</option>
 						</select>
                         </div>
                         <div class="form-group">
@@ -55,7 +55,8 @@
                               R$
                             </span>
                           </div>
-                          <input type="number" class="form-control" data-mask="999.999,99" placeholder=""  name="valor" aria-label="">
+                          <input type="number" th:field="${orcamento.valor}" class="form-control" 
+                          			data-mask="999.999,99" placeholder=""  name="valor" aria-label="">
                         </div>
 						<div class="form-group">
                           <label for="exampleFormControlSelect4">Status</label>
@@ -65,7 +66,7 @@
  	                         	<div class="col-md-4">
 									<li class="d-inline-block mr-4">
 										<label class="control control-radio">Em andamento
-											<input type="radio" name="status" checked="checked" value="em_andamento" />
+											<input th:field="${orcamento.status}" type="radio" name="status" checked="checked" value="em_andamento" />
 											<div class="control-indicator"></div>
 										</label>
 									</li>
@@ -73,7 +74,7 @@
 								<div class="col-md-4">
 								<li class="d-inline-block mr-4">
 									<label class="control control-radio radio-primary">Aguardando resposta
-										<input type="radio" name="status"  value="aguardando_resposta" />
+										<input type="radio" th:field="${orcamento.status}" name="status"  value="aguardando_resposta" />
 										<div class="control-indicator"></div>
 									</label>
 								</li>
@@ -81,7 +82,7 @@
 								<div class="col-md-4">
 								<li class="d-inline-block">
 									<label class="control control-radio radio-success">Aceito
-										<input type="radio" name="status" value="aceito"  />
+										<input type="radio" th:field="${orcamento.status}" name="status" value="aceito"  />
 										<div class="control-indicator"></div>
 									</label>
 								</li>
