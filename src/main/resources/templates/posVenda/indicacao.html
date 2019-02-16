@@ -8,7 +8,7 @@
 <body class="bg-light-gray" id="body">
 <div>
     <div class="row justify-content-center mt-5">
-        <div class="col-xl-10 col-lg-6 col-md-10">
+        <div class="col-xl-10 col-lg-6">
             <div class="card">
                 <div class="card-header bg-primary">
                     <div class="app-brand">
@@ -18,59 +18,26 @@
                     </div>
                 </div>
                 <div class="card-body p-5">
-                    <h4 class="text-dark mb-5">Bem Vindo</h4>
-
-                    <form method="POST" th:action="@{/posVenda/indicacao}" th:object="${user}">
-
-                        <div th:if="${success != null}" class="alert alert-success" role="alert"><span th:text="${success}">msg success</span></div>
-                        <div th:if="${error != null}" class="alert alert-danger" role="alert"><span th:text="${error}">msg error</span></div>
-
-                        <div class="card-header">
+                    <form id="form">
                         <center>
-                            <h2>Identificação</h2>
+                            <h2 style="text-transform: uppercase; color: #181243;">Indicação</h2>
                         </center>
-                        </div>
-
                         <br/>
-
-                        <div class="form-row">
-                            <div class="col-md-6 mb-2">
-                                <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Nome</label>
-                                <input type="name" class="form-control" id="exampleFormControlInput1" required="" placeholder="José da Silva">
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <label for="exampleFormControlInput1" class="text-dark font-weight-medium">E-mail</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput2" required="" placeholder="libertyse@libertyse.com">
-                            </div>
-                        </div>
-
-                        <div class="card-header">
-                            <center>
-                                <h2>Indicação</h2>
-                            </center>
-                        </div>
-
-                        <br/>
-
+                        <input type="text" id="idCliente" th:value="${id}" hidden="true">
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
-                                <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Nome</label>
-                                <input type="name" class="form-control" id="exampleFormControlInput3" required="" placeholder="José da Silva">
+                                <label class="text-dark font-weight-medium">Nome</label>
+                                <input type="name" class="form-control" placeholder="José da Silva" id="nome">
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label for="exampleFormControlInput1" class="text-dark font-weight-medium">E-mail</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput4" required="" placeholder="libertyse@libertyse.com">
+                                <label class="text-dark font-weight-medium">E-mail</label>
+                                <input type="email" class="form-control" placeholder="libertyse@libertyse.com" id="email" required>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label for="exampleFormControlInput1" class="text-dark font-weight-medium">Contato</label>
-                                <input type="phone" class="form-control" id="exampleFormControlInput5"  placeholder="(xx) xxxxx-xxxx">
+                                <label class="text-dark font-weight-medium">Contato</label>
+                                <input type="phone" class="form-control" placeholder="(xx) xxxxx-xxxx" id="numero" required>
                             </div>
-
-                            <label class="control control-checkbox">
-                                <input type="checkbox" />
-                                <div class="control-indicator"></div>
-                                  Eu aceito os termos e condições
-                            </label>
+                            <hr>
                         </div>
                         <center>
                             <div class="col-md-4">
@@ -84,7 +51,7 @@
 
                             </div>
                         </center>
-                     </form>
+                    </form>
                 </div>
             </div>
         </div>
@@ -96,5 +63,46 @@
         </p>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script th:src=@{/assets/plugins/jquery/jquery.min.js}></script>
+<script>
+    $( document ).ready(function() {
+
+        $('#form').submit(function (e) {
+            e.preventDefault();
+            let email = $('#email').val();
+            let nome = $('#nome').val();
+            let idCliente = $('#idCliente').val();
+            let telefone = $('#numero').val();
+
+            let data = {
+                email: email,
+                name: nome,
+                phone: telefone
+            }
+            $.ajax({
+                url: '/indicacao/usuario/'+idCliente,
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+                    Swal.fire(
+                        'Sucesso!',
+                        'O usuário foi indicado com sucesso.',
+                        'success'
+                    ).then(function (value) {
+                        window.location.reload()
+                    })
+                },
+                data: JSON.stringify(data)
+            });
+        })
+
+
+
+
+    });
+
+</script>
 </body>
 </html>

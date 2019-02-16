@@ -45,7 +45,9 @@ public class Indication {
 	/**
 	 * Construct 
 	 */
-	
+
+	public Indication(){}
+
 	public Indication(Client client, String email, String phone, String name) {
 		super();
 		this.client = client;
