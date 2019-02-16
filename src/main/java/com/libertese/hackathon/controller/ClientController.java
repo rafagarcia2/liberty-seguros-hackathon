@@ -1,9 +1,14 @@
 package com.libertese.hackathon.controller;
 
 import com.libertese.hackathon.model.Client;
+import com.libertese.hackathon.model.User;
 import com.libertese.hackathon.repository.ClientRepository;
+import com.libertese.hackathon.repository.UserRepository;
+import com.libertese.hackathon.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +23,9 @@ import java.util.List;
 public class ClientController {
 
 	private static final String INSERT_SUCCESS = "Cliente inserido com sucesso!";
+
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private ClientRepository clientRepository;
@@ -37,6 +45,11 @@ public class ClientController {
 			RedirectAttributes redirectAtrributes)
 	{
 		try {
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			User user = userRepository.findByEmail(auth.getName());
+
+			client.setUsuario(user);
+
 			clientRepository.save(client);
 			redirectAtrributes.addFlashAttribute("sucesso", INSERT_SUCCESS);
 		}  catch (Exception e) {
@@ -48,7 +61,12 @@ public class ClientController {
 
 	@GetMapping("listar")
 	public String index(Model model) {
-		List<Client> all = clientRepository.findAll();
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userRepository.findByEmail(auth.getName());
+
+		List<Client> all = clientRepository.findAllByUser(user.getId());
+
 		model.addAttribute("clients", all);
 		return "cliente/index";
 	}
@@ -56,7 +74,7 @@ public class ClientController {
 	@GetMapping("editar/{id}")
 	public String editar(@PathVariable Integer id, Model model) {
 		Client client = clientRepository.findClientByCode(id);
-		model.addAttribute("clients", client);
+		model.addAttribute("cliente", client);
 		return "cliente/edit";
 	}
 
@@ -66,5 +84,20 @@ public class ClientController {
 		clientRepository.delete(client);
 		return "redirect:/cliente/listar";
 	}
+
+
+
+	@PostMapping("atualizar/{id}")
+	public String atualizar(@PathVariable Integer id, Client client) {
+		client.setCode(id);
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userRepository.findByEmail(auth.getName());
+
+		client.setUsuario(user);
+		clientRepository.save(client);
+		return "redirect:/cliente/listar";
+	}
+
 
 }
