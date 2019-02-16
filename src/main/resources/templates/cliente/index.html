@@ -22,6 +22,7 @@
                         <a href="/cliente/create" type="button" class="mb-1 btn btn-success"><span><i class="mdi mdi-plus"></i></span></a>
                     </div>
                 </div>
+
                 <div class="card-body">
                    <table class="table">
                         <thead>
@@ -36,211 +37,27 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td scope="row">1</td>
-                            <td>Hayes Frederick</td>
-                            <td>magna@nuncQuisque.edu</td>
-                            <td>(91) 99375-9080</td>
-                            <td>356.720.852-16</td>
+                        <tr th:each="client : ${clients}">
+                            <td th:text="${client.code}"scope="row">1</td>
+                            <td th:text="${client.name}">Hayes Frederick</td>
+                            <td th:text="${client.email}">magna@nuncQuisque.edu</td>
+                            <td th:text="${client.phone}">(91) 99375-9080</td>
+                            <td th:text="${client.cpf}">356.720.852-16</td>
                             <td>
-                                <button class="btn btn-primary">
-                                    <i class="mdi mdi-account-edit" type="button"></i>
-                                </button>
+                                <a type="button" class="mb-1 btn btn-primary" th:href="${'/cliente/editar/' + client.code }" >
+                                    <i class="mdi mdi-account-edit"></i>
+                                </a>
                             </td>
                             <td>
-                                <button class="mb-1 btn btn-danger">
+                                <a type="button" class="mb-1 btn btn-danger" th:href="${'/cliente/deletar/' + client.code }" >
                                     <i class="mdi mdi-account-remove"></i>
-                                </button>
+                                </a>
                             </td>
 
-                        </tr>
-                        <tr>
-                            <td scope="row">2</td>
-                            <td>Porter Bolton</td>
-                            <td>sed.dui@Aliquamultricesiaculis.net</td>
-                            <td>(06) 58597-9635</td>
-                            <td>611.503.522-67</td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="mdi mdi-account-edit" type="button"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="mb-1 btn btn-danger">
-                                    <i class="mdi mdi-account-remove"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">3</td>
-                            <td>Quinn Middleton</td>
-                            <td>Aenean.euismod@tinciduntnibhPhasellus.edu</td>
-                            <td>(36) 39207-3985</td>
-                            <td>389.258.058-04</td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="mdi mdi-account-edit" type="button"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="mb-1 btn btn-danger">
-                                    <i class="mdi mdi-account-remove"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">4</td>
-                            <td>Bradley Mccray</td>
-                            <td>sapien.Cras@nislsemconsequat.net</td>
-                            <td>(96) 36564-6297</td>
-                            <td>927.809.484-70</td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="mdi mdi-account-edit" type="button"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="mb-1 btn btn-danger">
-                                    <i class="mdi mdi-account-remove"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">5</td>
-                            <td>Aaron Swanson</td>
-                            <td>Integer.aliquam.adipiscing@utpharetrased.com</td>
-                            <td>(67) 91597-6210</td>
-                            <td>707.770.762-81</td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="mdi mdi-account-edit" type="button"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="mb-1 btn btn-danger">
-                                    <i class="mdi mdi-account-remove"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">6</td>
-                            <td>Merritt Cross</td>
-                            <td>orci.tincidunt.adipiscing@cursuset.edu</td>
-                            <td>(95) 15977-7362</td>
-                            <td>455.051.267-17</td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="mdi mdi-account-edit" type="button"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="mb-1 btn btn-danger">
-                                    <i class="mdi mdi-account-remove"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">7</td>
-                            <td>Hiram Bonner</td>
-                            <td>massa@nascetur.ca</td>
-                            <td>(47) 36901-5933</td>
-                            <td>508.557.969-33</td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="mdi mdi-account-edit" type="button"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="mb-1 btn btn-danger">
-                                    <i class="mdi mdi-account-remove"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">8</td>
-                            <td>Hayes Gonzales</td>
-                            <td>Aenean@posuerevulputate.edu</td>
-                            <td>(21) 70854-6557</td>
-                            <td>507.121.009-42</td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="mdi mdi-account-edit" type="button"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="mb-1 btn btn-danger">
-                                    <i class="mdi mdi-account-remove"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">9</td>
-                            <td>Coby Cain</td>
-                            <td>lectus@dolor.edu</td>
-                            <td>(01) 10036-0185</td>
-                            <td>305.469.019-77</td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="mdi mdi-account-edit" type="button"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="mb-1 btn btn-danger">
-                                    <i class="mdi mdi-account-remove"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">10</td>
-                            <td>Lev Holder</td>
-                            <td>non.luctus.sit@commodohendrerit.co.uk</td>
-                            <td>(87) 79245-3614</td>
-                            <td>398.472.588-32</td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="mdi mdi-account-edit" type="button"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="mb-1 btn btn-danger">
-                                    <i class="mdi mdi-account-remove"></i>
-                                </button>
-                            </td>
                         </tr>
 
                         </tbody>
-                    </table>
-                    <div class="row">
-                        <div class="offset-lg-4 col-lg-4">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination border-rounded">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true" class="mdi mdi-chevron-left"></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item active">
-                                        <a class="page-link" href="#">1</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">2</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">3</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true" class="mdi mdi-chevron-right"></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-
-
+                   </table>
                 </div>
             </div>
         </div>
