@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -26,10 +27,9 @@ public class IndicacaoLog implements Serializable {
     @NotBlank( message = "Campo obrigatório")
     private String log;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="data_criacao", columnDefinition="DATE")
+    @Column(name="data_criacao", columnDefinition="TIMESTAMP")
     @DateTimeFormat(pattern = "dd-MM-yyyy H:m:s")
-    private Date data_criacao;
+    private Timestamp data_criacao;
 
     public Indication getIndicacao() {
         return indicacao;
@@ -47,11 +47,11 @@ public class IndicacaoLog implements Serializable {
         this.log = log;
     }
 
-    public Date getData_criacao() {
+    public Timestamp getData_criacao() {
         return data_criacao;
     }
 
-    public void setData_criacao(Date data_criacao) {
+    public void setData_criacao(Timestamp data_criacao) {
         this.data_criacao = data_criacao;
     }
 
