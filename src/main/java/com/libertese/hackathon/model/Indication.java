@@ -37,10 +37,10 @@ public class Indication implements Serializable {
 	
 	@Column (name = "name")
 	private String name;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "type")
-	private StatusLead status;
+
+	@Column(name = "status")
+	@Enumerated(EnumType.ORDINAL)
+	private StatusLead status = StatusLead.NOVO;
 
 	@Column(name = "historico")
 	@OneToMany(mappedBy="indicacao", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

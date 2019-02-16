@@ -18,7 +18,6 @@ public class IndicacaoApiController {
     @GetMapping ("/api/indicacao")
     public Indication resources(@RequestParam(value="i", defaultValue="World") String id) {
         int idInd = Integer.parseInt(id);
-        Indication byId = indicationRepository.findById(idInd);
-        return byId;
+        return indicationRepository.findById(idInd);
     }
 }
