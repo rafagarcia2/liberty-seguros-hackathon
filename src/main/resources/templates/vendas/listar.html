@@ -87,7 +87,7 @@
                       <div class="table-responsive">
                       <table class="table card-table table-responsive table-responsive-large" style="width:100%">
                         <thead>
-                          <tr>
+                       	 <tr>
                             <th>ID Venda</th>
                             <th>Cliente</th>
                             <th>Seguradora</th>
@@ -99,126 +99,27 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td >24541</td>
+                          <tr th:each="orcamento : ${orcamentos}">
+                            <td th:text="${orcamento.id}"></td>
                             <td >
-                              <a class="text-dark" href=""> Coach Swagger</a>
+                              <a class="text-dark" href="" th:text="${orcamento.cliente}"> </a>
                             </td>
-                            <td>Seguradora A</td>
-                            <td>AUTOMÓVEL</td>
-                            <td class="d-none d-md-table-cell">Oct 20, 2018</td>
-                            <td class="d-none d-md-table-cell">$230</td>
+                            <td th:text="${orcamento.seguradora}"></td>
+                            <td th:if="${orcamento.ramo == '50'}">AUTOMÓVEL</td>
+                            <td th:if="${orcamento.ramo == '16'}">PATRIMONIAL - RESIDENCIAL</td>
+                            <td th:if="${orcamento.ramo == '53'}">VIDA INDIVIDUAL</td>
+                            <td th:if="${orcamento.ramo == '47'}">SAÚDE</td>
+                            <td th:text="${orcamento.data_criacao}"></td>
+                            <td th:text="${'R$'+orcamento.valor} " class="d-none d-md-table-cell"></td>
                             <td >
-                              <span class="badge badge-success">Completed</span>
+                              <span th:if="${orcamento.status == 'aceito'}" class="badge badge-success">Aceito</span>
+                              <span th:if="${orcamento.status == 'aguardando_resposta'}" class="badge badge-danger">Aguardando resposta</span>
+                              <span th:if="${orcamento.status == 'em_andamento'}" class="badge badge-warning">Em andamento</span>
                             </td>
                             <td class="text-right">
                               <div class="dropdown show d-inline-block widget-dropdown" data-toggle="modal" data-target="#exampleModal">
                                 <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
-                                  <li class="dropdown-item">
-                                    <a href="#">View</a>
-                                  </li>
-                                  <li class="dropdown-item">
-                                    <a href="#">Remove</a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td >24541</td>
-                            <td >
-                              <a class="text-dark" href=""> Toddler Shoes, Gucci Watch</a>
-                            </td>
-                            <td>Seguradora B</td>
-                            <TD>PATRIMONIAL</TD>
-                            <td class="d-none d-md-table-cell">Nov 15, 2018</td>
-                            <td class="d-none d-md-table-cell">$550</td>
-                            <td >
-                              <span class="badge badge-warning">Delayed</span>
-                            </td>
-                            <td class="text-right">
-                              <div class="dropdown show d-inline-block widget-dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
-                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order2">
-                                  <li class="dropdown-item">
-                                    <a href="#">View</a>
-                                  </li>
-                                  <li class="dropdown-item">
-                                    <a href="#">Remove</a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td >24541</td>
-                            <td >
-                              <a class="text-dark" href=""> Hat Black Suits</a>
-                            </td>
-                            <td>Seguradora C</td>
-                            <td>VIDA</td>
-                            <td class="d-none d-md-table-cell">Nov 18, 2018</td>
-                            <td class="d-none d-md-table-cell">$325</td>
-                            <td >
-                              <span class="badge badge-warning">On Hold</span>
-                            </td>
-                            <td class="text-right">
-                              <div class="dropdown show d-inline-block widget-dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order3" data-toggle="dropdown" aria-haspopup="true"
-                                  aria-expanded="false" data-display="static"></a>
-                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order3">
-                                  <li class="dropdown-item">
-                                    <a href="#">View</a>
-                                  </li>
-                                  <li class="dropdown-item">
-                                    <a href="#">Remove</a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td >24541</td>
-                            <td >
-                              <a class="text-dark" href=""> Backpack Gents, Swimming Cap Slin</a>
-                            </td>
-                            <td>Seguradora D</td>
-                            <td class="d-none d-md-table-cell">Dec 13, 2018</td>
-                            <td class="d-none d-md-table-cell">$200</td>
-                            <td >
-                                <span class="badge badge-danger">Cancelled</span>
-                            </td>
-                            <td class="text-right">
-                              <div class="dropdown show d-inline-block widget-dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
-                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order4">
-                                  <li class="dropdown-item">
-                                    <a href="#">View</a>
-                                  </li>
-                                  <li class="dropdown-item">
-                                    <a href="#">Remove</a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td >24541</td>
-                            <td >
-                              <a class="text-dark" href=""> Speed 500 Ignite</a>
-                            </td>
-                            <td>Seguradora E</td>
-                            <td class="d-none d-md-table-cell">Dec 23, 2018</td>
-                            <td class="d-none d-md-table-cell">$150</td>
-                            <td >
-                              <span class="badge badge-danger">Cancelled</span>
-                            </td>
-                            <td class="text-right">
-                              <div class="dropdown show d-inline-block widget-dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-recent-order5" data-toggle="dropdown" aria-haspopup="true"
-                                  aria-expanded="false" data-display="static"></a>
-                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order5">
                                   <li class="dropdown-item">
                                     <a href="#">View</a>
                                   </li>
