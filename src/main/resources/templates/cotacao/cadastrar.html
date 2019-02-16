@@ -49,71 +49,94 @@
                th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
         <!--CONTEUDO DA PÁGINA-->
 
-		<div class="content-wrapper">
-        	<div class="content">	
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <br>
+                                        <div class="progress mb-3">
+                                            <div class="progress-bar" role="progressbar" id="progress"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row" id="state0">
+                                        <div th:each="seguradora,iter : ${seguradoras}" class="col-md-3 col-xl-3" style="cursor: pointer;">
+                                            <div class="card py-3 mb-3">
+                                                <div class="card-body">
+                                                    <div class="offset-lg-1 col-lg-10">
+                                                        <label class="image-checkbox">
+                                                            <img width="200px;" class="img-fluid" th:src="${seguradora.urlFoto}"/>
+                                                            <input type="checkbox" name="image[]" th:value="${seguradora.id}+','+${seguradora.urlFoto}" />
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="state1">
+                                        <div class="col-md-12 col-xl-12"  id="seguradaoraSelecionada">
 
-	        <div class="row">
-	            <div class="col-12">
-	                <div class="card card-table-border-none" id="recent-orders">
-	                    <br><br>
-	                    <div class="row">
-	                        <div class="offset-lg-1 col-lg-10">
-	                            <div class="card card-default">
-	                                <div class="card-header card-header-border-bottom">
-	                                    <div class="col-lg-8" id="tituloCard">
-	
-	                                    </div>
-	                                    <div class="col-lg-4">
-	                                        <br>
-	                                        <div class="progress mb-3">
-	                                            <div class="progress-bar" role="progressbar" id="progress"></div>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                                <div class="card-body">
-	                                    <div class="row" id="state0">
-	                                        <div th:each="seguradora,iter : ${seguradoras}" class="col-md-6 col-xl-4" style="cursor: pointer;">
-	                                            <div class="card py-3 mb-4">
-	                                                <div class="card-body">
-	                                                    <div class="offset-lg-1 col-lg-10">
-	                                                        <label class="image-checkbox">
-	                                                            <img class="img-fluid" th:src="${seguradora.urlFoto}"/>
-	                                                            <input type="checkbox" name="image[]" th:value="${seguradora.id}+','+${seguradora.urlFoto}" />
-	                                                        </label>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="row" id="state1">
-	                                        <div id="seguradaoraSelecionada">
-	
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                                <div class="card-footer">
-	                                    <div class="row">
-	                                        <div class="col-lg-3 offset-lg-6">
-	                                            <button class="btn btn-danger btn-block btn-sm" type="button" id="btnVolta">Voltar</button>
-	                                        </div>
-	                                        <div class="col-lg-3">
-	                                            <button class="btn btn-liberty btn-block btn-sm" type="button" id="btnProximo">Próximo</button>
-	                                        </div>
-	                                    </div>
-	
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                 </div>
-	               </div>
-               </div>
-		    </div>
-		</div>
-		
-		<div class="content-wrapper" style="display: flex" id="resultados-cotacao">
-        	<div class="content">
-        		<div class="card card-table-boarder-nome">
+                                        </div>
+                                    </div>
+                                    <div class="row" id="state2">
+                                        <div class="offset-lg-1 col-lg-10">
+                                            <label class="text-dark font-weight-medium" for="">Nome</label>
+                                            <div class="form-group" >
+                                                <select name="client_id" id="client" class="form-control" th:field="${cotacao.cotacao.cliente}">
+                                                    <option th:each="client: ${clientes}" th:value="${client.code}" th:text="${client.name}"></option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ramo">Ramo</label>
+                                                <select th:field="${cotacao.cotacao.ramo}" class="form-control" name="cotacao.ramo" id="ramo">
+                                                    <option value="1"> Nenhum</option>
+                                                    <option value="automovel">AUTOMÓVEL</option>
+                                                    <option value="patrimonio">PATRIMONIAL - RESIDENCIAL</option>
+                                                    <option value="vida">VIDA INDIVIDUAL</option>
+                                                    <option value="saude">SAÚDE</option>
+                                                </select>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="inicioVigencia">Vigência - início</label>
+                                                        <input type="date" name="inicioVigencia" class="form-control"
+                                                               id="inicioVigencia">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="fimVigencia">Vigência - fim</label>
+                                                        <input type="date" name="fimVigencia" class="form-control"
+                                                               id="fimVigencia">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="state3">
+                                        <div class="offset-lg-1 col-lg-10">
+                                            <div th:replace="cotacao/seguros/automovel"></div>
+                                            <div th:replace="cotacao/seguros/patrimonial"></div>
+                                            <div th:replace="cotacao/seguros/vida"></div>
+                                            <div th:replace="cotacao/seguros/saude"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-lg-3 offset-lg-6">
+                                            <button class="btn btn-danger btn-block btn-sm" type="button" id="btnVolta">Voltar</button>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <button class="btn btn-liberty btn-block btn-sm" type="button" id="btnProximo"><span id="btnFinalizar">Próximo</span></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--
                     <div class="card-header justify-content-between">
                       <h3>Resultado da Consulta de Cotação</h3>
                     </div>
@@ -287,6 +310,16 @@
                     titulo: '2º Passo: Selecione a sua margem',
                     styleWizard: {width: "25%", "aria-valuenow":"25", "aria-valuemin":"0", "aria-valuemax":"100"},
                     wizardAppend: '25%'
+                },
+                {
+                    titulo: '3º Passo: Selecione as informações do segurado',
+                    styleWizard: {width: "50%", "aria-valuenow":"25", "aria-valuemin":"0", "aria-valuemax":"100"},
+                    wizardAppend: '50%'
+                },
+                {
+                    titulo: '4º Passo: Informações finais para cotação',
+                    styleWizard: {width: "85%", "aria-valuenow":"25", "aria-valuemin":"0", "aria-valuemax":"100"},
+                    wizardAppend: '85%'
                 }
             ];
 
@@ -308,13 +341,40 @@
             }
             $(document).ready(function () {
                 $('#state1').hide();
+                $('#state2').hide();
+                $('#state3').hide();
                 setarEstado(state);
+
+                $('#btnVolta').click(function () {
+                    window.scrollTo(0, 0);
+                    $("#btnFinalizar").empty();
+                    $("#btnFinalizar").append("Próximo");
+                    if(state==1){
+                        $('#state0').show();
+                        $('#state1').hide();
+                        state--;
+                        setarEstado(state);
+                    }else if(state==2){
+                        $('#state1').show();
+                        $('#state2').hide();
+                        state--;
+                        setarEstado(state);
+                    }else if(state==3){
+                        $('#state2').show();
+                        $('#state3').hide();
+                        state--;
+                        setarEstado(state);
+                    }
+                });
+
                 $('#btnProximo').click(function () {
+                    window.scrollTo(0, 0);
                     if(state==0){
                         listaSeguradora = $("input[name='image[]']:checked").map(function () {
                             return {
                                 idSeguradora: this.value.split(',')[0],
-                                urlFoto: this.value.split(',')[1]
+                                urlFoto: this.value.split(',')[1],
+                                valorMargem: 15
                             }
 
                         }).get();
@@ -326,16 +386,45 @@
                             html += `
                                 <div class="row">
                                     <div class="offset-lg-1 col-lg-3"><img src="${dado.urlFoto}" class="img-fluid"></div>
-                                    <div class="offset-lg-3 col-lg-5"></div>
-                                    <hr>
-                                </div>
+                                        <div class="offset-lg-3 col-lg-5">
+                                            <div class="form-group" style="padding: 2.5em;">
+                                                <center><h4><span id="label${dado.idSeguradora}">15</span></h4></center>
+                                                <input type="range" class="form-control rangesCotacao" id="valorMargem${dado.idSeguradora}" value="5" min="0" max="100">
+                                            </div>
+                                        </div>
+                                    </div>
+                                <hr>
                             `;
                         });
                         $('#state0').hide();
                         $('#state1').show();
                         $('#seguradaoraSelecionada').empty();
                         $('#seguradaoraSelecionada').append(html);
+                        $('.rangesCotacao').on('input change', function (e) {
+                            //$('#rangeText').text(rangeValues[$(this).val()]);
+                            let id = $(this).attr('id').replace("valorMargem","");
+                            let idLabel = '#label' + id;
+
+                            $(idLabel).empty();
+                            $(idLabel).append($(this).val())
+                            //console.log()
+                        });
                         state++;
+                        setarEstado(state);
+                    }else if(state == 1){
+                        listaSeguradora.forEach(dado => {
+                            dado.valorMargem = $('#valorMargem'+dado.idSeguradora).val();
+                        });
+                        state++;
+                        $('#state1').hide();
+                        $('#state2').show();
+                        setarEstado(state);
+                    }else if(state==2){
+                        $("#btnFinalizar").empty();
+                        $("#btnFinalizar").append("Finalizar");
+                        state++;
+                        $('#state2').hide();
+                        $('#state3').show();
                         setarEstado(state);
                     }
                 });
