@@ -12,6 +12,8 @@ import java.util.List;
 @Repository
 public interface IndicationRepository extends JpaRepository<Indication, Integer> {
 
+    @Query("select i from Indication i where i.id = ?1")
+    Indication findById(int id);
 
 
     @Query("select i from Indication i join fetch i.client where i.client.usuario=?1")

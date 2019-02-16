@@ -1,16 +1,10 @@
 package com.libertese.hackathon.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * 
@@ -19,8 +13,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table (name = "indication")
-public class Indication {
+public class Indication implements Serializable {
 
+    private static final long serialVersionUID = 1L;
 	/**
 	 * Attributes
 	 */
@@ -28,7 +23,8 @@ public class Indication {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
+
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_client")
 	private Client client;
@@ -41,10 +37,14 @@ public class Indication {
 	
 	@Column (name = "name")
 	private String name;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "type")
-	private StatusLead status;
+
+	@Column(name = "status")
+	@Enumerated(EnumType.ORDINAL)
+	private StatusLead status = StatusLead.NOVO;
+
+	@Column(name = "historico")
+	@OneToMany(mappedBy="indicacao", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<IndicacaoLog> historico;
 
 	/**
 	 * Construct 
@@ -119,5 +119,12 @@ public class Indication {
 	{
 		return this.id;
 	}
-	
+
+	public List<IndicacaoLog> getHistorico() {
+		return historico;
+	}
+
+	public void setHistorico(List<IndicacaoLog> historico) {
+		this.historico = historico;
+	}
 }

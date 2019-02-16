@@ -28,15 +28,29 @@
                                 <th scope="col">E-mail</th>
                                 <th scope="col">Telefone</th>
                                 <th scope="col">Indicado por</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Opções</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="indacacao : ${indicacoes}" style="text-align: center">
-                                <td scope="row" th:text="${indacacao.id}"></td>
+                                <td scope="row" class="name" th:text="${indacacao.id}"></td>
                                 <td th:text="${indacacao.name}"></td>
                                 <td th:text="${indacacao.email}"></td>
                                 <td th:text="${indacacao.phone}"></td>
                                 <td th:text="${indacacao.client.name}"></td>
+                                <td >
+                                    <span th:if="${indacacao.status.toString() == 'NOVO'}" class="badge badge-primary">NOVO</span>
+                                    <span th:if="${indacacao.status.toString() == 'AGUARDANDO RESPOSTA'}" class="badge badge-warning">
+                                        AGUARDANDO RESPOSTA</span>
+                                    <span th:if="${indacacao.status.toString() == 'ACEITO'}" class="badge badge-success">FINALIZADO</span>
+                                    <span th:if="${indacacao.status.toString() == 'NEGADO'}" class="badge badge-danger">NEGADO</span>
+                                </td>
+                                <td>
+                                    <a type="button" class="btn-sm btn btn-default editar">
+                                        <i class="mdi mdi-square-edit-outline"></i>
+                                    </a>
+                                </td>
                             </tr>
 
                             </tbody>
@@ -44,10 +58,84 @@
                     </div>
                 </div>
             </div>
+            <!--modal-->
+            <div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Atualizar indicação</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form th:action="@{/indicacao/}" method="POSt" th:object="${indicationForm}">
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <ul class="list-unstyled list-inline">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <select name="status" id="status" class="form-control">
+                                                    <option th:value="NOVO" >NOVO</option>
+                                                    <option th:value="AGUARDANDO_RESPOSTA" >AGUARDANDO RESPOSTA</option>
+                                                    <option th:value="NEGADO" >NEGADO</option>
+                                                    <option th:value="ACEITO" >ACEITO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Observação</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="observacao" rows="3"></textarea>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary btn-pill" id="finalizar">Salvar</button>
+                            <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--modal-->
         </div>
         <!--CONTEUDO DA PÁGINA-->
         <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer"></footer>
         <div th:replace="fragments/sistema/layout::scripts"></div>
+        <script>
+            $(document).ready(function () {
+                $('#finalizar').on('click',function () {
+                    $('form').submit();
+                })
+
+                $(".editar").on('click', function () {
+
+                    var indicacao = $(this).parent().parent().find('td.name').text();
+                    $.ajax({
+                        url: '/api/indicacao',
+                        dataType: 'json',
+                        type: 'GET',
+                        data: {
+                            i: indicacao
+                        },
+                        success: function (doc) {
+                            $("input[name=status]").each(function (i, e) {
+                                if($(e).val() == doc.status)
+                                    $(e).attr("checked", "checked")
+                            });
+
+                            $("#exampleModal").modal("show");
+
+                            var action = $("form").attr('action')
+                            $("form").attr("action", action+doc.id)
+                        }
+                    })
+                })
+            });
+        </script>
     </div>
 </div>
 </body>
