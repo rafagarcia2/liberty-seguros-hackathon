@@ -47,65 +47,73 @@
     <div class="page-wrapper">
        <header class="main-header " id="header"
                th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
+        <!--CONTEUDO DA PÁGINA-->
 
 		<div class="content-wrapper">
         	<div class="content">	
-        <!--CONTEUDO DA PÁGINA-->
-        <div class="row">
-            <div class="col-12">
-                <div class="card card-table-border-none" id="recent-orders">
-                    <br><br>
-                    <div class="row">
-                        <div class="offset-lg-1 col-lg-10">
-                            <div class="card card-default">
-                                <div class="card-header card-header-border-bottom">
-                                    <div class="col-lg-8" id="tituloCard">
 
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <br>
-                                        <div class="progress mb-3">
-                                            <div class="progress-bar" role="progressbar" id="progress"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row" id="state0">
-                                        <div th:each="seguradora,iter : ${seguradoras}" class="col-md-6 col-xl-4" style="cursor: pointer;">
-                                            <div class="card py-3 mb-4">
-                                                <div class="card-body">
-                                                    <div class="offset-lg-1 col-lg-10">
-                                                        <label class="image-checkbox">
-                                                            <img class="img-fluid" th:src="${seguradora.urlFoto}"/>
-                                                            <input type="checkbox" name="image[]" th:value="${seguradora.id}+','+${seguradora.urlFoto}" />
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row" id="state1">
-                                        <div id="seguradaoraSelecionada">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="row">
-                                        <div class="col-lg-3 offset-lg-6">
-                                            <button class="btn btn-danger btn-block btn-sm" type="button" id="btnVolta">Voltar</button>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <button class="btn btn-liberty btn-block btn-sm" type="button" id="btnProximo">Próximo</button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+	        <div class="row">
+	            <div class="col-12">
+	                <div class="card card-table-border-none" id="recent-orders">
+	                    <br><br>
+	                    <div class="row">
+	                        <div class="offset-lg-1 col-lg-10">
+	                            <div class="card card-default">
+	                                <div class="card-header card-header-border-bottom">
+	                                    <div class="col-lg-8" id="tituloCard">
+	
+	                                    </div>
+	                                    <div class="col-lg-4">
+	                                        <br>
+	                                        <div class="progress mb-3">
+	                                            <div class="progress-bar" role="progressbar" id="progress"></div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                                <div class="card-body">
+	                                    <div class="row" id="state0">
+	                                        <div th:each="seguradora,iter : ${seguradoras}" class="col-md-6 col-xl-4" style="cursor: pointer;">
+	                                            <div class="card py-3 mb-4">
+	                                                <div class="card-body">
+	                                                    <div class="offset-lg-1 col-lg-10">
+	                                                        <label class="image-checkbox">
+	                                                            <img class="img-fluid" th:src="${seguradora.urlFoto}"/>
+	                                                            <input type="checkbox" name="image[]" th:value="${seguradora.id}+','+${seguradora.urlFoto}" />
+	                                                        </label>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                    <div class="row" id="state1">
+	                                        <div id="seguradaoraSelecionada">
+	
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                                <div class="card-footer">
+	                                    <div class="row">
+	                                        <div class="col-lg-3 offset-lg-6">
+	                                            <button class="btn btn-danger btn-block btn-sm" type="button" id="btnVolta">Voltar</button>
+	                                        </div>
+	                                        <div class="col-lg-3">
+	                                            <button class="btn btn-liberty btn-block btn-sm" type="button" id="btnProximo">Próximo</button>
+	                                        </div>
+	                                    </div>
+	
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                 </div>
+	               </div>
+               </div>
 		    </div>
 		</div>
+		
+		<div class="content-wrapper" style="display: flex" id="resultados-cotacao">
+        	<div class="content">
+        		<div class="card card-table-boarder-nome">
                     <div class="card-header justify-content-between">
                       <h3>Resultado da Consulta de Cotação</h3>
                     </div>
@@ -248,7 +256,7 @@
                     </div>
                   </div>
               </div>
-         </div>
+          </div>
                 
         <!--CONTEUDO DA PÁGINA-->
         <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer">
