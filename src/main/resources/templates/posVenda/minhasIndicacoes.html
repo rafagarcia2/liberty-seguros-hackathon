@@ -28,15 +28,21 @@
                                 <th scope="col">E-mail</th>
                                 <th scope="col">Telefone</th>
                                 <th scope="col">Indicado por</th>
+                                <th scope="col">Opções</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="indacacao : ${indicacoes}" style="text-align: center">
-                                <td scope="row" th:text="${indacacao.id}"></td>
+                                <td scope="row" class="name" th:text="${indacacao.id}"></td>
                                 <td th:text="${indacacao.name}"></td>
                                 <td th:text="${indacacao.email}"></td>
                                 <td th:text="${indacacao.phone}"></td>
                                 <td th:text="${indacacao.client.name}"></td>
+                                <td>
+                                    <a type="button" class="btn-sm btn btn-primary editar">
+                                        <i class="mdi mdi-square-edit-outline" style="color:white"></i>
+                                    </a>
+                                </td>
                             </tr>
 
                             </tbody>
@@ -44,10 +50,94 @@
                     </div>
                 </div>
             </div>
+            <!--modal-->
+            <div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Atualizar orçamento</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <label for="myRange">Status</label>
+                                <br/>
+                                <ul class="list-unstyled list-inline">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <li class="d-inline-block mr-4">
+                                                <label class="control control-radio">NOVO
+                                                    <input  type="radio" name="status" value="NOVO" />
+                                                    <div class="control-indicator"></div>
+                                                </label>
+                                            </li>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <li class="d-inline-block mr-4">
+                                                <label class="control control-radio radio-primary">AGUARDANDO RESPOSTA
+                                                    <input type="radio" name="status"  value="AGUARDANDO RESPOSTA" />
+                                                    <div class="control-indicator"></div>
+                                                </label>
+                                            </li>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <li class="d-inline-block mr-4">
+                                                <label class="control control-radio radio-primary">NEGADO
+                                                    <input type="radio" name="status"  value="NEGADO" />
+                                                    <div class="control-indicator"></div>
+                                                </label>
+                                            </li>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <li class="d-inline-block">
+                                                <label class="control control-radio radio-success">ACEITO
+                                                    <input type="radio"  name="status" value="ACEITO"  />
+                                                    <div class="control-indicator"></div>
+                                                </label>
+                                            </li>
+                                        </div>
+                                </ul>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Observaçao</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary btn-pill">Salvar</button>
+                            <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--modal-->
         </div>
         <!--CONTEUDO DA PÁGINA-->
         <footer class="footer mt-auto" th:replace="fragments/sistema/layout::footer"></footer>
         <div th:replace="fragments/sistema/layout::scripts"></div>
+        <script>
+            $(document).ready(function () {
+                $(".editar").on('click', function () {
+
+                    var indicacao = $(this).parent().parent().find('td.name').text();
+                    $.ajax({
+                        url: '/api/indicacao',
+                        dataType: 'json',
+                        type: 'GET',
+                        data: {
+                            i: indicacao
+                        },
+                        success: function (doc) {
+                            console.log(doc)
+                        }
+                    })
+                })
+            });
+        </script>
     </div>
 </div>
 </body>

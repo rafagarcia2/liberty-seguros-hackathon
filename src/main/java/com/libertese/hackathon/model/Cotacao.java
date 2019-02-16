@@ -99,4 +99,5 @@ public class Cotacao {
 		this.seguradora = seguradora;
 	}
 
+
 }

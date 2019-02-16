@@ -1,10 +1,7 @@
 package com.libertese.hackathon.controller;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.libertese.hackathon.model.Client;
-import com.libertese.hackathon.model.Indication;
-import com.libertese.hackathon.model.SeguradoraDTO;
-import com.libertese.hackathon.model.SeguradoraLogin;
+import com.libertese.hackathon.model.*;
 import com.libertese.hackathon.repository.ClientRepository;
 import com.libertese.hackathon.repository.IndicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +40,7 @@ public class IndicacaoController {
     public ResponseEntity<Indication> cadastrarIndicacao(@RequestBody Indication indication, @PathVariable Integer id){
         Optional<Client> client = clientRepository.findById(id);
         indication.setClient(client.get());
+        indication.setStatus(StatusLead.NOVO);
         indicationRepository.save(indication);
         return new ResponseEntity<Indication>(indication, HttpStatus.OK);
     }
