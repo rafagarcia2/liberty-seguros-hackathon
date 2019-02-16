@@ -69,12 +69,12 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row" id="state0">
-                                        <div th:each="seguradora,iter : ${seguradoras}" class="col-md-6 col-xl-4" style="cursor: pointer;">
-                                            <div class="card py-3 mb-4">
+                                        <div th:each="seguradora,iter : ${seguradoras}" class="col-md-3 col-xl-3" style="cursor: pointer;">
+                                            <div class="card py-3 mb-3">
                                                 <div class="card-body">
                                                     <div class="offset-lg-1 col-lg-10">
                                                         <label class="image-checkbox">
-                                                            <img class="img-fluid" th:src="${seguradora.urlFoto}"/>
+                                                            <img width="200px;" class="img-fluid" th:src="${seguradora.urlFoto}"/>
                                                             <input type="checkbox" name="image[]" th:value="${seguradora.id}+','+${seguradora.urlFoto}" />
                                                         </label>
                                                     </div>
@@ -83,7 +83,7 @@
                                         </div>
                                     </div>
                                     <div class="row" id="state1">
-                                        <div id="seguradaoraSelecionada">
+                                        <div class="col-md-12 col-xl-12"  id="seguradaoraSelecionada">
 
                                         </div>
                                     </div>
@@ -138,7 +138,7 @@
                                             <button class="btn btn-danger btn-block btn-sm" type="button" id="btnVolta">Voltar</button>
                                         </div>
                                         <div class="col-lg-3">
-                                            <button class="btn btn-liberty btn-block btn-sm" type="button" id="btnProximo">Próximo</button>
+                                            <button class="btn btn-liberty btn-block btn-sm" type="button" id="btnProximo"><span id="btnFinalizar">Próximo</span></button>
                                         </div>
                                     </div>
 
@@ -146,6 +146,7 @@
                             </div>
                         </div>
                     </div>
+                    <!--
                     <div class="card-header justify-content-between">
                         <h2>Cotação</h2>
                     </div>
@@ -204,7 +205,7 @@
                             </form>
 
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -273,15 +274,29 @@
                 setarEstado(state);
 
                 $('#btnVolta').click(function () {
+                    window.scrollTo(0, 0);
+                    $("#btnFinalizar").empty();
+                    $("#btnFinalizar").append("Próximo");
                     if(state==1){
                         $('#state0').show();
                         $('#state1').hide();
+                        state--;
+                        setarEstado(state);
+                    }else if(state==2){
+                        $('#state1').show();
+                        $('#state2').hide();
+                        state--;
+                        setarEstado(state);
+                    }else if(state==3){
+                        $('#state2').show();
+                        $('#state3').hide();
                         state--;
                         setarEstado(state);
                     }
                 });
 
                 $('#btnProximo').click(function () {
+                    window.scrollTo(0, 0);
                     if(state==0){
                         listaSeguradora = $("input[name='image[]']:checked").map(function () {
                             return {
@@ -299,13 +314,13 @@
                             html += `
                                 <div class="row">
                                     <div class="offset-lg-1 col-lg-3"><img src="${dado.urlFoto}" class="img-fluid"></div>
-                                    <div class="offset-lg-3 col-lg-5">
-                                        <div class="form-group">
-                                            <br>
-                                            <input type="email" class="form-control" id="valorMargem${dado.idSeguradora}" placeholder="15% ">
+                                        <div class="offset-lg-3 col-lg-5">
+                                            <div class="form-group" style="padding: 2.5em;">
+                                                <center><h4><span id="label${dado.idSeguradora}">15</span></h4></center>
+                                                <input type="range" class="form-control rangesCotacao" id="valorMargem${dado.idSeguradora}" value="5" min="0" max="100">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 <hr>
                             `;
                         });
@@ -313,6 +328,15 @@
                         $('#state1').show();
                         $('#seguradaoraSelecionada').empty();
                         $('#seguradaoraSelecionada').append(html);
+                        $('.rangesCotacao').on('input change', function (e) {
+                            //$('#rangeText').text(rangeValues[$(this).val()]);
+                            let id = $(this).attr('id').replace("valorMargem","");
+                            let idLabel = '#label' + id;
+
+                            $(idLabel).empty();
+                            $(idLabel).append($(this).val())
+                            //console.log()
+                        });
                         state++;
                         setarEstado(state);
                     }else if(state == 1){
@@ -324,6 +348,8 @@
                         $('#state2').show();
                         setarEstado(state);
                     }else if(state==2){
+                        $("#btnFinalizar").empty();
+                        $("#btnFinalizar").append("Finalizar");
                         state++;
                         $('#state2').hide();
                         $('#state3').show();
