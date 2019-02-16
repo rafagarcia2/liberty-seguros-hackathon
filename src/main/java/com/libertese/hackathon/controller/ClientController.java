@@ -1,14 +1,16 @@
 package com.libertese.hackathon.controller;
 
+import com.libertese.hackathon.model.Client;
+import com.libertese.hackathon.repository.ClientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.libertese.hackathon.model.Client;
+import java.awt.print.Pageable;
+import java.util.List;
 
 
 @Controller
@@ -16,30 +18,53 @@ import com.libertese.hackathon.model.Client;
 public class ClientController {
 
 	private static final String INSERT_SUCCESS = "Cliente inserido com sucesso!";
-	
+
+	@Autowired
+	private ClientRepository clientRepository;
+
 	@GetMapping("/create")
     public String cadastro(Model m) {
-		//Address ad = new Address(null, null, null, null, null, null, null);
-		//m.addAttribute("client", new Client(null, null, null, null, ad));
 		return "cliente/create";
     }
 
     @GetMapping("index")
-    public String index () { return "cliente/index";}
-	
+    public String index () {
+		return "cliente/index";
+	}
+
 	@PostMapping("/create")
-	public String create (@ModelAttribute("client") Client client, 
+	public String create (@ModelAttribute("client") Client client,
 			RedirectAttributes redirectAtrributes)
 	{
 		try {
-			//TODO tenta inserir cliente
-
-			// mensagem de sucesso
+			clientRepository.save(client);
 			redirectAtrributes.addFlashAttribute("sucesso", INSERT_SUCCESS);
 		}  catch (Exception e) {
 			redirectAtrributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/cliente/create";
 		}
-		return "redirect:/cliente/create";
+		return "redirect:/cliente/listar";
 	}
+
+	@GetMapping("listar")
+	public String index(Model model) {
+		List<Client> all = clientRepository.findAll();
+		model.addAttribute("clients", all);
+		return "cliente/index";
+	}
+
+	@GetMapping("editar/{id}")
+	public String editar(@PathVariable Integer id, Model model) {
+		Client client = clientRepository.findClientByCode(id);
+		model.addAttribute("clients", client);
+		return "cliente/edit";
+	}
+
+	@GetMapping("deletar/{id}")
+	public String deletar(@PathVariable Integer id, Model model) {
+		Client client = clientRepository.findClientByCode(id);
+		clientRepository.delete(client);
+		return "redirect:/cliente/listar";
+	}
+
 }

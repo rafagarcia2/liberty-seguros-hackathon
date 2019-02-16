@@ -72,11 +72,24 @@ public class Client {
 
 	@OneToMany (mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Sale> sale;
-	
+
+	public Client() {
+	}
+
+
 	/**
 	 * Construct 
 	 */
-	
+
+	public Client(String name, String email, String phone, String cpf) {
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.cpf = cpf;
+	}
+
+
+
 	public Client(String name, String email, String phone, String cpf,
 				  String street, String CEP, String neighborhood, String number,
 				  String complement, String city, String state) {
