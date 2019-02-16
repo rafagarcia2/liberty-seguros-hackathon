@@ -16,19 +16,19 @@
         padding: 2.5%;
     }
 
-     input[type="range"]{
-         -webkit-appearance: none;
-         -moz-apperance: none;
-         border-radius: 6px;
-         height: 6px;
-         background-image: -webkit-gradient(
-                 linear,
-                 left top,
-                 right top,
-                 color-stop(0.15, #94A14E),
-                 color-stop(0.15, #C5C5C5)
-         );
-     }
+    input[type="range"]{
+        -webkit-appearance: none;
+        -moz-apperance: none;
+        border-radius: 6px;
+        height: 6px;
+        background-image: -webkit-gradient(
+                linear,
+                left top,
+                right top,
+                color-stop(0.15, #94A14E),
+                color-stop(0.15, #C5C5C5)
+        );
+    }
 
     input[type='range']::-webkit-slider-thumb {
         -webkit-appearance: none !important;
@@ -48,81 +48,64 @@
        <header class="main-header " id="header"
                th:replace="fragments/sistema/layout::header(usuario='Marcus', email='mpsdantas15@gmail.com')"></header>
 
-      	<!--CONTEUDO DA PÁGINA-->
 		<div class="content-wrapper">
         	<div class="content">	
-		        <div class="row">
-		            <div class="col-12">
-		                <div class="card card-table-border-none" id="recent-orders">
-		                    <div class="card-header justify-content-between">
-		                        <h1>Cotação</h1>
-		                    </div>
-		                    <div class="card-body pt-0 pb-5">
-		                        <div class="card-body">
-		                            <form id="wizard" th:action="@{/cotacao/cadastrar}" method="POST">
-		                                <div>
-		                                    <h3>Seguradoras</h3>
-		                                    <section>
-		                                        <div th:replace="sistema/seguradoras"></div>
-		                                    </section>
-		                                    <h3>Segurado</h3>
-		                                    <section>
-		                                        <label class="text-dark font-weight-medium" for="">Nome</label>
-		                                        <div class="form-group" >
-		                                            <select name="client_id" id="client" class="form-control" th:field="${cotacao.cotacao.cliente}">
-		                                                <option th:each="client: ${clientes}" th:value="${client.code}" th:text="${client.name}"></option>
-		                                            </select>
-		                                        </div>
-		                                        <div class="form-group">
-		                                            <label for="ramo">Ramo</label>
-		                                            <select th:field="${cotacao.cotacao.ramo}" class="form-control" name="cotacao.ramo" id="ramo">
-		                                                <option value="1"> Nenhum</option>
-		                                                <option value="automovel">AUTOMÓVEL</option>
-		                                                <option value="patrimonio">PATRIMONIAL - RESIDENCIAL</option>
-		                                                <option value="vida">VIDA INDIVIDUAL</option>
-		                                                <option value="saude">SAÚDE</option>
-		                                            </select>
-		                                        </div>
-		                                        <div class="row">
-		                                            <div class="col-md-6">
-		                                                <div class="form-group">
-		                                                    <label for="inicioVigencia">Vigência - início</label>
-		                                                    <input type="date" name="inicioVigencia" class="form-control"
-		                                                           id="inicioVigencia">
-		                                                </div>
-		                                            </div>
-		                                            <div class="col-md-6">
-		                                                <div class="form-group">
-		                                                    <label for="fimVigencia">Vigência - fim</label>
-		                                                    <input type="date" name="fimVigencia" class="form-control"
-		                                                           id="fimVigencia">
-		                                                </div>
-		                                            </div>
-		                                        </div>
-		                                    </section>
-		                                    <h3>Informações</h3>
-		                                    <section>
-		                                        <div th:replace="cotacao/seguros/automovel"></div>
-		                                        <div th:replace="cotacao/seguros/patrimonial"></div>
-		                                        <div th:replace="cotacao/seguros/vida"></div>
-		                                        <div th:replace="cotacao/seguros/saude"></div>
-		
-		                                    </section>
-		                                </div>
-		                            </form>
-		
-		                        </div>
-		                    </div>
-		                </div>
-		                
-		               </div>
-		       </div>
+        <!--CONTEUDO DA PÁGINA-->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-table-border-none" id="recent-orders">
+                    <br><br>
+                    <div class="row">
+                        <div class="offset-lg-1 col-lg-10">
+                            <div class="card card-default">
+                                <div class="card-header card-header-border-bottom">
+                                    <div class="col-lg-8" id="tituloCard">
+
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <br>
+                                        <div class="progress mb-3">
+                                            <div class="progress-bar" role="progressbar" id="progress"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row" id="state0">
+                                        <div th:each="seguradora,iter : ${seguradoras}" class="col-md-6 col-xl-4" style="cursor: pointer;">
+                                            <div class="card py-3 mb-4">
+                                                <div class="card-body">
+                                                    <div class="offset-lg-1 col-lg-10">
+                                                        <label class="image-checkbox">
+                                                            <img class="img-fluid" th:src="${seguradora.urlFoto}"/>
+                                                            <input type="checkbox" name="image[]" th:value="${seguradora.id}+','+${seguradora.urlFoto}" />
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="state1">
+                                        <div id="seguradaoraSelecionada">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-lg-3 offset-lg-6">
+                                            <button class="btn btn-danger btn-block btn-sm" type="button" id="btnVolta">Voltar</button>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <button class="btn btn-liberty btn-block btn-sm" type="button" id="btnProximo">Próximo</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 		    </div>
 		</div>
-       
-    	<div class="content-wrapper" style="display:none" id="resultado-cotacoes">
-          <div class="content">	
-                <div class="card card-table-border-none">
                     <div class="card-header justify-content-between">
                       <h3>Resultado da Consulta de Cotação</h3>
                     </div>
@@ -284,8 +267,88 @@
                 format: 'dd/mm/yyyy',
                 dateFormat: 'dd/mm/yyyy'
             });
+            var state = 0;
+            var listaSeguradora = [];
+            var states = [
+                {
+                    titulo: '1º Passo: Selecione as seguradoras para cotação',
+                    styleWizard: {width: "0%", "aria-valuenow":"25", "aria-valuemin":"0", "aria-valuemax":"100"},
+                    wizardAppend: '0%'
+                },
+                {
+                    titulo: '2º Passo: Selecione a sua margem',
+                    styleWizard: {width: "25%", "aria-valuenow":"25", "aria-valuemin":"0", "aria-valuemax":"100"},
+                    wizardAppend: '25%'
+                }
+            ];
 
+            function setarEstado(numero) {
+                var dadoEstado = states[numero];
+                $('#tituloCard').empty();
+                $('#progress').empty();
+
+                $('#tituloCard').append("<h2>" + dadoEstado.titulo + "</h2>");
+                $('#progress').css(dadoEstado.styleWizard);
+                $('#progress').append(dadoEstado.wizardAppend);
+
+                if(numero==0){
+                    $('#btnVolta').hide();
+                }else{
+                    $('#btnVolta').show();
+                }
+
+            }
             $(document).ready(function () {
+                $('#state1').hide();
+                setarEstado(state);
+                $('#btnProximo').click(function () {
+                    if(state==0){
+                        listaSeguradora = $("input[name='image[]']:checked").map(function () {
+                            return {
+                                idSeguradora: this.value.split(',')[0],
+                                urlFoto: this.value.split(',')[1]
+                            }
+
+                        }).get();
+                        console.log(listaSeguradora)
+
+                        var html = '';
+
+                        listaSeguradora.forEach(dado => {
+                            html += `
+                                <div class="row">
+                                    <div class="offset-lg-1 col-lg-3"><img src="${dado.urlFoto}" class="img-fluid"></div>
+                                    <div class="offset-lg-3 col-lg-5"></div>
+                                    <hr>
+                                </div>
+                            `;
+                        });
+                        $('#state0').hide();
+                        $('#state1').show();
+                        $('#seguradaoraSelecionada').empty();
+                        $('#seguradaoraSelecionada').append(html);
+                        state++;
+                        setarEstado(state);
+                    }
+                });
+
+                $(".image-checkbox").each(function () {
+                    if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
+                        $(this).addClass('image-checkbox-checked');
+                        console.log($(this))
+                    }
+                    else {
+                        $(this).removeClass('image-checkbox-checked');
+                    }
+                });
+
+                $(".image-checkbox").on("click", function (e) {
+                    $(this).toggleClass('image-checkbox-checked');
+                    var $checkbox = $(this).find('input[type="checkbox"]');
+                    $checkbox.prop("checked",!$checkbox.prop("checked"));
+                    e.preventDefault();
+                });
+
                 var form = $("#wizard")
                 form.children("div").steps({
                     headerTag: "h3",
