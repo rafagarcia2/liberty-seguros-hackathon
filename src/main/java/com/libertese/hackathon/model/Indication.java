@@ -28,7 +28,11 @@ public class Indication implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_client")
 	private Client client;
-	
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "fk_user")
+	private User user;
+
 	@Column (name = "email")
 	private String email;
 	
@@ -126,5 +130,14 @@ public class Indication implements Serializable {
 
 	public void setHistorico(List<IndicacaoLog> historico) {
 		this.historico = historico;
+	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

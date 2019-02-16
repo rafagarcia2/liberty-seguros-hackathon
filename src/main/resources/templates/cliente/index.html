@@ -32,6 +32,7 @@
                             <th scope="col">E-mail</th>
                             <th scope="col">Telefone</th>
                             <th scope="col">CPF</th>
+                            <th scope="col">Indicações</th>
                             <th scope="col">Editar</th>
                             <th scope="col">Excluir</th>
                         </tr>
@@ -43,6 +44,7 @@
                             <td th:text="${client.email}">magna@nuncQuisque.edu</td>
                             <td th:text="${client.phone}">(91) 99375-9080</td>
                             <td th:text="${client.cpf}">356.720.852-16</td>
+                            <td th:text="${client.indicacoes}">0</td>
                             <td>
                                 <a type="button" class="mb-1 btn btn-primary" th:href="${'/cliente/editar/' + client.code }" >
                                     <i class="mdi mdi-account-edit"></i>

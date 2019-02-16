@@ -4,6 +4,7 @@ import com.libertese.hackathon.model.Client;
 import com.libertese.hackathon.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
     @Query("select c from Client c where c.usuario.id = ?1")
     List<Client> findAllByUser(int idUsuario);
 
+    @Query("select count(id) from Indication ind where ind.client.code = ?1")
+    int countIndication(int idClient);
 }

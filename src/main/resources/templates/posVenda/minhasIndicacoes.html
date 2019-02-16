@@ -16,9 +16,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="card card-default">
-                    <div class="card-header card-header-border-bottom">
-                        <h2>Indicações feitas pelos seus cliente</h2>
+                    <div class="card-header justify-content-between">
+                        <h2>Indicações Recebidas</h2>
+                        <div>
+                            <a href="/posVenda/nova-indicacao" type="button" class="mb-1 btn btn-success"><span><i class="mdi mdi-plus"></i></span></a>
+                        </div>
                     </div>
+
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead>
@@ -38,7 +42,6 @@
                                 <td th:text="${indacacao.name}"></td>
                                 <td th:text="${indacacao.email}"></td>
                                 <td th:text="${indacacao.phone}"></td>
-                                <td th:text="${indacacao.client.name}"></td>
                                 <td >
                                     <span th:if="${indacacao.status.toString() == 'NOVO'}" class="badge badge-primary">NOVO</span>
                                     <span th:if="${indacacao.status.toString() == 'AGUARDANDO RESPOSTA'}" class="badge badge-warning">
@@ -46,11 +49,15 @@
                                     <span th:if="${indacacao.status.toString() == 'ACEITO'}" class="badge badge-success">FINALIZADO</span>
                                     <span th:if="${indacacao.status.toString() == 'NEGADO'}" class="badge badge-danger">NEGADO</span>
                                 </td>
+                                <td th:if="${indacacao.client}" th:text="${indacacao.client.name}"></td>
+                                <td th:if="${indacacao.client} == null">Eu</td>
                                 <td>
                                     <a type="button" class="btn-sm btn btn-default editar">
                                         <i class="mdi mdi-square-edit-outline"></i>
                                     </a>
                                 </td>
+                                
+                                
                             </tr>
 
                             </tbody>

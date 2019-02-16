@@ -15,7 +15,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "client")
-public class Client {
+public class Client<column> {
 
 	/**
 	 * Attributes
@@ -57,6 +57,9 @@ public class Client {
 
 	@Column(name = "state")
 	private String state;
+
+	@Column(name = "indicacoes")
+	private int indicacoes;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
@@ -119,7 +122,7 @@ public class Client {
 
 	public Client(String name, String email, String phone, String cpf, String street,
 				  String CEP, String neighborhood, String number,
-				  String complement, String city, String state, User user) {
+				  String complement, String city, String state, int indicacoes, User user) {
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
@@ -131,6 +134,7 @@ public class Client {
 		this.complement = complement;
 		this.city = city;
 		this.state = state;
+		this.indicacoes = indicacoes;
 		this.usuario = user;
 	}
 
@@ -234,7 +238,6 @@ public class Client {
 		this.code = code;
 	}
 
-
 	public User getUsuario() {
 		return usuario;
 	}
@@ -242,4 +245,17 @@ public class Client {
 	public void setUsuario(User idUsuario) {
 		this.usuario = idUsuario;
 	}
+
+	public int getIndicacoes() {
+		return indicacoes;
+	}
+
+	public void setIndicacoes(int indicacoes) {
+		this.indicacoes = indicacoes;
+	}
+
+	public List<Indication> getIndication() {
+		return indication;
+	}
+
 }
