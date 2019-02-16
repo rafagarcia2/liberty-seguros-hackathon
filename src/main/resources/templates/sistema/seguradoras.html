@@ -11,7 +11,7 @@
           </thead>
           <tbody>
           <tr th:each="seguradora,iter : ${seguradoras}">
-              <td align="center"><input type="checkbox" th:value="${iter.index}" th:name="${'seguradora['+iter.index+']'}"></td>
+              <td align="center"><input type="checkbox" th:value="${seguradora.id}" th:name="${'seguradoras['+iter.index+']'}"></td>
               <td>
                   <img style="max-width: 70px" th:src="${seguradora.urlFoto}">
                   <a class="text-dark" href="" th:text="${seguradora.nome}">Liberty Seguros</a>

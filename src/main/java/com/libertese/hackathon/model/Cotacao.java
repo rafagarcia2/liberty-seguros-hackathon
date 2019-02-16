@@ -37,6 +37,10 @@ public class Cotacao {
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date fimVigencia;
 
+	public Cotacao(){
+		super();
+	}
+
 
 	public Cotacao(int id, Client cliente, String ramo, Date inicioVigencia, Date fimVigencia) {
 		super();

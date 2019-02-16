@@ -57,7 +57,7 @@
                     </div>
                     <div class="card-body pt-0 pb-5">
                         <div class="card-body">
-                            <form id="wizard" action="#">
+                            <form id="wizard" th:action="@{/cotacao/cadastrar}" method="POST">
                                 <div>
                                     <h3>Seguradoras</h3>
                                     <section>
@@ -67,14 +67,13 @@
                                     <section>
                                         <label class="text-dark font-weight-medium" for="">Nome</label>
                                         <div class="form-group" >
-                                            <select name="client" id="client" class="form-control">
-                                                <option value="1">Cliente 1</option>
-                                                <option value="2" selected>Cliente 2</option>
+                                            <select name="client_id" id="client" class="form-control" th:field="${cotacao.cotacao.cliente}">
+                                                <option th:each="client: ${clientes}" th:value="${client.code}" th:text="${client.name}"></option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="ramo">Ramo</label>
-                                            <select class="form-control" id="ramo">
+                                            <select th:field="${cotacao.cotacao.ramo}" class="form-control" name="cotacao.ramo" id="ramo">
                                                 <option value="1"> Nenhum</option>
                                                 <option value="automovel">AUTOMÓVEL</option>
                                                 <option value="patrimonio">PATRIMONIAL - RESIDENCIAL</option>
@@ -85,15 +84,16 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="vigencia_inicio">Vigência - início</label>
-                                                    <input type="date" name="vigencia_inicio" class="form-control"
-                                                           id="vigencia_inicio">
+                                                    <label for="inicioVigencia">Vigência - início</label>
+                                                    <input type="date" name="inicioVigencia" th:field="${cotacao.cotacao.inicioVigencia}" class="form-control"
+                                                           id="inicioVigencia">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="vigencia_fim">Vigência - fim</label>
-                                                    <input type="date" name="vigencia_fim" class="form-control" id="vigencia_fim">
+                                                    <label for="fimVigencia">Vigência - fim</label>
+                                                    <input type="date" name="fimVigencia" th:field="${cotacao.cotacao.fimVigencia}" class="form-control"
+                                                           id="fimVigencia">
                                                 </div>
                                             </div>
                                         </div>
@@ -127,10 +127,9 @@
                 src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
         <script>
-            $('input[type="date"]').daterangepicker({
-                locale: {
-                    format: 'DD/MM/YYYY'
-                }
+            var picker = $('input[name*=Vigencia]').daterangepicker({
+                format: 'dd/mm/yyyy',
+                dateFormat: 'dd/mm/yyyy'
             });
 
             $(document).ready(function () {
@@ -152,7 +151,7 @@
                         return true;
                     },
                     onFinished: function (event, currentIndex) {
-                        alert("Submitted!");
+                        $('#wizard').submit()
                     },
                     labels: {
                         current: "current step:",

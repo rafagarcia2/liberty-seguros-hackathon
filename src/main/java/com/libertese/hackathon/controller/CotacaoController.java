@@ -1,8 +1,15 @@
 package com.libertese.hackathon.controller;
 
+import com.libertese.hackathon.model.Cotacao;
+import com.libertese.hackathon.model.User;
+import com.libertese.hackathon.repository.ClientRepository;
 import com.libertese.hackathon.repository.SeguradoraRepository;
+import com.libertese.hackathon.repository.UserRepository;
+import com.libertese.hackathon.service.UserService;
 import com.libertese.hackathon.util.CotacaoForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +26,12 @@ public class CotacaoController {
     @Autowired
     private SeguradoraRepository segRp;
 
+    @Autowired
+    private ClientRepository clientRep;
+
+    @Autowired
+    private UserRepository userService;
+
     @GetMapping("listar")
     public String listar(Model m) {
 
@@ -27,12 +40,17 @@ public class CotacaoController {
 
     @GetMapping("cadastrar")
     public String cadastrar(Model m) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByEmailAddress(auth.getName());
         m.addAttribute("seguradoras", segRp.findAll());
+        m.addAttribute("clientes", clientRep.findAllByUser(user.getId()));
+        Cotacao c = new Cotacao(1, null, null, null, null);
+        m.addAttribute("cotacao", new CotacaoForm(null, null,c,null));
         return "cotacao/cadastrar";
     }
 
     @PostMapping("cadastrar")
-    public String salvar(CotacaoForm entity, BindingResult result, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+    public String salvar(CotacaoForm entity, BindingResult result, RedirectAttributes redirectAttributes) {
 
         //Resource resource = null;
         try {
@@ -47,7 +65,7 @@ public class CotacaoController {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
             e.printStackTrace();
         }
-        return "redirect:/tasks";
+        return "redirect:/cotacao/cadastrar";
 
     }
 }
