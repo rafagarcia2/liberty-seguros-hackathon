@@ -29,7 +29,9 @@ public class SistemaController {
     private SeguradoraLoginRepository seguradoraLoginRepository;
 
     @GetMapping("/dashboard")
-    public String cadastro(){
+    public String cadastro(Model model){
+        int qntdSeguradoras = (int) seguradoraRepository.count();
+        model.addAttribute("qntdSeguradoras", qntdSeguradoras);
         return "sistema/dashboard";
     }
 
