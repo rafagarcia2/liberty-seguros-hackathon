@@ -29,11 +29,6 @@ public class PosVendaController {
         return "posVenda/resultadoNps";
     }
 
-    @GetMapping("indicacao")
-    public String indicacao(){
-        return "posVenda/indicacao";
-    }
-
     @GetMapping("obter-configuracoes")
     @ResponseBody
     public List<ConfiguracaoPosVenda> configuracoesList(){

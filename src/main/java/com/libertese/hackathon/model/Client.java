@@ -3,18 +3,7 @@ package com.libertese.hackathon.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 /**
@@ -66,6 +55,10 @@ public class Client {
 
 	@Column(name = "state")
 	private String state;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private User usuario;
 
 	@OneToMany (mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Indication> indication;
@@ -119,6 +112,23 @@ public class Client {
 		this.number = number;
 		this.city = city;
 		this.state = state;
+	}
+
+	public Client(String name, String email, String phone, String cpf, String street,
+				  String CEP, String neighborhood, String number,
+				  String complement, String city, String state, User user) {
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.cpf = cpf;
+		this.street = street;
+		this.CEP = CEP;
+		this.neighborhood = neighborhood;
+		this.number = number;
+		this.complement = complement;
+		this.city = city;
+		this.state = state;
+		this.usuario = user;
 	}
 
 	/**
@@ -221,5 +231,12 @@ public class Client {
 		this.code = code;
 	}
 
-	
+
+	public User getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(User idUsuario) {
+		this.usuario = idUsuario;
+	}
 }
