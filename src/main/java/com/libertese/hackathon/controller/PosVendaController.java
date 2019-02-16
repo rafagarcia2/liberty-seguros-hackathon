@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -42,15 +43,22 @@ public class PosVendaController {
         return "posVenda/resultadoNps";
     }
 
+    @GetMapping("nova-indicacao")
+    public String novaIndicacao() { return "posVenda/cadastrarIndicacao";  }
+
+
     @GetMapping("minhas-indicacoes")
     public String indicacoes(Model model){
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findByEmailAddress(auth.getName());
+
         List<Indication> indications = indicationRepository.findAllByUser(user);
 
         model.addAttribute("indicacoes", indications);
         return "posVenda/minhasIndicacoes";
     }
+
 
     @GetMapping("obter-configuracoes")
     @ResponseBody
@@ -63,6 +71,26 @@ public class PosVendaController {
     public ResponseEntity<ConfiguracaoPosVenda> response(@RequestBody ConfiguracaoPosVenda configuracaoPosVenda){
         posVendaRepository.save(configuracaoPosVenda);
         return new ResponseEntity<ConfiguracaoPosVenda>(configuracaoPosVenda, HttpStatus.OK);
+    }
+
+
+    @GetMapping("create")
+    public String cadastro(Model m) {
+        return "posVenda/create";
+    }
+
+    @PostMapping("create")
+    public String cadastrarIndicacao(@ModelAttribute("indication") Indication indication,
+                                     RedirectAttributes redirectAtrributes){
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findByEmailAddress(auth.getName());
+
+        indication.setUser(user);
+
+        indicationRepository.save(indication);
+
+        return "redirect:/posVenda/minhas-indicacoes";
     }
 
 }

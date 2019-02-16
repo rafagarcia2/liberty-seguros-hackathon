@@ -13,7 +13,7 @@ import java.util.List;
 public interface IndicationRepository extends JpaRepository<Indication, Integer> {
 
 
-
-    @Query("select i from Indication i join fetch i.client where i.client.usuario=?1")
+    //@Query("select i from Indication i where (i.user=?1 OR i.client.usuario=?1 )")
+    @Query("select i from Indication i where (i.user=?1)")
     List<Indication> findAllByUser(User usuario);
 }

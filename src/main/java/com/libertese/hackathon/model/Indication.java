@@ -1,16 +1,6 @@
 package com.libertese.hackathon.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * 
@@ -32,7 +22,11 @@ public class Indication {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_client")
 	private Client client;
-	
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "fk_user")
+	private User user;
+
 	@Column (name = "email")
 	private String email;
 	
@@ -119,5 +113,13 @@ public class Indication {
 	{
 		return this.id;
 	}
-	
+
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }
