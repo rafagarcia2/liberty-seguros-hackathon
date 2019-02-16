@@ -1,5 +1,6 @@
 package com.libertese.hackathon.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.libertese.hackathon.model.Client;
 import com.libertese.hackathon.model.Indication;
 import com.libertese.hackathon.model.SeguradoraDTO;
@@ -38,7 +39,8 @@ public class IndicacaoController {
     }
 
     @PostMapping("usuario/{id}")
-    public ResponseEntity<Indication> cadastroIndicacao(@RequestBody Indication indication, @PathVariable Integer id){
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    public ResponseEntity<Indication> cadastrarIndicacao(@RequestBody Indication indication, @PathVariable Integer id){
         Optional<Client> client = clientRepository.findById(id);
         indication.setClient(client.get());
         indicationRepository.save(indication);
