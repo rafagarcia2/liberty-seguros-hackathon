@@ -1,16 +1,15 @@
 package com.libertese.hackathon.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -42,6 +41,11 @@ public class Indication {
 	
 	@Column (name = "name")
 	private String name;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "type")
+	private StatusLead status;
+
 	/**
 	 * Construct 
 	 */
@@ -65,6 +69,19 @@ public class Indication {
 	/**
 	 * Getters and Setters
 	 */
+	
+	
+	public StatusLead getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusLead status) {
+		this.status = status;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	
 	public Client getClient() {
 		return client;
